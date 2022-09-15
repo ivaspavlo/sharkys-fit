@@ -1,0 +1,10 @@
+@import 'mixins/_all';
+
+:host {
+  height: 100%;
+  width: 100%;
+}
+
+.not-found {
+  width: 60%;
+}
