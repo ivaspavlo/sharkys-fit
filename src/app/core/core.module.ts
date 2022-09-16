@@ -1,6 +1,7 @@
 import { NgModule, Optional, SkipSelf } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { RouterModule } from '@angular/router';
+import { CoreRoutingModule } from './core-routing.module';
+import { CoreTranslationModule } from './core-translation.module';
 import { CORE_PROVIDERS } from './providers';
 
 
@@ -8,13 +9,14 @@ import { CORE_PROVIDERS } from './providers';
   imports: [
     FormsModule,
     ReactiveFormsModule,
-    RouterModule.forRoot([])
+    CoreTranslationModule.forRoot(),
+    CoreRoutingModule
   ],
   providers: [
     ...CORE_PROVIDERS
   ],
   exports: [
-    RouterModule
+    CoreRoutingModule
   ]
 })
 export class CoreModule {

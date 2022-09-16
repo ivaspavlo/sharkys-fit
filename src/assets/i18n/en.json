@@ -1,5 +1,23 @@
 {
   "core": {
-    "test": "testovich"
+    "form-errors": {
+      "required": "This field is required",
+      "minlength": "Value is too short",
+      "email": "Email is not correct"
+    }
+  },
+  "not-found": {
+    "title": "Page was not found"
+  },
+  "submission": {
+    "desc": "A Sharky's Reward Account is required to join Sharky's Fit. We will create an account automatically for you and include the account username and password in the confirmation email. If you have a Sharky's Reward Account and have registered it, please make sure to use an different email address when creating your Sharky's Fit Account.",
+    "firstName": {
+      "label": "First Name",
+      "placeholder": "Enter first name"
+    },
+    "lastName": {
+      "label": "Last Name",
+      "placeholder": "Enter last name"
+    }
   }
 }

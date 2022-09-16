@@ -1,0 +1,22 @@
+<section class="submission">
+
+  <div class="submission__content">
+
+    <h4 class="submission__desc">{{ 'submission.desc' | translate }}</h4>
+
+    <form [formGroup]="form" class="submission__form">
+      
+      <app-input controlName="firstName" label="submission.firstName.label" placeholder="submission.firstName.placeholder" class="submission__input"></app-input>
+      <app-input controlName="lastName" label="submission.lastName.label" placeholder="submission.lastName.placeholder" class="submission__input"></app-input>
+      
+      <!-- <app-input controlName="firstName" label="First name" placeholder="Enter first name"></app-input>
+      <app-input controlName="firstName" label="First name" placeholder="Enter first name"></app-input>
+      <app-input controlName="firstName" label="First name" placeholder="Enter first name"></app-input>
+      <app-input controlName="firstName" label="First name" placeholder="Enter first name"></app-input>
+      <app-input controlName="firstName" label="First name" placeholder="Enter first name"></app-input> -->
+
+    </form>
+
+  </div>
+
+</section>
