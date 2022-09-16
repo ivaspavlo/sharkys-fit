@@ -1,0 +1,15 @@
+@import '_core-colors';
+
+.app-main {
+  width: 100%;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background-color: $black;
+  &__header {
+    width: 100%;
+    position: sticky; top: 0;
+    display: flex;
+    background-color: rgba(0,0,0,.7);
+  }
+}
