@@ -2,20 +2,35 @@
 
   <div class="submission__content">
 
-    <h4 class="submission__desc">{{ 'submission.desc' | translate }}</h4>
+    <ng-container *ngIf="!success">
 
-    <form [formGroup]="form" class="submission__form">
-      
-      <app-input controlName="firstName" label="submission.firstName.label" placeholder="submission.firstName.placeholder" class="submission__input"></app-input>
-      <app-input controlName="lastName" label="submission.lastName.label" placeholder="submission.lastName.placeholder" class="submission__input"></app-input>
-      
-      <!-- <app-input controlName="firstName" label="First name" placeholder="Enter first name"></app-input>
-      <app-input controlName="firstName" label="First name" placeholder="Enter first name"></app-input>
-      <app-input controlName="firstName" label="First name" placeholder="Enter first name"></app-input>
-      <app-input controlName="firstName" label="First name" placeholder="Enter first name"></app-input>
-      <app-input controlName="firstName" label="First name" placeholder="Enter first name"></app-input> -->
+      <h4 class="submission__desc">{{ 'submission.desc' | translate }}</h4>
 
-    </form>
+      <form [formGroup]="form" markTouched class="submission__form">
+        
+        <app-input controlName="firstName" label="submission.firstName.label" placeholder="submission.firstName.placeholder" class="submission__input"></app-input>
+        <app-input controlName="lastName" label="submission.lastName.label" placeholder="submission.lastName.placeholder" class="submission__input"></app-input>
+        <app-input controlName="email" label="submission.email.label" placeholder="submission.email.placeholder" class="submission__input"></app-input>
+        <app-input controlName="address" label="submission.address.label" placeholder="submission.address.placeholder" class="submission__input"></app-input>
+        <app-input controlName="phoneNumber" label="submission.phoneNumber.label" placeholder="submission.phoneNumber.placeholder" class="submission__input"></app-input>
+        <app-input controlName="trainingLocation" label="submission.trainingLocation.label" placeholder="submission.trainingLocation.placeholder" class="submission__input"></app-input>
+        <app-input controlName="clientsQty" label="submission.clientsQty.label" placeholder="submission.clientsQty.placeholder" type="number" class="submission__input"></app-input>
+        <app-input controlName="cityOfInterest" label="submission.cityOfInterest.label" placeholder="submission.cityOfInterest.placeholder" class="submission__input"></app-input>
+        <app-input controlName="sports" label="submission.sports.label" placeholder="submission.sports.placeholder" class="submission__input"></app-input>
+        <app-input controlName="isCertified" label="submission.isCertified.label" placeholder="submission.isCertified.placeholder" class="submission__input"></app-input>
+        <app-input controlName="personalBackground" label="submission.personalBackground.label" placeholder="submission.personalBackground.placeholder" type="textarea" class="submission__input"></app-input>
+        <app-select controlName="favoriteLocation" label="submission.favoriteLocation.label" [options]="favLocationOptions" class="submission__input"></app-select>
+
+        <app-button-primary (buttonPrimaryClick)="onSubmitForm()" title="core.button.submit" class="submission__button" [disabled]="!form.valid"></app-button-primary>
+
+      </form>
+
+    </ng-container>
+
+    <h2 *ngIf="success" class="submission__success">
+      <p>{{ 'submission.success.line-1' | translate }}</p>
+      <p>{{ 'submission.success.line-2' | translate }}</p>
+    </h2>
 
   </div>
 

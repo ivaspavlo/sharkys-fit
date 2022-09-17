@@ -1,7 +1,11 @@
 @import '_core-colors';
 
+:host {
+  display: flex;
+  flex-grow: 1;
+}
+
 .not-found-page {
-  min-height: 100vh;
   width: 100vw;
   display: flex;
   justify-content: center;

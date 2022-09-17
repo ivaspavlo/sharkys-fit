@@ -4,13 +4,23 @@
       "required": "This field is required",
       "minlength": "Value is too short",
       "email": "Email is not correct"
+    },
+    "select": {
+      "default": "-- Select one --"
+    },
+    "button": {
+      "submit": "Submit"
     }
   },
   "not-found": {
-    "title": "Page was not found"
+    "title": "Page not found"
   },
   "submission": {
     "desc": "A Sharky's Reward Account is required to join Sharky's Fit. We will create an account automatically for you and include the account username and password in the confirmation email. If you have a Sharky's Reward Account and have registered it, please make sure to use an different email address when creating your Sharky's Fit Account.",
+    "success": {
+      "line-1": "THANK YOU FOR YOUR SUBMISSION",
+      "line-2": "YOU’LL HEAR FROM US SOON."
+    },
     "firstName": {
       "label": "First Name",
       "placeholder": "Enter first name"
@@ -18,6 +28,46 @@
     "lastName": {
       "label": "Last Name",
       "placeholder": "Enter last name"
+    },
+    "email": {
+      "label": "Email",
+      "placeholder": "Enter email"
+    },
+    "address": {
+      "label": "Address",
+      "placeholder": "Enter address"
+    },
+    "phoneNumber": {
+      "label": "Phone",
+      "placeholder": "e.g. (123) 456-7800"
+    },
+    "trainingLocation": {
+      "label": "Training Location",
+      "placeholder": "Where do you train?"
+    },
+    "clientsQty": {
+      "label": "Clients Quantity",
+      "placeholder": "How many clients do you have?"
+    },
+    "cityOfInterest": {
+      "label": "City/Market of Interest",
+      "placeholder": "Enter your city or market of interest"
+    },
+    "sports": {
+      "label": "Sports Specialization",
+      "placeholder": "Enter your sports specialization"
+    },
+    "isCertified": {
+      "label": "Certification",
+      "placeholder": "Are you a certified trainer?"
+    },
+    "personalBackground": {
+      "label": "Brief Background",
+      "placeholder": "Enter breifly your background"
+    },
+    "favoriteLocation": {
+      "label": "Favorite Sharky's location",
+      "placeholder": "-- Select your favorite Sharky's location --"
     }
   }
 }

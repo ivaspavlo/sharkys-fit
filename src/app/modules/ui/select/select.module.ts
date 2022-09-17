@@ -1,24 +1,25 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { RouterModule } from '@angular/router';
+import { ReactiveFormsModule } from '@angular/forms';
 import { CoreTranslationModule } from '@app/core/core-translation.module';
+
+import { FormErrorModule } from '@app/modules/ui/form-error/form-error.module';
+
 import { COMPONENTS } from './components';
-import { DIRECTIVES } from './directives';
 
 
 @NgModule({
   declarations: [
-    ...COMPONENTS,
-    ...DIRECTIVES
+    ...COMPONENTS
   ],
   imports: [
     CommonModule,
-    RouterModule,
+    ReactiveFormsModule,
+    FormErrorModule,
     CoreTranslationModule.forChild()
   ],
   exports: [
-    ...COMPONENTS,
-    ...DIRECTIVES
+    ...COMPONENTS
   ]
 })
-export class SharedModule { }
+export class SelectModule { }

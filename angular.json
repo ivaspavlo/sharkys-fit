@@ -109,6 +109,16 @@
             ],
             "scripts": []
           }
+        },
+        "deploy": {
+          "builder": "@angular/fire:deploy",
+          "options": {
+            "prerender": false,
+            "ssr": false,
+            "browserTarget": "sharkys-fit:build:production",
+            "firebaseProject": "sharkys-fit",
+            "firebaseHostingSite": "sharkys-fit"
+          }
         }
       }
     }
