@@ -1,5 +1,10 @@
 import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { catchError } from 'rxjs/operators';
+import { ISelectOption } from '@app/modules/ui/select/interfaces';
+import { FavoriteLocationOptions } from '../../constants';
+import { TrainerSubmissionService } from '../../services/trainer-submission.service';
+import { of } from 'rxjs';
 
 
 @Component({
@@ -11,13 +16,17 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 export class TrainerSubmissionComponent implements OnInit {
 
   public form: FormGroup;
+  public favLocationOptions: ISelectOption[] = FavoriteLocationOptions;
+  public success = false;
 
   constructor(
-    private fb: FormBuilder
+    private fb: FormBuilder,
+    private service: TrainerSubmissionService
   ) { }
 
   ngOnInit(): void {
     this.initForm();
+    this.form.valueChanges.subscribe(res => console.log(this.form));
   }
 
   private initForm(): void {
@@ -27,13 +36,21 @@ export class TrainerSubmissionComponent implements OnInit {
       email: ['', [Validators.required, Validators.email]],
       address: ['', [Validators.required, Validators.minLength(10)]],
       phoneNumber: ['', [Validators.required, Validators.minLength(7)]],
-      trainLocation: ['', [Validators.required, Validators.minLength(7)]],
+      trainingLocation: ['', [Validators.required, Validators.minLength(7)]],
       clientsQty: ['', [Validators.required]],
       cityOfInterest: ['', [Validators.required, Validators.minLength(3)]],
       sports: ['', [Validators.required, Validators.minLength(3)]],
       isCertified: ['', [Validators.required]],
       personalBackground: ['', [Validators.required, Validators.minLength(3)]],
-      favoriteLocation: ['', [Validators.required, Validators.minLength(3)]]
+      favoriteLocation: ['', [Validators.required]]
+    });
+  }
+
+  public onSubmitForm(): void {
+    this.service.submitTrainerData(this.form.value).pipe(
+      catchError(() => of(false))
+    ).subscribe((res: boolean) => {
+      this.success = res;
     });
   }
 

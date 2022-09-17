@@ -1,6 +1,6 @@
 import { Component, OnInit, Input, Optional, ChangeDetectionStrategy } from '@angular/core';
 import { ControlContainer, FormControl, FormGroup } from '@angular/forms';
-import { InputTypes } from '../interfaces';
+import { InputTypes } from '../../interfaces';
 
 
 @Component({
@@ -16,13 +16,11 @@ export class InputComponent implements OnInit {
   @Input() placeholder = '';
   @Input() type: InputTypes;
 
-  get isText() { return this.innerInputType === 'text'; }
   get isTextArea() { return this.innerInputType === 'textarea'; }
 
   public innerInputType: InputTypes;
   public hasFocus = false;
 
-  // ControlContainer
   public get form(): FormGroup { return this.controlContainer.control as FormGroup; }
   public get control(): FormControl { return this.form.get(this.controlName) as FormControl; }
 

@@ -56,3 +56,8 @@ tools/gulp-tasks/cldr/cldr-data/
 
 # Husky
 .husky/_
+
+# Firebase
+.firebase
+*-debug.log
+.runtimeconfig.json

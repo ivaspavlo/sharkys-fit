@@ -1,0 +1,14 @@
+{
+  "targets": {
+    "sharkys-fit": {
+      "hosting": {
+        "sharkys-fit": [
+          "sharkys-fit"
+        ]
+      }
+    }
+  },
+  "projects": {
+    "default": "sharkys-fit"
+  }
+}

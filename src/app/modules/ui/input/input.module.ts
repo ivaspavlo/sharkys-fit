@@ -4,24 +4,22 @@ import { ReactiveFormsModule } from '@angular/forms';
 
 import { CoreTranslationModule } from '@app/core/core-translation.module';
 
-import { InputComponent } from './container/input.component';
-import { PARTIALS } from './partials';
-import { PIPES } from './pipes';
+import { COMPONENTS } from './components';
+import { FormErrorModule } from '../form-error/form-error.module';
 
 
 @NgModule({
   declarations: [
-    InputComponent,
-    ...PIPES,
-    ...PARTIALS
+    ...COMPONENTS
   ],
   imports: [
     CommonModule,
     ReactiveFormsModule,
+    FormErrorModule,
     CoreTranslationModule.forChild()
   ],
   exports: [
-    InputComponent
+    ...COMPONENTS
   ]
 })
 export class InputModule { }

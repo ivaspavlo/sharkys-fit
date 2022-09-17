@@ -1,24 +1,22 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { RouterModule } from '@angular/router';
 import { CoreTranslationModule } from '@app/core/core-translation.module';
+
 import { COMPONENTS } from './components';
-import { DIRECTIVES } from './directives';
+import { PIPES } from './pipes';
 
 
 @NgModule({
   declarations: [
     ...COMPONENTS,
-    ...DIRECTIVES
+    ...PIPES
   ],
   imports: [
     CommonModule,
-    RouterModule,
     CoreTranslationModule.forChild()
   ],
   exports: [
-    ...COMPONENTS,
-    ...DIRECTIVES
+    ...COMPONENTS
   ]
 })
-export class SharedModule { }
+export class FormErrorModule { }

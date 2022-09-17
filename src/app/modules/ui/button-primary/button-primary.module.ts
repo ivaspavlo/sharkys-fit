@@ -3,13 +3,11 @@ import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { CoreTranslationModule } from '@app/core/core-translation.module';
 import { COMPONENTS } from './components';
-import { DIRECTIVES } from './directives';
 
 
 @NgModule({
   declarations: [
-    ...COMPONENTS,
-    ...DIRECTIVES
+    ...COMPONENTS
   ],
   imports: [
     CommonModule,
@@ -17,8 +15,7 @@ import { DIRECTIVES } from './directives';
     CoreTranslationModule.forChild()
   ],
   exports: [
-    ...COMPONENTS,
-    ...DIRECTIVES
+    ...COMPONENTS
   ]
 })
-export class SharedModule { }
+export class ButtonPrimaryModule { }
