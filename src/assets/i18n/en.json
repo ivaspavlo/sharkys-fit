@@ -73,6 +73,10 @@
     "favoriteLocation": {
       "label": "Favorite Sharky's location",
       "placeholder": "-- Select your favorite Sharky's location --"
+    },
+    "goto-login": {
+      "text": "Already have an Account?",
+      "link": "Login"
     }
   },
   "first-login": {
@@ -85,6 +89,47 @@
       "label": "Email",
       "placeholder": "Enter email"
     },
+    "password": {
+      "label": "Password",
+      "placeholder": "Enter password"
+    },
+    "confirmPassword": {
+      "label": "Confirm Password",
+      "placeholder": "Enter password once more"
+    }
+  },
+  "login": {
+    "title": "WELCOME BACK!",
+    "email": {
+      "label": "Email",
+      "placeholder": "Enter email"
+    },
+    "password": {
+      "label": "Password",
+      "placeholder": "Enter password"
+    },
+    "goto-register": {
+      "text": "Don't have an account?",
+      "link": "Register"
+    },
+    "goto-reset": {
+      "text": "Forgot password?",
+      "link": "Reset"
+    }
+  },
+  "forgot-password": {
+    "title": "REMIND PASSWORD",
+    "email": {
+      "label": "Email",
+      "placeholder": "Enter email"
+    },
+    "goto-login": {
+      "text": "Go back to",
+      "link": "Login"
+    }
+  },
+  "reset-password": {
+    "title": "RESET PASSWORD",
     "password": {
       "label": "Password",
       "placeholder": "Enter password"

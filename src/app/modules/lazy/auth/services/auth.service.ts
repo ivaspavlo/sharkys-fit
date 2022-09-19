@@ -1,14 +1,16 @@
-import { HttpClient } from '@angular/common/http';
-import { Injectable } from '@angular/core';
+import { Injectable, Injector } from '@angular/core';
+import { ApiService } from '@app/shared/classes';
 import { Observable, of } from 'rxjs';
 
 
 @Injectable()
-export class AuthService {
+export class AuthService extends ApiService {
 
   constructor(
-    private http: HttpClient
-  ) {}
+    protected injector: Injector
+  ) {
+    super(injector);
+  }
 
   public submitTrainerData(value: any): Observable<any> {
     return of(true);
