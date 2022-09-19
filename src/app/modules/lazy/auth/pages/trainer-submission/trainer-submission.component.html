@@ -25,6 +25,11 @@
 
       </form>
 
+      <div class="goTo">
+        <p class="goTo__text">{{ 'submission.goto-login.text' | translate }}</p>
+        <a routerLink="/auth/login" class="goTo__link">{{ 'submission.goto-login.link' | translate }}</a>
+      </div>
+
     </ng-container>
 
     <h2 *ngIf="success" class="submission__success">

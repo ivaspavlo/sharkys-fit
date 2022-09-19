@@ -1,0 +1,32 @@
+<section class="login">
+
+  <div class="login__content">
+
+    <h2 class="login__title">{{ 'login.title' | translate }}</h2>
+
+    <form [formGroup]="form" markTouched class="login__form">
+
+      <app-input controlName="email" label="login.email.label" placeholder="login.email.placeholder" class="login__input" type="email"></app-input>
+      <app-input controlName="password" label="login.password.label" placeholder="login.password.placeholder" class="login__input" type="password"></app-input>
+
+    </form>
+
+    <app-button-primary (buttonPrimaryClick)="onSubmitForm()" title="core.button.submit" class="login__button" [disabled]="!form.valid"></app-button-primary>
+
+    <div class="mt-4 d-flex flex-column flex-md-row justify-content-between">
+
+      <div class="goTo">
+        <p class="goTo__text">{{ 'login.goto-register.text' | translate }}</p>
+        <a routerLink="/auth/register" class="goTo__link">{{ 'login.goto-register.link' | translate }}</a>
+      </div>
+
+      <div class="goTo">
+        <p class="goTo__text">{{ 'login.goto-reset.text' | translate }}</p>
+        <a routerLink="/auth/forgot-password" class="goTo__link">{{ 'login.goto-reset.link' | translate }}</a>
+      </div>
+
+    </div>
+
+  </div>
+
+</section>
