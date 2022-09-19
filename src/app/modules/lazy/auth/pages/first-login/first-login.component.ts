@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { of } from 'rxjs';
 import { catchError } from 'rxjs/operators';
 import { PasswordValidators } from '@app/shared/validators';
+import { ToastService } from '@app/modules/ui/toast';
 import { AuthService } from '../../services/auth.service';
 
 
@@ -18,7 +19,8 @@ export class FirstLoginComponent implements OnInit {
 
   constructor(
     private fb: FormBuilder,
-    private service: AuthService
+    private authService: AuthService,
+    private toastService: ToastService
   ) { }
 
   ngOnInit(): void {
@@ -34,9 +36,15 @@ export class FirstLoginComponent implements OnInit {
   }
 
   public onSubmitForm(): void {
-    this.service.firstLogin(this.form.value).pipe(
+    this.authService.firstLogin(this.form.value).pipe(
       catchError(() => of(false))
-    ).subscribe((res: boolean) => {});
+    ).subscribe((res: boolean) => {
+      this.toastService.show({
+        text: 'Toast message',
+        type: 'info',
+        href: 'https://www.test.com'
+      });
+    });
   }
 
 }

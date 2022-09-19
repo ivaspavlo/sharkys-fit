@@ -21,7 +21,7 @@ export class TrainerSubmissionComponent implements OnInit {
 
   constructor(
     private fb: FormBuilder,
-    private service: AuthService
+    private authService: AuthService
   ) { }
 
   ngOnInit(): void {
@@ -46,7 +46,7 @@ export class TrainerSubmissionComponent implements OnInit {
   }
 
   public onSubmitForm(): void {
-    this.service.submitTrainerData(this.form.value).pipe(
+    this.authService.submitTrainerData(this.form.value).pipe(
       catchError(() => of(false))
     ).subscribe((res: boolean) => {
       this.success = res;
