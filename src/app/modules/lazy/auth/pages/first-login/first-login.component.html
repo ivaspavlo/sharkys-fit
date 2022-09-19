@@ -1,0 +1,23 @@
+<section class="first-login">
+
+  <div class="first-login__content">
+
+    <h2 class="first-login__title">
+      <span>{{ 'first-login.title.line-1' | translate }}</span>
+      <span>{{ 'first-login.title.line-2' | translate }}</span>
+    </h2>
+    <h3 class="first-login__subtitle">{{ 'first-login.subtitle' | translate }}</h3>
+
+    <form [formGroup]="form" markTouched class="first-login__form">
+
+      <app-input controlName="email" label="first-login.email.label" placeholder="first-login.email.placeholder" class="first-login__input" type="email"></app-input>
+      <app-input controlName="password" label="first-login.password.label" placeholder="first-login.password.placeholder" class="first-login__input" type="password"></app-input>
+      <app-input controlName="confirmPassword" label="first-login.confirmPassword.label" placeholder="first-login.confirmPassword.placeholder" class="first-login__input" type="password"></app-input>
+
+    </form>
+
+    <app-button-primary (buttonPrimaryClick)="onSubmitForm()" title="core.button.submit" class="first-login__button" [disabled]="!form.valid"></app-button-primary>
+
+  </div>
+
+</section>

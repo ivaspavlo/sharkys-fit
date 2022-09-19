@@ -3,7 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { catchError } from 'rxjs/operators';
 import { ISelectOption } from '@app/modules/ui/select/interfaces';
 import { FavoriteLocationOptions } from '../../constants';
-import { TrainerSubmissionService } from '../../services/trainer-submission.service';
+import { AuthService } from '../../services/auth.service';
 import { of } from 'rxjs';
 
 
@@ -21,12 +21,11 @@ export class TrainerSubmissionComponent implements OnInit {
 
   constructor(
     private fb: FormBuilder,
-    private service: TrainerSubmissionService
+    private service: AuthService
   ) { }
 
   ngOnInit(): void {
     this.initForm();
-    this.form.valueChanges.subscribe(res => console.log(this.form));
   }
 
   private initForm(): void {

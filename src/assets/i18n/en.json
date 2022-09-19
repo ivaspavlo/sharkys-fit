@@ -3,7 +3,12 @@
     "form-errors": {
       "required": "This field is required",
       "minlength": "Value is too short",
-      "email": "Email is not correct"
+      "email": "Email is not correct",
+      "noNumeric": "Must contain numeric symbol",
+      "noUpperCase": "Must contain upper-case symbol",
+      "noLowerCase": "Must contain lower-case symbol",
+      "minEightChar": "Must have at least 8 symbols",
+      "notEqual": "Password is not equal"
     },
     "select": {
       "default": "-- Select one --"
@@ -68,6 +73,25 @@
     "favoriteLocation": {
       "label": "Favorite Sharky's location",
       "placeholder": "-- Select your favorite Sharky's location --"
+    }
+  },
+  "first-login": {
+    "title": {
+      "line-1": "CONGRATS! WELCOME TO THE",
+      "line-2": "SHARKY'S FIT TEAM."
+    },
+    "subtitle": "CREATE A USER ACCOUNT TO GET STARTED.",
+    "email": {
+      "label": "Email",
+      "placeholder": "Enter email"
+    },
+    "password": {
+      "label": "Password",
+      "placeholder": "Enter password"
+    },
+    "confirmPassword": {
+      "label": "Confirm Password",
+      "placeholder": "Enter password once more"
     }
   }
 }

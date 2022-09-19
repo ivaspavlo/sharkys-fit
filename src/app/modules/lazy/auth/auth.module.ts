@@ -6,9 +6,10 @@ import { CoreTranslationModule } from '@app/core/core-translation.module';
 import { SharedModule } from '@app/shared/shared.module';
 import { ButtonPrimaryModule, InputModule, SelectModule } from '@app/modules/ui';
 
-import { TrainerSubmissionRoutingModule } from './trainer-submission-routing.module';
+import { AuthRoutingModule } from './auth-routing.module';
 import { PAGES } from './pages';
 import { SERVICES } from './services';
+
 
 
 @NgModule({
@@ -20,7 +21,7 @@ import { SERVICES } from './services';
     FormsModule,
     ReactiveFormsModule,
     SharedModule,
-    TrainerSubmissionRoutingModule,
+    AuthRoutingModule,
     InputModule,
     SelectModule,
     ButtonPrimaryModule,
@@ -30,4 +31,4 @@ import { SERVICES } from './services';
     ...SERVICES
   ]
 })
-export class TrainerSubmissionModule { }
+export class AuthModule { }
