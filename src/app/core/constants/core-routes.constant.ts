@@ -4,6 +4,7 @@ import { Routes } from '@angular/router';
 export enum CORE_ROUTE_NAMES {
   BLANK = '',
   AUTH = 'auth',
+  USER = 'account',
   OTHER = '**',
   NOT_FOUND = '404'
 }
@@ -16,6 +17,9 @@ export const CORE_ROUTES: Routes = [
   }, {
     path: CORE_ROUTE_NAMES.AUTH,
     loadChildren: () => import('@app/modules/lazy/auth/auth.module').then(m => m.AuthModule)
+  }, {
+    path: CORE_ROUTE_NAMES.USER,
+    loadChildren: () => import('@app/modules/lazy/user/user.module').then(m => m.UserModule)
   }, {
     path: CORE_ROUTE_NAMES.OTHER,
     pathMatch: 'full',
