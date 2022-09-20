@@ -20,4 +20,8 @@ export class AuthService extends ApiService {
     return of(true);
   }
 
+  public checkResetToken(value: string): Observable<boolean> {
+    return of(true);
+  }
+
 }
