@@ -3,6 +3,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CoreRoutingModule } from './core-routing.module';
 import { CoreTranslationModule } from './core-translation.module';
 import { CORE_PROVIDERS } from './providers';
+import { CORE_GUARDS } from './guards';
+import { CORE_INTERCEPTORS } from './interceptors';
 
 
 @NgModule({
@@ -13,7 +15,9 @@ import { CORE_PROVIDERS } from './providers';
     CoreRoutingModule
   ],
   providers: [
-    ...CORE_PROVIDERS
+    ...CORE_PROVIDERS,
+    ...CORE_GUARDS,
+    ...CORE_INTERCEPTORS
   ],
   exports: [
     CoreRoutingModule

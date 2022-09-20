@@ -4,6 +4,7 @@ import { ForgotPasswordComponent } from '../pages/forgot-password/forgot-passwor
 import { LoginComponent } from '../pages/login/login.component';
 import { ResetPasswordComponent } from '../pages/reset-password/reset-password.component';
 import { TrainerSubmissionComponent } from '../pages/trainer-submission/trainer-submission.component';
+import { ResetPasswordGuard } from '../guards/reset-password.guard';
 
 
 export enum ROUTE_NAMES {
@@ -12,7 +13,7 @@ export enum ROUTE_NAMES {
   FIRST_LOGIN = 'first-login',
   LOGIN = 'login',
   FORGOT_PASSWORD = 'forgot-password',
-  RESET_PASSWORD = 'reset-password'
+  RESET_PASSWORD = 'reset-password/:resetToken'
 }
 
 export const ROUTES: Routes = [
@@ -34,6 +35,7 @@ export const ROUTES: Routes = [
     component: ForgotPasswordComponent
   }, {
     path: ROUTE_NAMES.RESET_PASSWORD,
-    component: ResetPasswordComponent
+    component: ResetPasswordComponent,
+    canActivate: [ResetPasswordGuard]
   }
 ];

@@ -42,6 +42,10 @@ $warn-color: #ff6363;
     }
   }
 
+  &__option {
+    color: grey;
+  }
+
   &__label {
     position: absolute; top: -16px; left: 12px;
     font-size: 12px;

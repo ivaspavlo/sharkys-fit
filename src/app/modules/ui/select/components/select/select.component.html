@@ -6,7 +6,7 @@
   </label>
 
   <select [formControl]="control" class="select__field">
-    <option *ngFor="let item of options" [value]="item.value">{{ item.uiName | translate }}</option>
+    <option *ngFor="let item of options" [value]="item.value" class="select__option">{{ item.uiName | translate }}</option>
   </select>
 
   <div class="select__error">
