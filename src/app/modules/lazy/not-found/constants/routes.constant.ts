@@ -2,13 +2,13 @@ import { Routes } from '@angular/router';
 import { NotFoundPageComponent } from '../pages/not-found-page/not-found-page.component';
 
 
-export enum MAIN_ROUTE_NAMES {
+export enum ROUTE_NAMES {
   BLANK = ''
 }
 
-export const NOT_FOUND_ROUTES: Routes = [
+export const ROUTES: Routes = [
   {
-    path: MAIN_ROUTE_NAMES.BLANK,
+    path: ROUTE_NAMES.BLANK,
     component: NotFoundPageComponent
   }
 ];
