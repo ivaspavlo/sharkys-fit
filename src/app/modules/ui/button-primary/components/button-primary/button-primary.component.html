@@ -1,1 +1,8 @@
-<button (click)="onClick()" [routerLink]="routerLink" class="button-secondary" [disabled]="disabled" [ngClass]="{'filled': filled, 'fullWidth': fullWidth, 'link': link}">{{title | translate}}</button>
+<button
+  (click)="onClick()"
+  [routerLink]="routerLink"
+  routerLinkActive="filled"
+  [disabled]="disabled"
+  [ngClass]="{'filled': filled, 'noBorder': noBorder, 'small': size === 'sm'}"
+  class="button-secondary"
+>{{title | translate}}</button>

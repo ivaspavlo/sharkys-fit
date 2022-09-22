@@ -10,7 +10,6 @@ import { AuthService } from '../../services/auth.service';
 @Component({
   selector: 'app-first-login',
   templateUrl: './first-login.component.html',
-  styleUrls: ['./first-login.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class FirstLoginComponent implements OnInit {

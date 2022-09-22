@@ -1,22 +1,23 @@
-<section class="first-login">
+<section class="w-100 p-rem-2 d-flex justify-content-center">
 
-  <div class="first-login__content">
+  <div class="app-content">
 
-    <h2 class="first-login__title">
+    <h2 class="color-white d-flex flex-column align-items-center">
       <span>{{ 'first-login.title.line-1' | translate }}</span>
       <span>{{ 'first-login.title.line-2' | translate }}</span>
     </h2>
-    <h3 class="first-login__subtitle">{{ 'first-login.subtitle' | translate }}</h3>
 
-    <form [formGroup]="form" markTouched class="first-login__form">
+    <h3 class="mt-rem-2 color-white d-flex flex-column align-items-center">{{ 'first-login.subtitle' | translate }}</h3>
 
-      <app-input controlName="email" label="first-login.email.label" placeholder="first-login.email.placeholder" class="first-login__input" type="email"></app-input>
-      <app-input controlName="password" label="first-login.password.label" placeholder="first-login.password.placeholder" class="first-login__input" type="password"></app-input>
-      <app-input controlName="confirmPassword" label="first-login.confirmPassword.label" placeholder="first-login.confirmPassword.placeholder" class="first-login__input" type="password"></app-input>
+    <form [formGroup]="form" markTouched class="my-rem-3">
+
+      <app-input controlName="email" label="first-login.email.label" placeholder="first-login.email.placeholder" class="mb-rem-2" type="email"></app-input>
+      <app-input controlName="password" label="first-login.password.label" placeholder="first-login.password.placeholder" class="mb-rem-2" type="password"></app-input>
+      <app-input controlName="confirmPassword" label="first-login.confirmPassword.label" placeholder="first-login.confirmPassword.placeholder" class="mb-rem-2" type="password"></app-input>
 
     </form>
 
-    <app-button-primary (buttonPrimaryClick)="onSubmitForm()" title="core.button.submit" class="first-login__button" [disabled]="!form.valid"></app-button-primary>
+    <app-button-primary (buttonPrimaryClick)="onSubmitForm()" title="core.button.submit" class="app-submit-button" [disabled]="!form.valid"></app-button-primary>
 
   </div>
 

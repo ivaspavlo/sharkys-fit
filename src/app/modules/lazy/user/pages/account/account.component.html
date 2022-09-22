@@ -1,0 +1,31 @@
+<section class="w-100 p-rem-2 d-flex justify-content-center">
+
+  <div class="app-content">
+
+    <ng-container *ngIf="!success">
+
+      <h4 class="app-desc">{{ 'submission.desc' | translate }}</h4>
+
+      <form [formGroup]="form" markTouched class="my-rem-3">
+        
+        <app-input controlName="firstName" label="submission.firstName.label" placeholder="submission.firstName.placeholder" class="mb-rem-2"></app-input>
+        <app-input controlName="lastName" label="submission.lastName.label" placeholder="submission.lastName.placeholder" class="mb-rem-2"></app-input>
+        <app-input controlName="email" label="submission.email.label" placeholder="submission.email.placeholder" class="mb-rem-2"></app-input>
+        <app-input controlName="address" label="submission.address.label" placeholder="submission.address.placeholder" class="mb-rem-2"></app-input>
+        <app-input controlName="phoneNumber" label="submission.phoneNumber.label" placeholder="submission.phoneNumber.placeholder" class="mb-rem-2"></app-input>
+        <app-input controlName="instagram" label="submission.trainingLocation.label" placeholder="submission.trainingLocation.placeholder" class="mb-rem-2"></app-input>
+        <app-input controlName="quote" label="submission.clientsQty.label" placeholder="submission.clientsQty.placeholder" class="mb-rem-2"></app-input>
+        <app-input controlName="location" label="submission.cityOfInterest.label" placeholder="submission.cityOfInterest.placeholder" class="mb-rem-2"></app-input>
+        <app-input controlName="sports" label="submission.sports.label" placeholder="submission.sports.placeholder" class="mb-rem-2"></app-input>
+        <app-input controlName="certification" label="submission.isCertified.label" placeholder="submission.isCertified.placeholder" class="mb-rem-2"></app-input>
+        <app-input controlName="bio" label="submission.personalBackground.label" placeholder="submission.personalBackground.placeholder" type="textarea" class="mb-rem-2"></app-input>
+
+        <app-button-primary (buttonPrimaryClick)="onSubmitForm()" title="core.button.submit" class="app-submit-button" [disabled]="!form.valid"></app-button-primary>
+
+      </form>
+
+    </ng-container>
+
+  </div>
+
+</section>

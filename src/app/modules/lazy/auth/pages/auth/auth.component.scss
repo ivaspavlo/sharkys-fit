@@ -1,5 +1,5 @@
 @import 'mixins/elements';
 
 :host {
-  @include container;
+  @include page;
 }

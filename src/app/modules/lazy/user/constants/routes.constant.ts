@@ -5,7 +5,14 @@ import { AccountComponent } from '../pages/account/account.component';
 
 export enum ROUTE_NAMES {
   BLANK = '',
-  ACCOUNT = 'account'
+  ACCOUNT = 'account',
+  PAYMENT = 'payment',
+  AVATAR = 'avatar',
+  GETTING_STARTED = 'getting-started',
+  EARNINGS_INFO = 'earnings-info',
+  ORDER_INFO = 'order-info',
+  PROMOTIONS = 'promotions',
+  CONTACT = 'contact'
 }
 
 export const ROUTES: Routes = [
