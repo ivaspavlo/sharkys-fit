@@ -1,0 +1,25 @@
+@import '_core-colors';
+
+.app-container {
+  width: 100%;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background-color: $black;
+}
+
+.app-content {
+  width: 100%;
+  max-width: 660px;
+}
+
+.app-submit-button {
+  max-width: 300px;
+  margin: 50px 0 0;
+}
+
+.app-desc {
+  color: $white;
+  font-size: 16px;
+  line-height: 24px;
+}

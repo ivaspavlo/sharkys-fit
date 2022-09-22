@@ -9,12 +9,12 @@ import { Component, ChangeDetectionStrategy, Input, EventEmitter, Output } from 
 })
 export class ButtonPrimaryComponent {
 
-  @Input() title = 'button';
+  @Input() title = '';
   @Input() filled = false;
-  @Input() routerLink = null;
-  @Input() fullWidth = false;
-  @Input() link = false;
+  @Input() routerLink: string | null = null;
+  @Input() noBorder = false;
   @Input() disabled = false;
+  @Input() size = '';
 
   @Output() buttonPrimaryClick: EventEmitter<void> = new EventEmitter();
 

@@ -9,12 +9,13 @@ import { ButtonPrimaryModule, InputModule, SelectModule, ToastModule } from '@ap
 import { AuthRoutingModule } from './auth-routing.module';
 import { PAGES } from './pages';
 import { SERVICES } from './services';
-
+import { PARTIALS } from './partials';
 
 
 @NgModule({
   declarations: [
-    ...PAGES
+    ...PAGES,
+    ...PARTIALS
   ],
   imports: [
     CommonModule,

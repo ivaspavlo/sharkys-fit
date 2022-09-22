@@ -1,16 +1,20 @@
 <div class="user-aside">
 
   <figure class="user-avatar">
-    <img [src]="" class="w-100" alt="User avatar">
-    <figcaption class="d-flex flex-column">
-      <p class="user-avatar__name">John Smith</p>
-      <p class="user-avatar__payout">PAYOUT $0.00</p>
-    </figcaption>
+    <img src="/assets/img/png/mock-avatar.png" alt="User avatar" class="h-100">
   </figure>
 
-  <ul class="user-aside__content">
+  <div class="mt-3 mb-4 d-flex flex-column">
+    <p class="user-aside__name">John Smith</p>
+    <p class="user-payout">
+      <span>PAYOUT</span>
+      <span class="user-payout__amount">$0.00</span>
+    </p>
+  </div>
+
+  <ul class="w-100">
     <li *ngFor="let item of buttons">
-      <a [routerLink]="[item.link]" routerLinkActive="active">{{ item.uiName | translate }}</a>
+      <app-button-primary [routerLink]="item.link" [title]="item.uiName" [disabled]="false" size="sm" class="mb-2 w-100"></app-button-primary>
     </li>
   </ul>
 

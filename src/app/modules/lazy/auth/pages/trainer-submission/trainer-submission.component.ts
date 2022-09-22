@@ -1,16 +1,15 @@
 import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { of } from 'rxjs';
 import { catchError } from 'rxjs/operators';
 import { ISelectOption } from '@app/modules/ui/select/interfaces';
 import { FavoriteLocationOptions } from '../../constants';
 import { AuthService } from '../../services/auth.service';
-import { of } from 'rxjs';
 
 
 @Component({
   selector: 'app-trainer-submission',
   templateUrl: './trainer-submission.component.html',
-  styleUrls: ['./trainer-submission.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class TrainerSubmissionComponent implements OnInit {

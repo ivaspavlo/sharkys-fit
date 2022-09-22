@@ -1,30 +1,19 @@
-<section class="login">
+<section class="w-100 p-rem-2 d-flex justify-content-center">
 
-  <div class="login__content">
+  <div class="app-content">
 
-    <h2 class="login__title">{{ 'login.title' | translate }}</h2>
+    <h2 class="color-white d-flex flex-column align-items-center">{{ 'login.title' | translate }}</h2>
 
-    <form [formGroup]="form" markTouched class="login__form">
-
-      <app-input controlName="email" label="login.email.label" placeholder="login.email.placeholder" class="login__input" type="email"></app-input>
-      <app-input controlName="password" label="login.password.label" placeholder="login.password.placeholder" class="login__input" type="password"></app-input>
-
+    <form [formGroup]="form" markTouched class="my-rem-3">
+      <app-input controlName="email" label="login.email.label" placeholder="login.email.placeholder" class="mb-rem-2" type="email"></app-input>
+      <app-input controlName="password" label="login.password.label" placeholder="login.password.placeholder" class="mb-rem-2" type="password"></app-input>
     </form>
 
-    <app-button-primary (buttonPrimaryClick)="onSubmitForm()" title="core.button.submit" class="login__button" [disabled]="!form.valid"></app-button-primary>
+    <app-button-primary (buttonPrimaryClick)="onSubmitForm()" title="core.button.submit" class="app-submit-button" [disabled]="!form.valid"></app-button-primary>
 
     <div class="mt-4 d-flex flex-column flex-md-row justify-content-between">
-
-      <div class="goTo">
-        <p class="goTo__text">{{ 'login.goto-register.text' | translate }}</p>
-        <a routerLink="/auth/register" class="goTo__link">{{ 'login.goto-register.link' | translate }}</a>
-      </div>
-
-      <div class="goTo">
-        <p class="goTo__text">{{ 'login.goto-reset.text' | translate }}</p>
-        <a routerLink="/auth/forgot-password" class="goTo__link">{{ 'login.goto-reset.link' | translate }}</a>
-      </div>
-
+      <app-go-to text="login.goto-register.text" linkUrl="/auth/register" linkText="login.goto-register.link"></app-go-to>
+      <app-go-to text="login.goto-reset.text" linkUrl="/auth/forgot-password" linkText="login.goto-reset.link"></app-go-to>
     </div>
 
   </div>

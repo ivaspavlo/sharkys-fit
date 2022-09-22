@@ -1,0 +1,19 @@
+@import '_core-colors';
+
+.goTo {
+  margin-top: 40px;
+  display: flex;
+  &__text {
+    color: $white;
+  }
+  &__link {
+    padding-left: 6px;
+    font-weight: 600;
+    color: $main;
+    text-decoration: underline;
+    cursor: pointer;
+    &:hover {
+      opacity: .8;
+    }
+  }
+}
