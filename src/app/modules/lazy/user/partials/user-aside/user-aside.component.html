@@ -1,0 +1,17 @@
+<div class="user-aside">
+
+  <figure class="user-avatar">
+    <img [src]="" class="w-100" alt="User avatar">
+    <figcaption class="d-flex flex-column">
+      <p class="user-avatar__name">John Smith</p>
+      <p class="user-avatar__payout">PAYOUT $0.00</p>
+    </figcaption>
+  </figure>
+
+  <ul class="user-aside__content">
+    <li *ngFor="let item of buttons">
+      <a [routerLink]="[item.link]" routerLinkActive="active">{{ item.uiName | translate }}</a>
+    </li>
+  </ul>
+
+</div>

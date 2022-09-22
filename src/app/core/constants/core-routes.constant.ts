@@ -4,7 +4,7 @@ import { Routes } from '@angular/router';
 export enum CORE_ROUTE_NAMES {
   BLANK = '',
   AUTH = 'auth',
-  USER = 'account',
+  USER = 'user',
   OTHER = '**',
   NOT_FOUND = '404'
 }
