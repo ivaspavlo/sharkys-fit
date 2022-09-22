@@ -1,0 +1,17 @@
+@import '_core-colors';
+@import 'mixins/elements';
+
+:host {
+  @include container;
+}
+
+.user-page {
+  display: flex;
+  flex-grow: 1;
+  &__content {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+    background-color: grey;
+  }
+}

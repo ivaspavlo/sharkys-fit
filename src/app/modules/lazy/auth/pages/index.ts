@@ -3,6 +3,7 @@ import { ForgotPasswordComponent } from './forgot-password/forgot-password.compo
 import { LoginComponent } from './login/login.component';
 import { ResetPasswordComponent } from './reset-password/reset-password.component';
 import { TrainerSubmissionComponent } from './trainer-submission/trainer-submission.component';
+import { AuthComponent } from './auth/auth.component';
 
 
 export const PAGES = [
@@ -10,5 +11,6 @@ export const PAGES = [
   FirstLoginComponent,
   LoginComponent,
   ForgotPasswordComponent,
-  ResetPasswordComponent
+  ResetPasswordComponent,
+  AuthComponent
 ];

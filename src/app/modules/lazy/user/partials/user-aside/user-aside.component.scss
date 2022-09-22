@@ -1,0 +1,10 @@
+@import 'mixins/breakpoints';
+
+:host {
+  width: 300px;
+  display: none;
+  background-color: green;
+  @include md {
+    display: flex;
+  }
+}

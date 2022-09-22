@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { CoreTranslationModule } from '@app/core/core-translation.module';
 import { NotFoundRoutingModule } from './not-found-routing.module';
 import { PAGES } from './pages';
+import { SharedModule } from '@app/shared/shared.module';
 
 
 @NgModule({
@@ -12,6 +13,7 @@ import { PAGES } from './pages';
   imports: [
     CommonModule,
     NotFoundRoutingModule,
+    SharedModule,
     CoreTranslationModule.forChild()
   ]
 })

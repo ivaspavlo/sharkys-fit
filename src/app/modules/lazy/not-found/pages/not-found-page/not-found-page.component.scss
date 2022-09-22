@@ -1,17 +1,26 @@
 @import '_core-colors';
+@import 'mixins/elements';
 
 :host {
-  display: flex;
-  flex-grow: 1;
+  @include container;
 }
 
 .not-found-page {
-  width: 100vw;
+  width: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
+  flex-grow: 1;
+  &__header {
+    width: 100%;
+    position: sticky; top: 0;
+    display: flex;
+    background-color: rgba(0,0,0,.8);
+    z-index: 1;
+  }
   &__figure {
-    width: 60%;
+    width: 90%;
+    max-width: 800px;
   }
   &__figCaption {
     text-align: center;
