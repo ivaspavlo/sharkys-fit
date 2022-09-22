@@ -75,7 +75,7 @@
       "placeholder": "-- Select your favorite Sharky's location --"
     },
     "goto-login": {
-      "text": "Already have an Account?",
+      "text": "Already have an account?",
       "link": "Login"
     }
   },

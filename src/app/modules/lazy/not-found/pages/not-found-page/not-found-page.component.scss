@@ -2,7 +2,7 @@
 @import 'mixins/elements';
 
 :host {
-  @include container;
+  @include page;
 }
 
 .not-found-page {
@@ -11,13 +11,6 @@
   justify-content: center;
   align-items: center;
   flex-grow: 1;
-  &__header {
-    width: 100%;
-    position: sticky; top: 0;
-    display: flex;
-    background-color: rgba(0,0,0,.8);
-    z-index: 1;
-  }
   &__figure {
     width: 90%;
     max-width: 800px;
