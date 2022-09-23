@@ -1,6 +1,6 @@
 <div class="upload" [ngClass]="{'upload--show-preview': showPreview}">
 
-  <figure>
+  <figure *ngIf="showPreview">
     <img [src]="imgSrc" class="upload__image">
   </figure>
 
