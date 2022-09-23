@@ -14,7 +14,10 @@
       "default": "-- Select one --"
     },
     "button": {
-      "submit": "Submit"
+      "submit": "Submit",
+      "confirm": "Confirm",
+      "open": "Open",
+      "save": "Save"
     }
   },
   "not-found": {
@@ -149,6 +152,52 @@
       "how-to-order": "How to order",
       "promoting": "Promoting",
       "contact-us": "Contact us"
+    }
+  },
+  "account": {
+    "firstName": {
+      "label": "First Name",
+      "placeholder": "Enter first name"
+    },
+    "lastName": {
+      "label": "Last Name",
+      "placeholder": "Enter last name"
+    },
+    "email": {
+      "label": "Email",
+      "placeholder": "Enter email"
+    },
+    "address": {
+      "label": "Address",
+      "placeholder": "Enter address"
+    },
+    "phoneNumber": {
+      "label": "Phone",
+      "placeholder": "e.g. (123) 456-7800"
+    },
+    "instagram": {
+      "label": "Instagram",
+      "placeholder": "Enter your Instagram name"
+    },
+    "quote": {
+      "label": "Quote or mantra",
+      "placeholder": "Enter your quote or mantra about training"
+    },
+    "location": {
+      "label": "Location",
+      "placeholder": "Enter your location"
+    },
+    "sports": {
+      "label": "Sports Specialization",
+      "placeholder": "Enter your sports specialization"
+    },
+    "certification": {
+      "label": "Trainer certification",
+      "placeholder": "Enter your certification"
+    },
+    "bio": {
+      "label": "Bio",
+      "placeholder": "Enter breifly your biography"
     }
   }
 }

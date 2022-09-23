@@ -1,4 +1,4 @@
-import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
+import { Component, ChangeDetectionStrategy, Input } from '@angular/core';
 import { UserAsideButtons } from '../../constants';
 import { IUserAsideButton } from '../../interfaces';
 
@@ -9,13 +9,12 @@ import { IUserAsideButton } from '../../interfaces';
   styleUrls: ['./user-aside.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class UserAsideComponent implements OnInit {
+export class UserAsideComponent {
+
+  @Input() userData: any;
 
   public buttons: IUserAsideButton[] = UserAsideButtons;
 
   constructor() { }
-
-  ngOnInit(): void {
-  }
 
 }

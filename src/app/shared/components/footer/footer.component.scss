@@ -1,0 +1,11 @@
+@import '_core-colors';
+
+.app-footer {
+  padding: 8px 16px;
+  display: flex;
+  justify-content: flex-end;
+  &__text {
+    color: $white;
+    font-size: 12px;
+  }
+}
