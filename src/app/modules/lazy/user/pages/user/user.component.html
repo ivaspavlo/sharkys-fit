@@ -1,7 +1,8 @@
 <section class="user-page">
-  <app-user-aside></app-user-aside>
+  <app-user-aside [userData]="userData$ | async"></app-user-aside>
   <div class="user-page__content">
     <app-header></app-header>
     <router-outlet></router-outlet>
   </div>
 </section>
+<app-footer></app-footer>

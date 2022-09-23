@@ -1,12 +1,13 @@
 import { Routes } from '@angular/router';
 import { UserComponent } from '../pages/user/user.component';
 import { AccountComponent } from '../pages/account/account.component';
+import { PaymentsComponent } from '../pages/payments/payments.component';
 
 
 export enum ROUTE_NAMES {
   BLANK = '',
   ACCOUNT = 'account',
-  PAYMENT = 'payment',
+  PAYMENTS = 'payments',
   AVATAR = 'avatar',
   GETTING_STARTED = 'getting-started',
   EARNINGS_INFO = 'earnings-info',
@@ -27,6 +28,9 @@ export const ROUTES: Routes = [
       }, {
         path: ROUTE_NAMES.ACCOUNT,
         component: AccountComponent
+      }, {
+        path: ROUTE_NAMES.PAYMENTS,
+        component: PaymentsComponent
       }
     ]
   }

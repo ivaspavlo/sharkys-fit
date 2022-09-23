@@ -1,4 +1,6 @@
 import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
+import { Observable } from 'rxjs';
+import { UserService } from '../../services/user.service';
 
 
 @Component({
@@ -9,9 +11,14 @@ import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
 })
 export class UserComponent implements OnInit {
 
-  constructor() { }
+  public userData$: Observable<any>;
+
+  constructor(
+    private userService: UserService
+  ) { }
 
   ngOnInit(): void {
+    this.userData$ = this.userService.getUserData();
   }
 
 }

@@ -2,9 +2,10 @@
 @import '_core-colors';
 
 :host {
-  width: 300px;
+  width: 250px;
   padding: 20px 0;
   display: none;
+  flex-shrink: 0;
   @include md {
     display: flex;
   }

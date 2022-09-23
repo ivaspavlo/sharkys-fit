@@ -1,14 +1,14 @@
 <div class="user-aside">
 
   <figure class="user-avatar">
-    <img src="/assets/img/png/mock-avatar.png" alt="User avatar" class="h-100">
+    <img [src]="userData.avatar" alt="User avatar" class="h-100">
   </figure>
 
   <div class="mt-3 mb-4 d-flex flex-column">
-    <p class="user-aside__name">John Smith</p>
+    <p class="user-aside__name">{{ userData.name }}</p>
     <p class="user-payout">
       <span>PAYOUT</span>
-      <span class="user-payout__amount">$0.00</span>
+      <span class="user-payout__amount">${{ userData.payoutAmount }}</span>
     </p>
   </div>
 
