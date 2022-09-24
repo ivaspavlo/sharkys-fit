@@ -1,8 +1,10 @@
 <button
   (click)="onClick()"
-  [routerLink]="routerLink"
   routerLinkActive="filled"
+  [routerLink]="routerLink"
   [disabled]="disabled"
-  [ngClass]="{'filled': filled, 'noBorder': noBorder, 'small': size === 'sm'}"
-  class="button-secondary"
->{{title | translate}}</button>
+  [ngClass]="{'filled': filled, 'noBorder': noBorder, 'small': size === 'sm', 'loading': loading}"
+  class="button-secondary">
+    <app-spinner class="button-secondary__spinner"></app-spinner>
+    <span class="button-secondary__title">{{title | translate}}</span>
+</button>

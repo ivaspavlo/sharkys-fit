@@ -1,7 +1,6 @@
 $border-color: #ffffff;
 $text-color: #ffffff;
 $warn-color: #ff6363;
-$asterisk-color: #ee7622;
 $border-radius: 4px;
 
 :host {
@@ -70,7 +69,7 @@ $border-radius: 4px;
 
   &__asterisk {
     padding-left: 3px;
-    color: $asterisk-color;
+    color: $warn-color;
   }
 
   &__error {
