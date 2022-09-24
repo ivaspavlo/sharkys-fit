@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { CoreTranslationModule } from '@app/core/core-translation.module';
+import { SpinnerModule } from '../spinner/spinner.module';
 import { COMPONENTS } from './components';
 
 
@@ -12,6 +13,7 @@ import { COMPONENTS } from './components';
   imports: [
     CommonModule,
     RouterModule,
+    SpinnerModule,
     CoreTranslationModule.forChild()
   ],
   exports: [

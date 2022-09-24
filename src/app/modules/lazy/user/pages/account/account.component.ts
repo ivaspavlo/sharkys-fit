@@ -14,6 +14,7 @@ import { UserService } from '../../services/user.service';
 export class AccountComponent implements OnInit {
 
   public form: FormGroup;
+  public isLoading = false;
 
   constructor(
     private fb: FormBuilder,
@@ -45,6 +46,7 @@ export class AccountComponent implements OnInit {
   }
 
   public onSubmitForm(): void {
+    this.isLoading = true;
     this.userService.updateAccount(this.form.value).pipe(
       catchError(() => of(false))
     ).subscribe((res: boolean) => {

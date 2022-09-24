@@ -16,6 +16,19 @@ export class ButtonPrimaryComponent {
   @Input() disabled = false;
   @Input() size = '';
 
+  @Input() set loading(value: boolean) {
+    if (this.disabled) {
+      return;
+    }
+    this.disabled = value;
+    this._loading = value;
+  };
+  get loading() {
+    return this._loading;
+  }
+
+  private _loading = false;
+
   @Output() buttonPrimaryClick: EventEmitter<void> = new EventEmitter();
 
   public onClick(): void {
