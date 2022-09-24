@@ -30,11 +30,9 @@ export class ToastService {
     const toastRef = new ToastRef(overlayRef);
     this.lastToast = toastRef;
 
-    debugger;
     const injector = this.getInjector(data, toastRef, this.parentInjector);
     const toastPortal = new ComponentPortal(ToastComponent, null, injector);
 
-    debugger;
     overlayRef.attach(toastPortal);
 
     return toastRef;

@@ -1,7 +1,9 @@
 <section class="user-page">
-  <app-user-aside [userData]="userData$ | async"></app-user-aside>
+  <app-user-aside [userData]="userData$ | async" class="d-none d-md-flex"></app-user-aside>
   <div class="user-page__content">
-    <app-header></app-header>
+    <app-header [hasMobileMenu]="true">
+      <app-user-aside [userData]="userData$ | async"></app-user-aside>
+    </app-header>
     <router-outlet></router-outlet>
   </div>
 </section>
