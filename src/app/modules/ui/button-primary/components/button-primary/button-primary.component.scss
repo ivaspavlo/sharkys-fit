@@ -40,9 +40,8 @@ $color-disabled: lightgrey;
   }
 
   &:disabled {
-    color: $color-disabled;
-    border-color: $color-disabled;
-    background-color: $color-disabled;
+    border-color: $color-disabled !important;
+    background-color: $color-disabled !important;
     cursor: not-allowed;
   }
   

@@ -117,7 +117,7 @@
     },
     "goto-reset": {
       "text": "Forgot password?",
-      "link": "Reset"
+      "link": "Remind"
     }
   },
   "forgot-password": {
