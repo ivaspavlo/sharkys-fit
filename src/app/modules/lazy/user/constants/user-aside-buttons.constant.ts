@@ -6,7 +6,7 @@ export const UserAsideButtons = [
   { uiName: 'user.button.payment', link: `/user/${ROUTE_NAMES.PAYMENTS}` },
   { uiName: 'user.button.getting-started', link: `/user/${ROUTE_NAMES.GETTING_STARTED}` },
   { uiName: 'user.button.what-you-earn', link: `/user/${ROUTE_NAMES.EARNINGS_INFO}` },
-  { uiName: 'user.button.how-to-order', link: `/user/${ROUTE_NAMES.ORDER_INFO}` },
+  { uiName: 'user.button.how-to-order', link: `/user/${ROUTE_NAMES.ORDERS_INFO}` },
   { uiName: 'user.button.promoting', link: `/user/${ROUTE_NAMES.PROMOTIONS}` },
-  { uiName: 'user.button.contact-us', link: `/user/${ROUTE_NAMES.CONTACT}` },
+  { uiName: 'user.button.contact-us', link: `/user/${ROUTE_NAMES.CONTACTS}` },
 ];
