@@ -1,3 +1,19 @@
-<section class="app-header">
-  <app-logo size="lg"></app-logo>
+<section
+  cdkOverlayOrigin
+  #headerElem="cdkOverlayOrigin"
+  (overlayOutsideClick)="onOpen(false)"
+  class="w-100 py-rem-2 px-rem-2 d-flex flex-column pos-relative">
+
+  <div [ngClass]="{'justify-content-between': hasMobileMenu, 'justify-content-center': !hasMobileMenu}" class="d-flex align-items-center justify-content-md-center">
+    <app-logo class="d-none d-md-flex" size="lg"></app-logo>
+    <app-logo class="d-flex d-md-none" size="md"></app-logo>
+    <app-burger *ngIf="hasMobileMenu" (isOn)="onOpen($event)" class="d-flex d-md-none"></app-burger>
+  </div>
+
+  <ng-template cdkConnectedOverlay [cdkConnectedOverlayOrigin]="headerElem" [cdkConnectedOverlayOpen]="isMenuOpen">
+    <div @fadeSlideInOut [ngStyle]="{'maxHeight': menuHeightPx}" class="header-menu">
+      <ng-content></ng-content>
+    </div>
+  </ng-template>
+
 </section>

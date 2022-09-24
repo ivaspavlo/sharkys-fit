@@ -2,19 +2,18 @@
 @import '_core-colors';
 
 :host {
-  width: 250px;
-  padding: 20px 0;
-  display: none;
+  width: 100%;
+  display: flex;
   flex-shrink: 0;
   @include md {
-    display: flex;
+    width: 250px;
+    padding: 20px 0;
   }
 }
 
 .user-aside {
   width: 100%;
   padding: 30px;
-  border-right: 1px solid $main;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -23,6 +22,15 @@
     letter-spacing: 0.4px;
     margin-bottom: 2px;
     color: $white;
+  }
+  &__buttons {
+    width: 300px;
+    @include md {
+      width: 100%;
+    }
+  }
+  @include md {
+    border-right: 1px solid $main;
   }
 }
 
