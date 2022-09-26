@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule } from '@angular/forms';
 import { SharedModule } from '@app/shared/shared.module';
 import { CoreTranslationModule } from '@app/core/core-translation.module';
-import { ButtonPrimaryModule, InputModule } from '@app/modules/ui';
+import { ButtonPrimaryModule, InputModule, CropperModule } from '@app/modules/ui';
 import { UserRoutingModule } from './user-routing.module';
 import { PAGES } from './pages';
 import { PARTIALS } from './partials';
@@ -22,6 +22,7 @@ import { SERVICES } from './services';
     SharedModule,
     ButtonPrimaryModule,
     InputModule,
+    CropperModule,
     CoreTranslationModule.forChild()
   ],
   providers: [
