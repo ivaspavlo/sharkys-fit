@@ -1,4 +1,4 @@
-import { Component, OnInit, ChangeDetectionStrategy, ViewChild } from '@angular/core';
+import { Component, ChangeDetectionStrategy, ViewChild } from '@angular/core';
 import { ImageCropperComponent, ImageCroppedEvent, LoadedImage } from 'ngx-image-cropper';
 
 
@@ -8,16 +8,11 @@ import { ImageCropperComponent, ImageCroppedEvent, LoadedImage } from 'ngx-image
   styleUrls: ['./cropper.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class CropperComponent implements OnInit {
+export class CropperComponent {
 
   @ViewChild(ImageCropperComponent) imageCropper: ImageCropperComponent;
   imageChangedEvent: any = '';
   croppedImage: any = '';
-
-  constructor() { }
-
-  ngOnInit(): void {
-  }
 
   fileChangeEvent(event: any): void {
     this.imageChangedEvent = event;
