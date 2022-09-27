@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ImageCropperModule } from 'ngx-image-cropper';
+import { CoreTranslationModule } from '@app/core/core-translation.module';
 import { COMPONENTS } from './components';
 
 
@@ -10,7 +11,8 @@ import { COMPONENTS } from './components';
   ],
   imports: [
     CommonModule,
-    ImageCropperModule
+    ImageCropperModule,
+    CoreTranslationModule.forChild()
   ],
   exports: [
     ...COMPONENTS

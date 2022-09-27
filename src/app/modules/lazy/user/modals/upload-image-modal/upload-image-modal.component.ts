@@ -1,4 +1,5 @@
-import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
+import { Component, ChangeDetectionStrategy } from '@angular/core';
+import { DialogRef } from '@app/modules/ui';
 
 
 @Component({
@@ -7,11 +8,16 @@ import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
   styleUrls: ['./upload-image-modal.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class UploadImageModalComponent implements OnInit {
+export class UploadImageModalComponent {
 
-  constructor() { }
+  constructor(
+    private dialog: DialogRef
+  ) { }
 
-  ngOnInit(): void {
+  public onSaveImage(imgBase64: string | null | undefined): void {
+    if (typeof imgBase64 === 'string') {
+      this.dialog.close({ imgBase64 });
+    }
   }
 
 }
