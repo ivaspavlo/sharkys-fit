@@ -1,14 +1,36 @@
 <section class="user-page">
 
-  <app-user-aside [userData]="userData$ | async" class="d-none d-md-flex"></app-user-aside>
+  <ng-container *ngIf="(userData$ | async) as data">
 
-  <div class="user-page__content">
-    <app-header [hasMobileMenu]="true">
-      <app-user-aside [userData]="userData$ | async"></app-user-aside>
-    </app-header>
-    <router-outlet></router-outlet>
-  </div>
+    <ng-container *ngTemplateOutlet="aside; context: data"></ng-container>
+
+    <div class="user-page__content">
+      <app-header [hasMobileMenu]="true">
+        <ng-container *ngTemplateOutlet="aside; context: data"></ng-container>
+      </app-header>
+      <router-outlet></router-outlet>
+    </div>
+
+  </ng-container>
 
 </section>
 
 <app-footer></app-footer>
+
+<ng-template #aside let-data>
+  <app-aside [buttons]="buttons">
+    
+    <figure class="user-avatar">
+      <img [src]="data.avatar" alt="User avatar" class="h-100">
+    </figure>
+  
+    <div class="mt-3 mb-4 d-flex flex-column">
+      <p class="user-aside__name">{{ data.name }}</p>
+      <p class="user-payout">
+        <span>{{ 'user.payout' | translate }}</span>
+        <span class="user-payout__amount">${{ data.payoutAmount }}</span>
+      </p>
+    </div>
+
+  </app-aside>
+</ng-template>

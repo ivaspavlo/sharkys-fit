@@ -1,6 +1,8 @@
 import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { Observable } from 'rxjs';
+import { IAsideButton } from '@app/modules/ui/aside/interfaces';
 import { UserService } from '../../services/user.service';
+import { UserAsideButtons } from '../../constants';
 
 
 @Component({
@@ -11,6 +13,7 @@ import { UserService } from '../../services/user.service';
 })
 export class UserComponent implements OnInit {
 
+  public buttons: IAsideButton[] = UserAsideButtons;
   public userData$: Observable<any>;
 
   constructor(

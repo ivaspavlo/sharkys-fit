@@ -1,0 +1,13 @@
+<div class="aside">
+
+  <div class="d-flex flex-column">
+    <ng-content></ng-content>
+  </div>
+
+  <ul *ngIf="buttons?.length" class="aside__buttons">
+    <li *ngFor="let item of buttons">
+      <app-button-primary [routerLink]="item.link" [title]="item.uiName" [disabled]="false" size="sm" class="mb-2 w-100"></app-button-primary>
+    </li>
+  </ul>
+
+</div>

@@ -4,3 +4,4 @@ export * from './button-primary/button-primary.module';
 export * from './toast/toast.module';
 export * from './cropper/cropper.module';
 export * from './dialog';
+export * from './aside/aside.module';

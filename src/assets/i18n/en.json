@@ -199,5 +199,11 @@
       "label": "Bio",
       "placeholder": "Enter breifly your biography"
     }
+  },
+  "admin": {
+    "aside": {
+      "approved": "Approved trainers",
+      "pending": "Pending trainers"
+    }
   }
 }

@@ -1,0 +1,20 @@
+<section class="admin-page">
+
+  <app-aside [buttons]="buttons" class="d-none d-md-flex">
+    <app-logo class="d-none d-md-flex" size="lg" class="mb-rem-4"></app-logo>
+  </app-aside>
+
+  <div class="admin-page__content">
+    <app-header [hasMobileMenu]="true" class="d-flex d-md-none">
+      <ng-container [ngTemplateOutlet]="aside"></ng-container>
+    </app-header>
+    <router-outlet></router-outlet>
+  </div>
+
+</section>
+
+<ng-template #aside>
+  <app-aside [buttons]="buttons" class="d-none d-md-flex">
+    <app-logo class="d-none d-md-flex" size="lg"></app-logo>
+  </app-aside>
+</ng-template>

@@ -5,6 +5,7 @@ export enum CORE_ROUTE_NAMES {
   BLANK = '',
   AUTH = 'auth',
   USER = 'user',
+  ADMIN = 'admin',
   OTHER = '**',
   NOT_FOUND = '404'
 }
@@ -20,6 +21,9 @@ export const CORE_ROUTES: Routes = [
   }, {
     path: CORE_ROUTE_NAMES.USER,
     loadChildren: () => import('@app/modules/lazy/user/user.module').then(m => m.UserModule)
+  }, {
+    path: CORE_ROUTE_NAMES.ADMIN,
+    loadChildren: () => import('@app/modules/lazy/admin/admin.module').then(m => m.AdminModule)
   }, {
     path: CORE_ROUTE_NAMES.OTHER,
     pathMatch: 'full',
