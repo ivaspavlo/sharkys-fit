@@ -1,5 +1,5 @@
-import { Component, ChangeDetectionStrategy, ViewChild } from '@angular/core';
-import { ImageCropperComponent, ImageCroppedEvent, LoadedImage } from 'ngx-image-cropper';
+import { Component, ChangeDetectionStrategy, ViewChild, Output, EventEmitter } from '@angular/core';
+import { ImageCropperComponent, ImageCroppedEvent } from 'ngx-image-cropper';
 
 
 @Component({
@@ -11,27 +11,24 @@ import { ImageCropperComponent, ImageCroppedEvent, LoadedImage } from 'ngx-image
 export class CropperComponent {
 
   @ViewChild(ImageCropperComponent) imageCropper: ImageCropperComponent;
-  imageChangedEvent: any = '';
-  croppedImage: any = '';
+  @Output() saveCroppedImage: EventEmitter<string | null | undefined> = new EventEmitter();
 
-  fileChangeEvent(event: any): void {
+  public imageChangedEvent: any = '';
+  public croppedImage: string | null | undefined = '';
+
+  public onChange(event: unknown): void {
     this.imageChangedEvent = event;
   }
-  imageCropped(event: ImageCroppedEvent) {
-    console.log('works');
+
+  public imageCropped(event: ImageCroppedEvent): void {
     this.croppedImage = event.base64;
-  }
-  imageLoaded(image: LoadedImage) {
-    // show cropper
-  }
-  cropperReady() {
-    // cropper ready
-  }
-  loadImageFailed() {
-    // show message
   }
 
   public crop(): void {
     this.imageCropper.crop();
+  }
+
+  public onSave(): void {
+    this.saveCroppedImage.emit(this.croppedImage);
   }
 }
