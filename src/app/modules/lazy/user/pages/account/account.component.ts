@@ -1,8 +1,11 @@
 import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { of } from 'rxjs';
-import { catchError } from 'rxjs/operators';
+import { catchError, takeUntil } from 'rxjs/operators';
 import { UserService } from '../../services/user.service';
+import { DialogService } from '@app/modules/ui';
+import { UploadImageModalComponent } from '../../modals/upload-image-modal/upload-image-modal.component';
+import { DestroySubscriptions } from '@app/shared/classes';
 
 
 @Component({
@@ -11,15 +14,18 @@ import { UserService } from '../../services/user.service';
   styleUrls: ['./account.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class AccountComponent implements OnInit {
+export class AccountComponent extends DestroySubscriptions implements OnInit {
 
   public form: FormGroup;
   public isLoading = false;
 
   constructor(
     private fb: FormBuilder,
-    private userService: UserService
-  ) { }
+    private userService: UserService,
+    private dialogService: DialogService
+  ) {
+    super();
+  }
 
   ngOnInit(): void {
     this.userService.getAccountData().pipe(
@@ -45,13 +51,26 @@ export class AccountComponent implements OnInit {
     });
   }
 
-  public onSubmitForm(): void {
-    this.isLoading = true;
-    this.userService.updateAccount(this.form.value).pipe(
-      catchError(() => of(false))
-    ).subscribe((res: boolean) => {
+  public onLoadImage(): void {
+    this.dialogService.open(UploadImageModalComponent).afterClosed.pipe(
+      takeUntil(this.componentDestroyed$)
+    ).subscribe((req: any) => {
       console.log('works');
     });
+  }
+
+  public onSubmitForm(): void {
+    this.dialogService.open(UploadImageModalComponent).afterClosed.pipe(
+      takeUntil(this.componentDestroyed$)
+    ).subscribe((req: any) => {
+      console.log('works');
+    });
+    // this.isLoading = true;
+    // this.userService.updateAccount(this.form.value).pipe(
+    //   catchError(() => of(false))
+    // ).subscribe((res: boolean) => {
+    //   console.log('works');
+    // });
   }
 
 }
