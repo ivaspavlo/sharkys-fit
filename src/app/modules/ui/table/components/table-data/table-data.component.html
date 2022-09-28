@@ -1,0 +1,9 @@
+<ng-template #templateRef>
+
+  <ng-container *ngIf="text">{{ text }}</ng-container>
+
+  <ng-container *ngIf="!text">
+    <ng-content></ng-content>
+  </ng-container>
+
+</ng-template>

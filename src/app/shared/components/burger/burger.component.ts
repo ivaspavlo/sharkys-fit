@@ -14,7 +14,7 @@ import { first, takeUntil } from 'rxjs/operators';
 export class BurgerComponent implements OnInit {
 
   @Input() init: boolean;
-  @Input() closeOnOuterClick = false;
+  @Input() closeOnOuterClick = true;
   @Output() isOn: EventEmitter<boolean> = new EventEmitter();
 
   public _isOn: boolean;

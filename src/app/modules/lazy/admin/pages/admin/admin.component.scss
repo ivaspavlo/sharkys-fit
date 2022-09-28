@@ -1,16 +1,25 @@
 @import '_core-colors';
-@import 'mixins/elements';
+@import 'mixins/_all';
 
 :host {
   @include page;
 }
 
-.admin-page {
+.admin {
   display: flex;
   flex-grow: 1;
   &__content {
     display: flex;
     flex-direction: column;
     flex-grow: 1;
+  }
+  &__page-wrapper {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+    padding: 0 2rem;
+    @include md {
+      padding: 4rem 2rem 2rem;
+    }
   }
 }

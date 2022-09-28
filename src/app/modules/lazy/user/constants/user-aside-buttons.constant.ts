@@ -1,12 +1,9 @@
-import { ROUTE_NAMES } from './routes.constant';
-
-
 export const UserAsideButtons = [
-  { uiName: 'user.button.account', link: `/user/${ROUTE_NAMES.ACCOUNT}` },
-  { uiName: 'user.button.payment', link: `/user/${ROUTE_NAMES.PAYMENTS}` },
-  { uiName: 'user.button.getting-started', link: `/user/${ROUTE_NAMES.GETTING_STARTED}` },
-  { uiName: 'user.button.what-you-earn', link: `/user/${ROUTE_NAMES.EARNINGS_INFO}` },
-  { uiName: 'user.button.how-to-order', link: `/user/${ROUTE_NAMES.ORDERS_INFO}` },
-  { uiName: 'user.button.promoting', link: `/user/${ROUTE_NAMES.PROMOTIONS}` },
-  { uiName: 'user.button.contact-us', link: `/user/${ROUTE_NAMES.CONTACTS}` },
+  { uiName: 'user.button.account', link: `/user/account` },
+  { uiName: 'user.button.payment', link: `/user/payments` },
+  { uiName: 'user.button.getting-started', link: `/user/getting-started` },
+  { uiName: 'user.button.what-you-earn', link: `/user/earnings-info` },
+  { uiName: 'user.button.how-to-order', link: `/user/orders-info` },
+  { uiName: 'user.button.promoting', link: `/user/promotions` },
+  { uiName: 'user.button.contact-us', link: `/user/contacts` },
 ];
