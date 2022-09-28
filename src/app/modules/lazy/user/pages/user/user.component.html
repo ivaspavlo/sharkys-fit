@@ -2,7 +2,9 @@
 
   <ng-container *ngIf="(userData$ | async) as data">
 
-    <ng-container *ngTemplateOutlet="aside; context: data"></ng-container>
+    <div class="d-none d-md-flex">
+      <ng-container *ngTemplateOutlet="aside; context: data"></ng-container>
+    </div>
 
     <div class="user-page__content">
       <app-header [hasMobileMenu]="true">
@@ -17,18 +19,18 @@
 
 <app-footer></app-footer>
 
-<ng-template #aside let-data>
+<ng-template #aside let-avatar="avatar" let-name="name" let-payoutAmount="payoutAmount">
   <app-aside [buttons]="buttons">
-    
+
     <figure class="user-avatar">
-      <img [src]="data.avatar" alt="User avatar" class="h-100">
+      <img [src]="avatar" alt="User avatar" class="h-100">
     </figure>
-  
+
     <div class="mt-3 mb-4 d-flex flex-column">
-      <p class="user-aside__name">{{ data.name }}</p>
+      <p class="user-aside__name">{{ name }}</p>
       <p class="user-payout">
         <span>{{ 'user.payout' | translate }}</span>
-        <span class="user-payout__amount">${{ data.payoutAmount }}</span>
+        <span class="user-payout__amount">${{ payoutAmount }}</span>
       </p>
     </div>
 

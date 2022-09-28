@@ -17,7 +17,8 @@
       "submit": "Submit",
       "confirm": "Confirm",
       "open": "Open",
-      "save": "Save"
+      "save": "Save",
+      "upload-photo": "Upload photo"
     }
   },
   "not-found": {
@@ -143,6 +144,7 @@
     }
   },
   "user": {
+    "payout": "Payout",
     "button": {
       "account": "Account",
       "payment": "Payment",
@@ -201,9 +203,7 @@
     }
   },
   "admin": {
-    "aside": {
-      "approved": "Approved trainers",
-      "pending": "Pending trainers"
-    }
+    "approved": "Approved trainers",
+    "pending": "Pending trainers"
   }
 }

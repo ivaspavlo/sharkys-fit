@@ -13,7 +13,6 @@ export enum ROUTE_NAMES {
   BLANK = '',
   ACCOUNT = 'account',
   PAYMENTS = 'payments',
-  AVATAR = 'avatar',
   GETTING_STARTED = 'getting-started',
   EARNINGS_INFO = 'earnings-info',
   ORDERS_INFO = 'orders-info',

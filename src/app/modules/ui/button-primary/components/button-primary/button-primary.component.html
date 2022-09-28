@@ -5,6 +5,6 @@
   [disabled]="disabled"
   [ngClass]="{'filled': filled, 'noBorder': noBorder, 'small': size === 'sm', 'loading': loading}"
   class="button-secondary">
-    <app-spinner class="button-secondary__spinner"></app-spinner>
+    <app-spinner *ngIf="loading" class="button-secondary__spinner"></app-spinner>
     <span class="button-secondary__title">{{title | translate}}</span>
 </button>

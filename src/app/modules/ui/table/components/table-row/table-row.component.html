@@ -1,0 +1,3 @@
+<td (click)="onClickRow(tDataElements)" *ngFor="let td of tDataElements" [ngStyle]="td.size" class="table-data">
+  <ng-container *ngTemplateOutlet="td.templateRef"></ng-container>
+</td>

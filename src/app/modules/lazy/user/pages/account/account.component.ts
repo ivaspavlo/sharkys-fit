@@ -60,17 +60,12 @@ export class AccountComponent extends DestroySubscriptions implements OnInit {
   }
 
   public onSubmitForm(): void {
-    this.dialogService.open(UploadImageModalComponent).afterClosed.pipe(
-      takeUntil(this.componentDestroyed$)
-    ).subscribe((req: any) => {
+    this.isLoading = true;
+    this.userService.updateAccount(this.form.value).pipe(
+      catchError(() => of(false))
+    ).subscribe((res: boolean) => {
       console.log('works');
     });
-    // this.isLoading = true;
-    // this.userService.updateAccount(this.form.value).pipe(
-    //   catchError(() => of(false))
-    // ).subscribe((res: boolean) => {
-    //   console.log('works');
-    // });
   }
 
 }
