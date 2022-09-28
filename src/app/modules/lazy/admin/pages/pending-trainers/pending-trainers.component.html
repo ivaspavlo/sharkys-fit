@@ -1,7 +1,16 @@
 <section class="w-100 d-flex flex-column align-items-center">
 
-  <h2 class="app-title">{{ 'admin.pending' | translate }}</h2>
+  <h2 class="app-title mb-rem-4">{{ 'admin.pending' | translate }}</h2>
 
-  <div class="app-table my-rem-2"></div>
+  <div class="app-table">
+    <div routerLink="/admin/trainer/{{ '1' }}" app-table-row class="w-100 app-row--even">
+      <div app-table-data [data]="{ width: 50 }"><span class="deleted-list__heading-cell">John Smith</span></div>
+      <div app-table-data [data]="{ width: 50 }"><span class="deleted-list__heading-cell">Pending</span></div>
+    </div>
+    <div routerLink="/admin/trainer/{{ '2' }}" app-table-row class="w-100">
+      <div app-table-data [data]="{ width: 50 }"><span class="deleted-list__heading-cell">John Smith</span></div>
+      <div app-table-data [data]="{ width: 50 }"><span class="deleted-list__heading-cell">Pending</span></div>
+    </div>
+  </div>
 
 </section>

@@ -18,7 +18,8 @@
       "confirm": "Confirm",
       "open": "Open",
       "save": "Save",
-      "upload-photo": "Upload photo"
+      "upload-photo": "Upload photo",
+      "cancel-trainer": "Cancel trainer"
     }
   },
   "not-found": {
