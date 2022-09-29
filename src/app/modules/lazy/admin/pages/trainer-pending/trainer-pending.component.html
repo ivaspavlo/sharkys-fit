@@ -2,10 +2,13 @@
 
   <h2 class="app-title mb-rem-4">John Smith</h2>
 
-  <div class="d-flex color-white">
+  <p class="app-desc">
     Lorem ipsum, dolor sit amet consectetur adipisicing elit. Sit eaque, fuga qui dolor quam, iusto itaque ut incidunt nesciunt at nostrum quo. Ullam dolores quae architecto dicta facere quibusdam modi. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Reprehenderit quis cumque eaque suscipit voluptates amet assumenda similique molestias beatae, corrupti non quibusdam sequi asperiores ducimus accusantium laborum! Velit, quo quos.
-  </div>
+  </p>
 
-  <app-button-primary (buttonPrimaryClick)="onCancelTrainer()" title="core.button.cancel-trainer" class="app-submit-button"></app-button-primary>
+  <div class="w-100 d-flex">
+    <app-button-primary (buttonPrimaryClick)="onCancelTrainer()" title="admin.button.approve" [filled]="true" class="app-submit-button w-100 mr-rem-2"></app-button-primary>
+    <app-button-primary (buttonPrimaryClick)="onCancelTrainer()" title="admin.button.reject" class="app-submit-button w-100"></app-button-primary>
+  </div>
 
 </section>

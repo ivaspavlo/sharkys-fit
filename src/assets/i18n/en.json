@@ -205,6 +205,15 @@
   },
   "admin": {
     "approved": "Approved trainers",
-    "pending": "Pending trainers"
+    "pending": "Pending trainers",
+    "button": {
+      "approve": "Approve",
+      "reject": "Reject"
+    },
+    "ctrl": {
+      "bio": "bio",
+      "payouts": "payouts",
+      "photos": "photos"
+    }
   }
 }

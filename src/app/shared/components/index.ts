@@ -3,6 +3,7 @@ import { FooterComponent } from './footer/footer.component';
 import { HeaderComponent } from './header/header.component';
 import { LogoComponent } from './logo/logo.component';
 import { DialogContentComponent } from './dialog-content/dialog-content.component';
+import { UserAvatarComponent } from './user-avatar/user-avatar.component';
 
 
 export const COMPONENTS = [
@@ -10,5 +11,6 @@ export const COMPONENTS = [
   LogoComponent,
   FooterComponent,
   BurgerComponent,
-  DialogContentComponent
+  DialogContentComponent,
+  UserAvatarComponent
 ];

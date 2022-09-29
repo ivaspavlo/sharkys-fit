@@ -29,6 +29,10 @@ export class ButtonPrimaryComponent {
 
   private _loading = false;
 
+  ngOnInit() {
+    debugger
+  }
+
   @Output() buttonPrimaryClick: EventEmitter<void> = new EventEmitter();
 
   public onClick(): void {
