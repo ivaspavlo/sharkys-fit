@@ -2,7 +2,8 @@ import { Routes } from '@angular/router';
 import { AdminComponent } from '../pages/admin/admin.component';
 import { ApprovedTrainersComponent } from '../pages/approved-trainers/approved-trainers.component';
 import { PendingTrainersComponent } from '../pages/pending-trainers/pending-trainers.component';
-import { TrainerComponent } from '../pages/trainer/trainer.component';
+import { TrainerApprovedComponent } from '../pages/trainer-approved/trainer-approved.component';
+import { TrainerPendingComponent } from '../pages/trainer-pending/trainer-pending.component';
 
 
 export enum ROUTE_NAMES {
@@ -23,13 +24,28 @@ export const ROUTES: Routes = [
         redirectTo: ROUTE_NAMES.APPROVED
       }, {
         path: ROUTE_NAMES.APPROVED,
-        component: ApprovedTrainersComponent
+        children: [
+          {
+            path: ROUTE_NAMES.BLANK,
+            pathMatch: 'full',
+            component: ApprovedTrainersComponent
+          }, {
+            path: ROUTE_NAMES.TRAINER,
+            component: TrainerApprovedComponent
+          }
+        ]
       }, {
         path: ROUTE_NAMES.PENDING,
-        component: PendingTrainersComponent
-      }, {
-        path: ROUTE_NAMES.TRAINER,
-        component: TrainerComponent
+        children: [
+          {
+            path: ROUTE_NAMES.BLANK,
+            pathMatch: 'full',
+            component: PendingTrainersComponent
+          }, {
+            path: ROUTE_NAMES.TRAINER,
+            component: TrainerPendingComponent
+          }
+        ]
       }
     ]
   }

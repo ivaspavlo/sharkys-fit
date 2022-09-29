@@ -1,12 +1,14 @@
 import { AdminComponent } from './admin/admin.component';
 import { ApprovedTrainersComponent } from './approved-trainers/approved-trainers.component';
 import { PendingTrainersComponent } from './pending-trainers/pending-trainers.component';
-import { TrainerComponent } from './trainer/trainer.component';
+import { TrainerApprovedComponent } from './trainer-approved/trainer-approved.component';
+import { TrainerPendingComponent } from './trainer-pending/trainer-pending.component';
 
 
 export const PAGES = [
   AdminComponent,
   ApprovedTrainersComponent,
   PendingTrainersComponent,
-  TrainerComponent
+  TrainerApprovedComponent,
+  TrainerPendingComponent
 ];

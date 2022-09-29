@@ -5,11 +5,13 @@ import { AsideModule, ButtonPrimaryModule, TableModule } from '@app/modules/ui';
 import { CoreTranslationModule } from '@app/core/core-translation.module';
 import { AdminRoutingModule } from './admin-routing.module';
 import { PAGES } from './pages';
+import { PARTIALS } from './partials';
 
 
 @NgModule({
   declarations: [
-    ...PAGES
+    ...PAGES,
+    ...PARTIALS
   ],
   imports: [
     CommonModule,
