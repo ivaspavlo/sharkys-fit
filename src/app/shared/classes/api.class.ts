@@ -10,7 +10,9 @@ export class ApiService {
   protected version = API_VERSION;
   protected apiUrl = API_URL;
   
-  constructor(protected injector: Injector) {
+  constructor(
+    protected injector: Injector,
+  ) {
     this.httpClient = injector.get(HttpClient);
   }
 

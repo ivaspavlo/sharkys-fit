@@ -28,7 +28,7 @@ export class ToastComponent implements OnInit {
     this.intervalId = setTimeout(() => {
       this.animationState = 'closing';
       this.cdr.detectChanges();
-    }, 300000);
+    }, 3000);
   }
   
   public close(): void {

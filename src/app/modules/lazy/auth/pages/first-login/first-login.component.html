@@ -17,7 +17,7 @@
 
     </form>
 
-    <app-button-primary (buttonPrimaryClick)="onSubmitForm()" title="core.button.submit" class="app-submit-button" [disabled]="!form.valid"></app-button-primary>
+    <app-button-primary (buttonPrimaryClick)="onSubmitForm()" title="core.button.submit" class="app-submit-button" [filled]="true" [disabled]="!form.valid" [loading]="spinnerService.isOn$ | async"></app-button-primary>
 
   </div>
 

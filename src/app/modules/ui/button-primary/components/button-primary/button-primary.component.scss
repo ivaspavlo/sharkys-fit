@@ -51,6 +51,7 @@
     }
   }
   &:disabled {
+    color: var(--color-secondary) !important;
     border-color: var(--color-disabled) !important;
     background-color: var(--color-disabled) !important;
     cursor: not-allowed;

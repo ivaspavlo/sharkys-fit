@@ -11,7 +11,7 @@ import { AuthComponent } from '../pages/auth/auth.component';
 export enum ROUTE_NAMES {
   BLANK = '',
   TRAINER_SUBMISSION = 'register',
-  FIRST_LOGIN = 'first-login',
+  FIRST_LOGIN = 'first-login/:firstToken',
   LOGIN = 'login',
   FORGOT_PASSWORD = 'forgot-password',
   RESET_PASSWORD = 'reset-password/:resetToken'

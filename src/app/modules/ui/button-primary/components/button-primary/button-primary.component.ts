@@ -16,10 +16,11 @@ export class ButtonPrimaryComponent {
   @Input() disabled = false;
   @Input() size = '';
 
-  @Input() set loading(value: boolean) {
-    if (this.disabled) {
-      return;
-    }
+  @Input() set loading(value: any) {
+    debugger;
+    // if (this.disabled) {
+    //   return;
+    // }
     this.disabled = value;
     this._loading = value;
   };
@@ -28,10 +29,6 @@ export class ButtonPrimaryComponent {
   }
 
   private _loading = false;
-
-  ngOnInit() {
-    debugger
-  }
 
   @Output() buttonPrimaryClick: EventEmitter<void> = new EventEmitter();
 
