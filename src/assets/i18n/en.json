@@ -146,16 +146,13 @@
   },
   "user": {
     "payout": "Payout",
-    "button": {
-      "account": "Account",
-      "payment": "Payment",
-      "photo": "My photo",
-      "getting-started": "Getting started",
-      "what-you-earn": "What you earn",
-      "how-to-order": "How to order",
-      "promoting": "Promoting",
-      "contact-us": "Contact us"
-    }
+    "account": "My account",
+    "payment": "Payments",
+    "getting-started": "Getting started",
+    "what-you-earn": "What you earn",
+    "how-to-order": "How to order",
+    "promoting": "Promoting",
+    "contact-us": "Contact us"
   },
   "account": {
     "firstName": {
