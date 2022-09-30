@@ -1,7 +1,7 @@
 import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { of } from 'rxjs';
-import { catchError } from 'rxjs/operators';
+import { TranslateService } from '@ngx-translate/core';
+import { SpinnerService } from '@app/core/services';
 import { PasswordValidators } from '@app/shared/validators';
 import { ToastService } from '@app/modules/ui/toast';
 import { AuthService } from '../../services/auth.service';
@@ -19,7 +19,9 @@ export class FirstLoginComponent implements OnInit {
   constructor(
     private fb: FormBuilder,
     private authService: AuthService,
-    private toastService: ToastService
+    private toastService: ToastService,
+    private translationService: TranslateService,
+    public spinnerService: SpinnerService
   ) { }
 
   ngOnInit(): void {
@@ -35,14 +37,13 @@ export class FirstLoginComponent implements OnInit {
   }
 
   public onSubmitForm(): void {
-    this.authService.firstLogin(this.form.value).pipe(
-      catchError(() => of(false))
-    ).subscribe((res: boolean) => {
-      this.toastService.show({
-        text: 'Toast message',
-        type: 'info',
-        href: 'https://www.test.com'
-      });
+    this.authService.firstLogin(this.form.value).subscribe((res: boolean) => {
+      if (res) {
+        this.toastService.show({
+          text: this.translationService.instant('core.http-errors.general'),
+          type: 'warn'
+        });
+      }
     });
   }
 
