@@ -203,6 +203,14 @@
       "placeholder": "Enter breifly your biography"
     }
   },
+  "payments": {
+    "title": "Payments",
+    "desc": "A Sharky's Reward Account is required to join Sharky's Fit. We will create an account automatically for you and include the account username and password in the confirmation email. If you have a Sharky's Reward Account and have registered it, please make sure to use an different email address when creating your Sharky's Fit Account.",
+    "button": {
+      "setup": "Setup payments",
+      "change-setup": "Change payout"
+    }
+  },
   "admin": {
     "approved": "Approved trainers",
     "pending": "Pending trainers",

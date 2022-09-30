@@ -4,29 +4,29 @@
 
     <h4 class="app-desc">{{ 'submission.desc' | translate }}</h4>
 
-      <form *ngIf="form" [formGroup]="form" markTouched class="my-rem-3">
+    <form *ngIf="form" [formGroup]="form" markTouched class="my-rem-3">
 
-        <app-input controlName="firstName" label="account.firstName.label" placeholder="account.firstName.placeholder" class="mb-rem-2"></app-input>
-        <app-input controlName="lastName" label="account.lastName.label" placeholder="account.lastName.placeholder" class="mb-rem-2"></app-input>
-        <app-input controlName="email" label="account.email.label" placeholder="account.email.placeholder" class="mb-rem-2"></app-input>
-        <app-input controlName="address" label="account.address.label" placeholder="account.address.placeholder" class="mb-rem-2"></app-input>
-        <app-input controlName="phoneNumber" label="account.phoneNumber.label" placeholder="account.phoneNumber.placeholder" class="mb-rem-2"></app-input>
-        <app-input controlName="instagram" label="account.instagram.label" placeholder="account.instagram.placeholder" class="mb-rem-2"></app-input>
-        <app-input controlName="quote" label="account.quote.label" placeholder="account.quote.placeholder" class="mb-rem-2"></app-input>
-        <app-input controlName="location" label="account.location.label" placeholder="account.location.placeholder" class="mb-rem-2"></app-input>
-        <app-input controlName="sports" label="account.sports.label" placeholder="account.sports.placeholder" class="mb-rem-2"></app-input>
-        <app-input controlName="certification" label="account.certification.label" placeholder="account.certification.placeholder" class="mb-rem-2"></app-input>
-        <app-input controlName="bio" label="account.bio.label" placeholder="account.bio.placeholder" type="textarea" class="mb-rem-2"></app-input>
+      <app-input controlName="firstName" label="account.firstName.label" placeholder="account.firstName.placeholder" class="mb-rem-2"></app-input>
+      <app-input controlName="lastName" label="account.lastName.label" placeholder="account.lastName.placeholder" class="mb-rem-2"></app-input>
+      <app-input controlName="email" label="account.email.label" placeholder="account.email.placeholder" class="mb-rem-2"></app-input>
+      <app-input controlName="address" label="account.address.label" placeholder="account.address.placeholder" class="mb-rem-2"></app-input>
+      <app-input controlName="phoneNumber" label="account.phoneNumber.label" placeholder="account.phoneNumber.placeholder" class="mb-rem-2"></app-input>
+      <app-input controlName="instagram" label="account.instagram.label" placeholder="account.instagram.placeholder" class="mb-rem-2"></app-input>
+      <app-input controlName="quote" label="account.quote.label" placeholder="account.quote.placeholder" class="mb-rem-2"></app-input>
+      <app-input controlName="location" label="account.location.label" placeholder="account.location.placeholder" class="mb-rem-2"></app-input>
+      <app-input controlName="sports" label="account.sports.label" placeholder="account.sports.placeholder" class="mb-rem-2"></app-input>
+      <app-input controlName="certification" label="account.certification.label" placeholder="account.certification.placeholder" class="mb-rem-2"></app-input>
+      <app-input controlName="bio" label="account.bio.label" placeholder="account.bio.placeholder" type="textarea" class="mb-rem-2"></app-input>
 
-        <app-button-primary [loading]="isLoading" [disabled]="!form.valid" (buttonPrimaryClick)="onSubmitForm()" title="core.button.confirm" class="app-submit-button"></app-button-primary>
+      <app-button-primary [loading]="isLoading" [disabled]="!form.valid" (buttonPrimaryClick)="onSubmitForm()" title="core.button.confirm" class="app-submit-button"></app-button-primary>
 
-        <!-- TODO: Create ButtonSecondaryComponent and replace code below from here and from CropperComponent -->
-        <button (click)="onLoadImage()" class="account-button">
-          <i class="account-button__icon account-button__icon--avatar"></i>
-          <span>{{ 'core.button.upload-photo' | translate }}</span>
-        </button>
+      <!-- TODO: Create ButtonSecondaryComponent and replace code below from here and from CropperComponent -->
+      <button (click)="onLoadImage()" class="account-button">
+        <i class="account-button__icon account-button__icon--avatar"></i>
+        <span>{{ 'core.button.upload-photo' | translate }}</span>
+      </button>
 
-      </form>
+    </form>
 
   </div>
 

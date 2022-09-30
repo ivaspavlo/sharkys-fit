@@ -1,5 +1,6 @@
 import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
 
+
 @Component({
   selector: 'app-payments',
   templateUrl: './payments.component.html',
@@ -8,9 +9,15 @@ import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
 })
 export class PaymentsComponent implements OnInit {
 
+  public paymentsSet = false;
+
   constructor() { }
 
   ngOnInit(): void {
+  }
+
+  public onSetupPayments(): void {
+    this.paymentsSet = !this.paymentsSet;
   }
 
 }
