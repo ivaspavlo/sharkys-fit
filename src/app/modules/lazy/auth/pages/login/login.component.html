@@ -5,7 +5,7 @@
     <h2 class="app-title">{{ 'login.title' | translate }}</h2>
 
     <form [formGroup]="form" markTouched class="my-rem-3">
-      <app-input controlName="email" label="login.email.label" placeholder="login.email.placeholder" class="mb-rem-2" type="email"></app-input>
+      <app-input controlName="email_address" label="login.email.label" placeholder="login.email.placeholder" class="mb-rem-2" type="email"></app-input>
       <app-input controlName="password" label="login.password.label" placeholder="login.password.placeholder" class="mb-rem-2" type="password"></app-input>
     </form>
 
@@ -13,7 +13,7 @@
 
     <div class="mt-4 d-flex flex-column flex-md-row justify-content-between">
       <app-go-to text="login.goto-register.text" linkUrl="/auth/register" linkText="login.goto-register.link"></app-go-to>
-      <app-go-to text="login.goto-reset.text" linkUrl="/auth/forgot-password" linkText="login.goto-reset.link"></app-go-to>
+      <app-go-to text="login.goto-reset.text" linkUrl="/auth/remind-password" linkText="login.goto-reset.link"></app-go-to>
     </div>
 
   </div>

@@ -1,5 +1,6 @@
 import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
 import { SpinnerService } from '@app/core/services';
 import { PasswordValidators } from '@app/shared/validators';
@@ -21,6 +22,7 @@ export class FirstLoginComponent implements OnInit {
     private authService: AuthService,
     private toastService: ToastService,
     private translationService: TranslateService,
+    private router: Router,
     public spinnerService: SpinnerService
   ) { }
 
@@ -30,9 +32,9 @@ export class FirstLoginComponent implements OnInit {
 
   private initForm(): void {
     this.form = this.fb.group({
-      email: ['', [Validators.required, Validators.email]],
+      email_address: ['', [Validators.required, Validators.email]],
       password: ['', [Validators.required, PasswordValidators.default]],
-      confirmPassword: ['', [Validators.required, PasswordValidators.passwordsEqual()]],
+      confirm_password: ['', [Validators.required, PasswordValidators.passwordsEqual()]],
     });
   }
 
@@ -43,7 +45,9 @@ export class FirstLoginComponent implements OnInit {
           text: this.translationService.instant('core.http-errors.general'),
           type: 'warn'
         });
+        return;
       }
+      this.router.navigateByUrl('user');
     });
   }
 

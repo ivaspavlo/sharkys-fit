@@ -127,6 +127,9 @@
   },
   "forgot-password": {
     "title": "REMIND PASSWORD",
+    "success": {
+      "line-1": "PLEASE CHECK YOUR EMAIL BOX"
+    },
     "email": {
       "label": "Email",
       "placeholder": "Enter email"

@@ -1,7 +1,8 @@
 import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { of } from 'rxjs';
-import { catchError } from 'rxjs/operators';
+import { Router } from '@angular/router';
+import { TranslateService } from '@ngx-translate/core';
+import { CORE_ROUTE_NAMES } from '@app/core/constants';
 import { ToastService } from '@app/modules/ui/toast';
 import { PasswordValidators } from '@app/shared/validators';
 import { AuthService } from '../../services/auth.service';
@@ -19,7 +20,9 @@ export class LoginComponent implements OnInit {
   constructor(
     private fb: FormBuilder,
     private authService: AuthService,
-    private toastService: ToastService
+    private toastService: ToastService,
+    private router: Router,
+    private translationService: TranslateService
   ) { }
 
   ngOnInit(): void {
@@ -28,20 +31,21 @@ export class LoginComponent implements OnInit {
 
   private initForm(): void {
     this.form = this.fb.group({
-      email: ['', [Validators.required, Validators.email]],
+      email_address: ['', [Validators.required, Validators.email]],
       password: ['', [Validators.required, PasswordValidators.default]]
     });
   }
 
   public onSubmitForm(): void {
-    this.authService.firstLogin(this.form.value).pipe(
-      catchError(() => of(false))
-    ).subscribe((res: boolean) => {
-      this.toastService.show({
-        text: 'Toast message',
-        type: 'info',
-        href: 'https://www.test.com'
-      });
+    this.authService.login(this.form.value).subscribe((res: boolean) => {
+      if (!res) {
+        this.toastService.show({
+          text: this.translationService.instant('core.http-errors.general'),
+          type: 'warn'
+        });
+        return;
+      }
+      this.router.navigateByUrl(CORE_ROUTE_NAMES.USER);
     });
   }
 

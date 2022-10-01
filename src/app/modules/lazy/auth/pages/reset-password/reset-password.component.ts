@@ -1,10 +1,11 @@
 import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { of } from 'rxjs';
-import { catchError } from 'rxjs/operators';
+import { ActivatedRoute } from '@angular/router';
+import { TranslateService } from '@ngx-translate/core';
+import { PasswordValidators } from '@app/shared/validators';
 import { ToastService } from '@app/modules/ui/toast';
 import { AuthService } from '../../services/auth.service';
-import { PasswordValidators } from '@app/shared/validators';
+import { RESET_TOKEN } from '../../constants';
 
 
 @Component({
@@ -15,33 +16,41 @@ import { PasswordValidators } from '@app/shared/validators';
 export class ResetPasswordComponent implements OnInit {
 
   public form: FormGroup;
+  public resetToken: string;
 
   constructor(
     private fb: FormBuilder,
     private authService: AuthService,
-    private toastService: ToastService
+    private toastService: ToastService,
+    private route : ActivatedRoute,
+    private translationService: TranslateService,
   ) { }
 
   ngOnInit(): void {
+    this.resetToken = this.route.snapshot.params[RESET_TOKEN];
     this.initForm();
   }
 
   private initForm(): void {
     this.form = this.fb.group({
       password: ['', [Validators.required, PasswordValidators.default]],
-      confirmPassword: ['', [Validators.required, PasswordValidators.passwordsEqual()]],
+      confirmPassword: ['', [Validators.required, PasswordValidators.passwordsEqual()]]
     });
   }
 
   public onSubmitForm(): void {
-    this.authService.firstLogin(this.form.value).pipe(
-      catchError(() => of(false))
-    ).subscribe((res: boolean) => {
-      this.toastService.show({
-        text: 'Toast message',
-        type: 'info',
-        href: 'https://www.test.com'
-      });
+    const req = {
+      password: this.form.value.password,
+      fp_token: this.resetToken
+    };
+    this.authService.resetPassword(req).subscribe((res: boolean) => {
+      if (!res) {
+        this.toastService.show({
+          text: this.translationService.instant('core.http-errors.general'),
+          type: 'warn'
+        });
+        return;
+      }
     });
   }
 
