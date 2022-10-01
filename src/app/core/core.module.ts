@@ -11,8 +11,8 @@ import { CORE_INTERCEPTORS } from './interceptors';
   imports: [
     FormsModule,
     ReactiveFormsModule,
-    CoreTranslationModule.forRoot(),
-    CoreRoutingModule
+    CoreRoutingModule,
+    CoreTranslationModule.forRoot()
   ],
   providers: [
     ...CORE_PROVIDERS,

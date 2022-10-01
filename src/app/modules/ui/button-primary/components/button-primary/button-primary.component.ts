@@ -17,10 +17,6 @@ export class ButtonPrimaryComponent {
   @Input() size = '';
 
   @Input() set loading(value: any) {
-    debugger;
-    // if (this.disabled) {
-    //   return;
-    // }
     this.disabled = value;
     this._loading = value;
   };
