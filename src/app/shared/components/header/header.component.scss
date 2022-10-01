@@ -1,9 +1,25 @@
+@import 'mixins/breakpoints';
+
 :host {
-  width: 100%;
   position: sticky; top: 0;
+  width: 100%;
   display: flex;
   background-color: rgba(0,0,0,.9);
   z-index: 1;
+  @include md {
+    top: -2rem;
+  }
+}
+
+.app-header {
+  width: 100%;
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  @include md {
+    padding: 3rem 2rem 1rem;
+  }
 }
 
 .header-menu {
