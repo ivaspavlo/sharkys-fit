@@ -2,6 +2,7 @@ import { animate, style, transition, trigger } from '@angular/animations';
 import { CdkOverlayOrigin } from '@angular/cdk/overlay';
 import { DOCUMENT } from '@angular/common';
 import { Component, ChangeDetectionStrategy, Input, Inject, ViewChild } from '@angular/core';
+import { DestroySubscriptions } from '@app/shared/classes';
 
 
 @Component({
@@ -21,7 +22,7 @@ import { Component, ChangeDetectionStrategy, Input, Inject, ViewChild } from '@a
   ],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class HeaderComponent {
+export class HeaderComponent extends DestroySubscriptions {
 
   @Input() hasMobileMenu = false;
   @ViewChild('headerElem') headerElem: CdkOverlayOrigin;
@@ -31,7 +32,9 @@ export class HeaderComponent {
 
   constructor(
     @Inject(DOCUMENT) private document: Document
-  ) { }
+  ) {
+    super();
+  }
 
   public onOpen(value: boolean): void {
     this.isMenuOpen = value;

@@ -1,6 +1,8 @@
 import { Injectable } from '@angular/core';
-import { HttpRequest, HttpHandler, HttpEvent, HttpInterceptor } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { Router } from '@angular/router';
+import { HttpRequest, HttpHandler, HttpEvent, HttpInterceptor, HttpErrorResponse } from '@angular/common/http';
+import { Observable, throwError } from 'rxjs';
+import { catchError } from 'rxjs/operators';
 import { CoreStorageService } from '../services';
 import { ACCESS_TOKEN } from '../constants';
 
@@ -9,14 +11,23 @@ import { ACCESS_TOKEN } from '../constants';
 export class AuthInterceptor implements HttpInterceptor {
 
   constructor(
-    private storage: CoreStorageService
+    private storage: CoreStorageService,
+    private router: Router
   ) { }
 
   intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
     const token = this.storage.get(ACCESS_TOKEN);
-    return token ?
-      next.handle(this.addToken(request, token)) :
-      next.handle(request);
+    if (token) {
+      request = this.addToken(request, token);
+    }
+    return next.handle(request).pipe(
+      catchError((err: any) => {
+        if (err instanceof HttpErrorResponse && err.status === 401) {
+          this.router.navigate(['login']);
+        }
+        return throwError(err);
+      })
+    );
   }
 
   private addToken<T>(request: HttpRequest<T>, token: any): HttpRequest<T> {
