@@ -20,11 +20,9 @@
 
       <app-button-primary [disabled]="!form.valid" (buttonPrimaryClick)="onSubmitForm()" title="core.button.confirm" class="app-submit-button" [loading]="spinnerService.isOn$ | async" [filled]="true"></app-button-primary>
 
-      <!-- TODO: Create ButtonSecondaryComponent and replace code below from here and from CropperComponent -->
-      <button (click)="onLoadImage()" class="account-button">
-        <i class="account-button__icon account-button__icon--avatar"></i>
-        <span>{{ 'core.button.upload-photo' | translate }}</span>
-      </button>
+      <app-button-primary (click)="onLoadImage()" [disabled]="spinnerService.isOn$ | async" size="sm" title="core.button.upload-photo" class="upload-photo-button">
+        <app-icon name="avatar"></app-icon>
+      </app-button-primary>
 
     </form>
 
