@@ -11,7 +11,7 @@
 
     <div *ngIf="payouts.length" class="w-100 d-flex flex-column align-items-center">
       <div class="app-table">
-        <div *ngFor="let item of payouts" app-table-row class="app-row app-row--even">
+        <div *ngFor="let item of payouts; let index = index;" app-table-row [ngClass]="{'app-row--even': index%2}" class="app-row app-row--even">
           <div app-table-data [data]="{ width: 50 }"><span class="px-rem-1">29.09.2022</span></div>
           <div app-table-data [data]="{ width: 50 }"><span class="px-rem-1">$100.00</span></div>
         </div>
@@ -21,8 +21,9 @@
 
   </ng-container>
 
-  <ng-template #spinner>
-    <app-spinner size="xl"></app-spinner>
-  </ng-template>
-
 </section>
+
+<ng-template #spinner>
+  <app-spinner size="xl"></app-spinner>
+</ng-template>
+
