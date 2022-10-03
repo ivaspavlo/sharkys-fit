@@ -1,4 +1,6 @@
 import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
+import { Observable } from 'rxjs';
+import { AdminService } from '../../services/admin.service';
 
 
 @Component({
@@ -9,9 +11,14 @@ import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
 })
 export class ApprovedTrainersComponent implements OnInit {
 
-  constructor() { }
+  public trainers$: Observable<any[]>;
+
+  constructor(
+    private adminService: AdminService
+  ) { }
 
   ngOnInit(): void {
+    this.trainers$ = this.adminService.getTrainers(true);
   }
 
 }
