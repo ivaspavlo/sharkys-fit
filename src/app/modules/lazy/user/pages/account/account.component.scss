@@ -1,6 +1,11 @@
 @import '_core-colors';
 @import 'mixins/bg-img';
 
+.upload-photo-button {
+  max-width: 170px;
+  margin-top: 2rem;
+}
+
 .account-button {
   width: 150px;
   height: 40px;

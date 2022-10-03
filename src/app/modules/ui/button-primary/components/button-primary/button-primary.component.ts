@@ -13,7 +13,7 @@ export class ButtonPrimaryComponent {
   @Input() filled = false;
   @Input() routerLink: string | null = null;
   @Input() noBorder = false;
-  @Input() disabled = false;
+  @Input() disabled: boolean | null = false;
   @Input() size = '';
 
   @Input() set loading(value: any) {

@@ -4,6 +4,7 @@ import { HeaderComponent } from './header/header.component';
 import { LogoComponent } from './logo/logo.component';
 import { DialogContentComponent } from './dialog-content/dialog-content.component';
 import { UserAvatarComponent } from './user-avatar/user-avatar.component';
+import { IconComponent } from './icon/icon.component';
 
 
 export const COMPONENTS = [
@@ -12,5 +13,6 @@ export const COMPONENTS = [
   FooterComponent,
   BurgerComponent,
   DialogContentComponent,
-  UserAvatarComponent
+  UserAvatarComponent,
+  IconComponent
 ];
