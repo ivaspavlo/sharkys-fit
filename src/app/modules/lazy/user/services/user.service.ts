@@ -1,13 +1,17 @@
 import { Injectable, Injector } from '@angular/core';
-import { ApiService } from '@app/shared/classes';
 import { Observable, of } from 'rxjs';
+import { catchError, delay, map, tap } from 'rxjs/operators';
+import { SpinnerService } from '@app/core/services';
+import { ApiService } from '@app/shared/classes';
+import { ISetupPayoutsReq, IUserAccount } from '../interfaces';
 
 
 @Injectable()
 export class UserService extends ApiService {
 
   constructor(
-    protected injector: Injector
+    protected injector: Injector,
+    private spinnerService: SpinnerService,
   ) {
     super(injector);
   }
@@ -36,8 +40,44 @@ export class UserService extends ApiService {
     });
   }
 
-  public updateAccount(req: any): Observable<boolean> {
-    return of(true);
+  public updateAccount(req: IUserAccount): Observable<boolean> {
+    this.spinnerService.on();
+    return this.put('accounts', req).pipe(
+      map(() => true),
+      catchError(() => of(false)),
+      delay(1000),
+      tap(() => this.spinnerService.off())
+    );
+  }
+
+  public setupPayouts(req: ISetupPayoutsReq): Observable<boolean> {
+    this.spinnerService.on();
+    return this.post('payouts', req).pipe(
+      map(() => true),
+      catchError(() => of(false)),
+      delay(1000),
+      tap(() => this.spinnerService.off())
+    );
+  }
+
+  public getPayoutsData(): Observable<boolean> {
+    this.spinnerService.on();
+    return this.get('payouts').pipe(
+      map(() => true),
+      catchError(() => of(false)),
+      delay(1000),
+      tap(() => this.spinnerService.off())
+    );
+  }
+
+  public fileUpload(req: FormData): Observable<boolean> {
+    this.spinnerService.on();
+    return this.post('upload', req).pipe(
+      map(() => true),
+      catchError(() => of(false)),
+      delay(1000),
+      tap(() => this.spinnerService.off())
+    );
   }
 
 }

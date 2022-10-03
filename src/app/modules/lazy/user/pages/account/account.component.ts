@@ -1,11 +1,15 @@
 import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { of } from 'rxjs';
-import { catchError, takeUntil } from 'rxjs/operators';
-import { UserService } from '../../services/user.service';
-import { DialogService } from '@app/modules/ui';
-import { UploadImageModalComponent } from '../../modals/upload-image-modal/upload-image-modal.component';
+import { catchError, switchMap, takeUntil } from 'rxjs/operators';
+import { TranslateService } from '@ngx-translate/core';
+import { SpinnerService } from '@app/core/services';
 import { DestroySubscriptions } from '@app/shared/classes';
+import { DialogService } from '@app/modules/ui';
+import { ToastService } from '@app/modules/ui/toast';
+import { UploadImageModalComponent } from '../../modals/upload-image-modal/upload-image-modal.component';
+import { UserService } from '../../services/user.service';
+import { IUserAccount } from '../../interfaces';
 
 
 @Component({
@@ -17,12 +21,14 @@ import { DestroySubscriptions } from '@app/shared/classes';
 export class AccountComponent extends DestroySubscriptions implements OnInit {
 
   public form: FormGroup;
-  public isLoading = false;
 
   constructor(
     private fb: FormBuilder,
     private userService: UserService,
-    private dialogService: DialogService
+    private dialogService: DialogService,
+    private toastService: ToastService,
+    private translationService: TranslateService,
+    public spinnerService: SpinnerService
   ) {
     super();
   }
@@ -35,7 +41,7 @@ export class AccountComponent extends DestroySubscriptions implements OnInit {
     });
   }
 
-  private initForm(data: any): void {
+  private initForm(data: IUserAccount): void {
     this.form = this.fb.group({
       firstName: [data.firstName, [Validators.required, Validators.minLength(2)]],
       lastName: [data.lastName, [Validators.required, Validators.minLength(2)]],
@@ -53,18 +59,29 @@ export class AccountComponent extends DestroySubscriptions implements OnInit {
 
   public onLoadImage(): void {
     this.dialogService.open(UploadImageModalComponent).afterClosed.pipe(
-      takeUntil(this.componentDestroyed$)
-    ).subscribe((req: any) => {
-      console.log('works');
+      takeUntil(this.componentDestroyed$),
+      switchMap((req: FormData | unknown) => {
+        return req instanceof FormData ?
+          this.userService.fileUpload(req) : of(null);
+      })
+    ).subscribe((res: boolean | null) => {
+      if (res === false) {
+        this.toastService.show({
+          text: this.translationService.instant('core.http-errors.file-upload'),
+          type: 'warn'
+        });
+      }
     });
   }
 
   public onSubmitForm(): void {
-    this.isLoading = true;
-    this.userService.updateAccount(this.form.value).pipe(
-      catchError(() => of(false))
-    ).subscribe((res: boolean) => {
-      console.log('works');
+    this.userService.updateAccount(this.form.value).subscribe((res: boolean) => {
+      if (!res) {
+        this.toastService.show({
+          text: this.translationService.instant('core.http-errors.general'),
+          type: 'warn'
+        });
+      }
     });
   }
 

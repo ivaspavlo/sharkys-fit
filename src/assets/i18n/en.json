@@ -1,7 +1,9 @@
 {
   "core": {
+    "upload-photo-plh": "Please select a photo",
     "http-errors": {
-      "general": "Error occurred while saving the data. Please try again later."
+      "general": "Error occurred while saving the data. Please try again later.",
+      "file-upload": "Error occurred while saving the picture."
     },
     "form-errors": {
       "required": "This field is required",
