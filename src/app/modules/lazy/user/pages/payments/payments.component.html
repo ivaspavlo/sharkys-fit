@@ -1,24 +1,28 @@
 <section class="w-100 p-rem-2 d-flex flex-column align-items-center">
 
-  <h2 class="app-title mb-rem-3">{{ 'payments.title' | translate }}</h2>
+  <ng-container *ngIf="(payouts$ | async) as payouts; else spinner">
 
-  <div *ngIf="!paymentsSet" class="app-content">
-    <h4 class="app-desc">{{ 'payments.desc' | translate }}</h4>
-    <app-button-primary (buttonPrimaryClick)="onSetupPayments()" title="payments.button.setup" class="app-submit-button" [filled]="true"></app-button-primary>
-  </div>
+    <h2 class="app-title mb-rem-3">{{ 'payments.title' | translate }}</h2>
 
-  <div *ngIf="paymentsSet" class="w-100 d-flex flex-column align-items-center">
-    <div class="app-table">
-      <div app-table-row class="app-row app-row--even">
-        <div app-table-data [data]="{ width: 50 }"><span class="px-rem-1">29.09.2022</span></div>
-        <div app-table-data [data]="{ width: 50 }"><span class="px-rem-1">$100.00</span></div>
-      </div>
-      <div app-table-row class="app-row">
-        <div app-table-data [data]="{ width: 50 }"><span class="px-rem-1">30.09.2022</span></div>
-        <div app-table-data [data]="{ width: 50 }"><span class="px-rem-1">$200.00</span></div>
-      </div>
-      <app-button-primary (buttonPrimaryClick)="onSetupPayments()" title="payments.button.change-setup" class="app-submit-button" [filled]="true"></app-button-primary>
+    <div *ngIf="!payouts.length" class="app-content">
+      <h4 class="app-desc">{{ 'payments.desc' | translate }}</h4>
+      <app-button-primary (buttonPrimaryClick)="onSetupPayouts()" title="payments.button.setup" [loading]="spinnerService.isOn$ | async" [filled]="true" class="app-submit-button"></app-button-primary>
     </div>
-  </div>
+
+    <div *ngIf="payouts.length" class="w-100 d-flex flex-column align-items-center">
+      <div class="app-table">
+        <div *ngFor="let item of payouts" app-table-row class="app-row app-row--even">
+          <div app-table-data [data]="{ width: 50 }"><span class="px-rem-1">29.09.2022</span></div>
+          <div app-table-data [data]="{ width: 50 }"><span class="px-rem-1">$100.00</span></div>
+        </div>
+        <app-button-primary (buttonPrimaryClick)="onSetupPayouts()" title="payments.button.change-setup" class="app-submit-button" [loading]="spinnerService.isOn$ | async" [filled]="true"></app-button-primary>
+      </div>
+    </div>
+
+  </ng-container>
+
+  <ng-template #spinner>
+    <app-spinner size="xl"></app-spinner>
+  </ng-template>
 
 </section>

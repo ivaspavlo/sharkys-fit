@@ -60,11 +60,11 @@ export class UserService extends ApiService {
     );
   }
 
-  public getPayoutsData(): Observable<boolean> {
+  public getPayoutsData(): Observable<any[]> {
     this.spinnerService.on();
     return this.get('payouts').pipe(
-      map(() => true),
-      catchError(() => of(false)),
+      map(() => [0,1]),
+      catchError(() => of([])),
       delay(1000),
       tap(() => this.spinnerService.off())
     );

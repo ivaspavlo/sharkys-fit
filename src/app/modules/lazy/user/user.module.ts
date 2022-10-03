@@ -9,6 +9,7 @@ import { PAGES } from './pages';
 import { PARTIALS } from './partials';
 import { SERVICES } from './services';
 import { MODALS } from './modals';
+import { SpinnerModule } from '@app/modules/ui/spinner/spinner.module';
 
 
 @NgModule({
@@ -29,6 +30,7 @@ import { MODALS } from './modals';
     AsideModule,
     TableModule,
     ToastModule,
+    SpinnerModule,
     CoreTranslationModule.forChild()
   ],
   providers: [
