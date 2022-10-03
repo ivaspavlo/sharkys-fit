@@ -17,20 +17,25 @@
 
   <div class="d-flex flex-column align-items-center flex-sm-row align-items-sm-start">
 
-    <div class="app-cropper__container">
-      <image-cropper
-        [imageChangedEvent]="imageChangedEvent"
-        [maintainAspectRatio]="true"
-        [aspectRatio]="4 / 3"
-        format="png"
-        (imageCropped)="imageCropped($event)"
-        class="w-100"
-      ></image-cropper>
-    </div>
-  
-    <figure class="app-cropper__container">
-      <img [src]="croppedImage" class="app-cropper__preview" />
-    </figure>
+    <ng-container *ngIf="!imageChangedEvent">
+      <h2 class="w-100 mt-rem-2 color-main d-flex justify-content-center">{{'core.upload-photo-plh' | translate}}</h2>
+    </ng-container>
+
+    <ng-container *ngIf="imageChangedEvent">
+      <div class="app-cropper__container">
+        <image-cropper
+          [imageChangedEvent]="imageChangedEvent"
+          [maintainAspectRatio]="true"
+          [aspectRatio]="4 / 3"
+          format="png"
+          (imageCropped)="imageCropped($event)"
+          class="w-100"
+        ></image-cropper>
+      </div>
+      <figure class="app-cropper__container">
+        <img [src]="croppedImage" class="app-cropper__preview" />
+      </figure>
+    </ng-container>
 
   </div>
 

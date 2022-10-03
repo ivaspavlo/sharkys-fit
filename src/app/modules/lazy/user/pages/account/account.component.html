@@ -18,7 +18,7 @@
       <app-input controlName="certification" label="account.certification.label" placeholder="account.certification.placeholder" class="mb-rem-2"></app-input>
       <app-input controlName="bio" label="account.bio.label" placeholder="account.bio.placeholder" type="textarea" class="mb-rem-2"></app-input>
 
-      <app-button-primary [loading]="isLoading" [disabled]="!form.valid" (buttonPrimaryClick)="onSubmitForm()" title="core.button.confirm" class="app-submit-button"></app-button-primary>
+      <app-button-primary [disabled]="!form.valid" (buttonPrimaryClick)="onSubmitForm()" title="core.button.confirm" class="app-submit-button" [loading]="spinnerService.isOn$ | async" [filled]="true"></app-button-primary>
 
       <!-- TODO: Create ButtonSecondaryComponent and replace code below from here and from CropperComponent -->
       <button (click)="onLoadImage()" class="account-button">

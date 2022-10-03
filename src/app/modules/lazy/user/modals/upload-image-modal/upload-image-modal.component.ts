@@ -15,9 +15,13 @@ export class UploadImageModalComponent {
   ) { }
 
   public onSaveImage(imgBase64: string | null | undefined): void {
-    if (typeof imgBase64 === 'string') {
-      this.dialog.close({ imgBase64 });
+    if (typeof imgBase64 !== 'string') {
+      this.dialog.close(null);
+      return;
     }
+    const req = new FormData();
+    req.append('file', imgBase64);
+    this.dialog.close(req);
   }
 
 }
