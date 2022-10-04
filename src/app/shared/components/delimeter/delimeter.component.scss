@@ -1,0 +1,12 @@
+@import '_core-colors';
+
+:host {
+  position: sticky;
+  top: 0;
+  height: calc(100vh - 40px);
+  width: 2px;
+  transform: translateY(20px);
+  display: flex;
+  flex-shrink: 0;
+  background-color: $main;
+}
