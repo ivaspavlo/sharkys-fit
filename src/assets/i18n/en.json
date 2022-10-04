@@ -1,9 +1,11 @@
 {
   "core": {
     "upload-photo-plh": "Please select a photo",
+    "no-data": "No data found.",
     "http-errors": {
       "general": "Error occurred while saving the data. Please try again later.",
-      "file-upload": "Error occurred while saving the picture."
+      "file-upload": "Error occurred while saving the picture.",
+      "get-data": "We could not obtain data from the server."
     },
     "form-errors": {
       "required": "This field is required",
@@ -219,6 +221,7 @@
   "admin": {
     "approved": "Approved trainers",
     "pending": "Pending trainers",
+    "no-trainers": "There are no trainers yet.",
     "button": {
       "approve": "Approve",
       "reject": "Reject"

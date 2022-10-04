@@ -1,4 +1,12 @@
 import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
+import { Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
+import { TranslateService } from '@ngx-translate/core';
+import { SpinnerService } from '@app/core/services';
+import { ToastService } from '@app/modules/ui/toast';
+import { AdminService } from '../../services/admin.service';
+import { ITrainer } from '../../interfaces';
 
 
 @Component({
@@ -9,11 +17,54 @@ import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
 })
 export class TrainerPendingComponent implements OnInit {
 
-  constructor() { }
+  public trainer$: Observable<ITrainer | true>;
+  public isLoaded = false;
+
+  constructor(
+    private adminService: AdminService,
+    private route: ActivatedRoute,
+    private toastService: ToastService,
+    private translationService: TranslateService,
+    public spinnerService: SpinnerService
+  ) { }
 
   ngOnInit(): void {
+    const trainerId = this.route.snapshot.params.id;
+    this.trainer$ = this.adminService.getSingleTrainer(trainerId).pipe(
+      map((res: any | null) => {
+        this.isLoaded = true;
+        if (res === null) {
+          this.toastService.show({
+            text: this.translationService.instant('core.http-errors.general'),
+            type: 'warn'
+          });
+          return true;
+        }
+        return res;
+      })
+    );
   }
 
-  public onCancelTrainer(): void { }
+  public onCancelTrainer(trainer: ITrainer): void {
+    this.adminService.cancelTrainer(trainer.id).subscribe((res: boolean) => {
+      if (!res) {
+        this.toastService.show({
+          text: this.translationService.instant('core.http-errors.general'),
+          type: 'warn'
+        });
+      }
+    });
+  }
+
+  public onApproveTrainer(trainer: ITrainer): void {
+    this.adminService.approveTrainer(trainer.id).subscribe((res: boolean) => {
+      if (!res) {
+        this.toastService.show({
+          text: this.translationService.instant('core.http-errors.general'),
+          type: 'warn'
+        });
+      }
+    });
+  }
 
 }

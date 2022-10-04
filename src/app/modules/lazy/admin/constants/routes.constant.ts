@@ -8,8 +8,8 @@ import { TrainerPendingComponent } from '../pages/trainer-pending/trainer-pendin
 
 export enum ROUTE_NAMES {
   BLANK = '',
-  APPROVED = 'approved-trainers',
-  PENDING = 'pending-trainers',
+  APPROVED = 'trainers/approved',
+  PENDING = 'trainers/pending',
   TRAINER = 'trainer/:id'
 }
 
