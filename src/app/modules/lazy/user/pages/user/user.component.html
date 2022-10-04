@@ -2,9 +2,11 @@
 
   <ng-container *ngIf="(userData$ | async) as data">
 
-    <div class="d-none d-md-flex">
+    <div class="d-none d-md-flex flex-column">
       <ng-container *ngTemplateOutlet="aside; context: data"></ng-container>
     </div>
+
+    <div class="user-page__delimeter"></div>
 
     <div class="user-page__content">
       <app-header [hasMobileMenu]="true">
@@ -20,7 +22,7 @@
 <app-footer></app-footer>
 
 <ng-template #aside let-avatar="avatar" let-name="name" let-payoutAmount="payoutAmount">
-  <app-aside [buttons]="buttons">
+  <app-aside [buttons]="buttons" class="user-aside">
 
     <app-user-avatar [imageSrc]="avatar"></app-user-avatar>
 
