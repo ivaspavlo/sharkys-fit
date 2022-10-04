@@ -1,14 +1,28 @@
 <section class="w-100 d-flex flex-column align-items-center">
 
-  <h2 class="app-title mb-rem-4">John Smith</h2>
+  <ng-container *ngIf="(trainer$ | async) as trainer; else spinner">
+    <ng-container *ngIf="isLoaded && trainer !== true; else noItems">
 
-  <p class="app-desc">
-    Lorem ipsum, dolor sit amet consectetur adipisicing elit. Sit eaque, fuga qui dolor quam, iusto itaque ut incidunt nesciunt at nostrum quo. Ullam dolores quae architecto dicta facere quibusdam modi. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Reprehenderit quis cumque eaque suscipit voluptates amet assumenda similique molestias beatae, corrupti non quibusdam sequi asperiores ducimus accusantium laborum! Velit, quo quos.
-  </p>
+      <h2 class="app-title mb-rem-4">{{ trainer.name }}</h2>
 
-  <div class="w-100 d-flex">
-    <app-button-primary (buttonPrimaryClick)="onCancelTrainer()" title="admin.button.approve" [filled]="true" class="app-submit-button w-100 mr-rem-2"></app-button-primary>
-    <app-button-primary (buttonPrimaryClick)="onCancelTrainer()" title="admin.button.reject" class="app-submit-button w-100"></app-button-primary>
-  </div>
+      <p class="app-desc">{{ trainer.bio }}</p>
+
+      <div class="w-100 d-flex">
+        <app-button-primary (buttonPrimaryClick)="onCancelTrainer(trainer)" title="admin.button.approve" [loading]="spinnerService.isOn$ | async" [filled]="true" class="app-submit-button w-100 mr-rem-2"></app-button-primary>
+        <app-button-primary (buttonPrimaryClick)="onCancelTrainer(trainer)" title="admin.button.reject" [loading]="spinnerService.isOn$ | async" class="app-submit-button w-100"></app-button-primary>
+      </div>
+
+    </ng-container>
+  </ng-container>
 
 </section>
+
+<ng-template #spinner>
+  <app-spinner size="xl"></app-spinner>
+</ng-template>
+
+<ng-template #noItems>
+  <h2 class="app-title">
+    <p>{{ 'core.no-data' | translate }}</p>
+  </h2>
+</ng-template>

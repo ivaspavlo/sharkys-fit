@@ -1,16 +1,26 @@
 import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
+import { Observable } from 'rxjs';
+import { TrainerType } from '../../constants';
+import { ITrainer } from '../../interfaces';
+import { AdminService } from '../../services/admin.service';
+
 
 @Component({
   selector: 'app-pending-trainers',
   templateUrl: './pending-trainers.component.html',
-  styleUrls: ['./pending-trainers.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class PendingTrainersComponent implements OnInit {
 
-  constructor() { }
+  public type: TrainerType = 'pending';
+  public trainers$: Observable<ITrainer[]>;
+
+  constructor(
+    private adminService: AdminService
+  ) { }
 
   ngOnInit(): void {
+    this.trainers$ = this.adminService.getTrainers(this.type);
   }
 
 }
