@@ -27,16 +27,19 @@ export const ROUTES: Routes = [
         redirectTo: ROUTE_NAMES.LOGIN
       }, {
         path: ROUTE_NAMES.TRAINER_SUBMISSION,
-        component: TrainerSubmissionComponent
+        component: TrainerSubmissionComponent,
+        data: { animationState: 'One' }
+      }, {
+        path: ROUTE_NAMES.LOGIN,
+        component: LoginComponent,
+        data: { animationState: 'Two' }
+      }, {
+        path: ROUTE_NAMES.REMIND_PASSWORD,
+        component: ForgotPasswordComponent,
+        data: { animationState: 'Three' }
       }, {
         path: ROUTE_NAMES.FIRST_LOGIN,
         component: FirstLoginComponent
-      }, {
-        path: ROUTE_NAMES.LOGIN,
-        component: LoginComponent
-      }, {
-        path: ROUTE_NAMES.REMIND_PASSWORD,
-        component: ForgotPasswordComponent
       }, {
         path: ROUTE_NAMES.RESET_PASSWORD,
         component: ResetPasswordComponent

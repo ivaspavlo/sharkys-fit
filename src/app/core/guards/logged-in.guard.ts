@@ -20,7 +20,7 @@ export class LoggedInGuard implements CanLoad {
     if (isLoggedIn) {
       this.router.navigate([CORE_ROUTE_NAMES.ADMIN]);
     }
-    return isLoggedIn;
+    return !isLoggedIn;
   }
 
   private isLoggedIn(): boolean {

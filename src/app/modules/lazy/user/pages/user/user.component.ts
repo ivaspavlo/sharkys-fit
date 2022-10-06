@@ -1,6 +1,8 @@
 import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
+import { RouterOutlet } from '@angular/router';
 import { Observable } from 'rxjs';
 import { IAsideButton } from '@app/modules/ui/aside/interfaces';
+import { routingAnimations } from '@app/core/animations';
 import { UserService } from '../../services/user.service';
 import { UserAsideButtons } from '../../constants';
 
@@ -9,6 +11,7 @@ import { UserAsideButtons } from '../../constants';
   selector: 'app-user',
   templateUrl: './user.component.html',
   styleUrls: ['./user.component.scss'],
+  animations: [routingAnimations],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class UserComponent implements OnInit {
@@ -22,6 +25,10 @@ export class UserComponent implements OnInit {
 
   ngOnInit(): void {
     this.userData$ = this.userService.getUserData();
+  }
+
+  public prepareRoute(outlet: RouterOutlet) {
+    return outlet && outlet.activatedRouteData && outlet.activatedRouteData['animationState'];
   }
 
 }
