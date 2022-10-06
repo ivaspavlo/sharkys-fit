@@ -6,9 +6,6 @@
   display: flex;
   background-color: rgba(0,0,0,.9);
   z-index: 1;
-  @include md {
-    top: -2rem;
-  }
 }
 
 .app-header {
@@ -18,7 +15,7 @@
   flex-direction: column;
   position: relative;
   @include md {
-    padding: 3rem 2rem 1rem;
+    padding: 1.5rem 2rem 0.5rem;
   }
 }
 

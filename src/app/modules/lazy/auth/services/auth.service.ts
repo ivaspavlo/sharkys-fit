@@ -69,7 +69,7 @@ export class AuthService extends ApiService {
   }
 
   private afterLogin(res: any): void {
-    this.storageService.set(IS_ADMIN, true);
+    this.storageService.set(IS_ADMIN, false);
     this.storageService.set(ACCESS_TOKEN, 'some_token');
     this.spinnerService.off();
   }

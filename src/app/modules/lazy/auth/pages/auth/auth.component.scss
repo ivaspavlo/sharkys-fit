@@ -2,4 +2,6 @@
 
 :host {
   @include page;
+  height: 100vh;
+  overflow: scroll;
 }
