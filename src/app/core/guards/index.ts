@@ -1,6 +1,3 @@
-import { AuthGuard } from './auth.guard';
-
-
-export const CORE_GUARDS = [
-  AuthGuard
-];
+export * from './admin.guard';
+export * from './auth.guard';
+export * from './logged-in.guard';

@@ -3,7 +3,6 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CoreRoutingModule } from './core-routing.module';
 import { CoreTranslationModule } from './core-translation.module';
 import { CORE_PROVIDERS } from './providers';
-import { CORE_GUARDS } from './guards';
 import { CORE_INTERCEPTORS } from './interceptors';
 
 
@@ -16,7 +15,6 @@ import { CORE_INTERCEPTORS } from './interceptors';
   ],
   providers: [
     ...CORE_PROVIDERS,
-    ...CORE_GUARDS,
     ...CORE_INTERCEPTORS
   ],
   exports: [

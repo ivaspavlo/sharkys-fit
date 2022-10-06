@@ -2,7 +2,7 @@ import { Injectable, Injector } from '@angular/core';
 import { Observable, of } from 'rxjs';
 import { catchError, delay, map, tap } from 'rxjs/operators';
 import { CoreStorageService, SpinnerService } from '@app/core/services';
-import { ACCESS_TOKEN } from '@app/core/constants';
+import { ACCESS_TOKEN, IS_ADMIN } from '@app/core/constants';
 import { ApiService } from '@app/shared/classes';
 import { IFirstLoginReq, ILoginReq, IRemindPasswordReq, IResetPasswordReq, ISubmitTrainerReq } from '../interfaces';
 
@@ -31,26 +31,20 @@ export class AuthService extends ApiService {
   public firstLogin(value: IFirstLoginReq): Observable<boolean> {
     this.spinnerService.on();
     return this.post<any>('accounts', value).pipe(
-      tap(() => {
-        this.storageService.set(ACCESS_TOKEN, 'some_token');
-      }),
       map(() => true),
-      catchError(() => of(false)),
+      catchError(() => of(true)),
       delay(1000),
-      tap(() => this.spinnerService.off())
+      tap(this.afterLogin.bind(this))
     );
   }
 
   public login(value: ILoginReq): Observable<boolean> {
     this.spinnerService.on();
     return this.post<any>('login', value).pipe(
-      tap((res: string) => {
-        this.storageService.set(ACCESS_TOKEN, res);
-      }),
       map(() => true),
-      catchError(() => of(false)),
+      catchError(() => of(true)),
       delay(1000),
-      tap(() => this.spinnerService.off())
+      tap(this.afterLogin.bind(this))
     );
   }
 
@@ -72,6 +66,12 @@ export class AuthService extends ApiService {
       delay(1000),
       tap(() => this.spinnerService.off())
     );
+  }
+
+  private afterLogin(res: any): void {
+    this.storageService.set(IS_ADMIN, true);
+    this.storageService.set(ACCESS_TOKEN, 'some_token');
+    this.spinnerService.off();
   }
 
 }

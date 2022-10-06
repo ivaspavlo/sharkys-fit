@@ -6,6 +6,7 @@ import { CORE_ROUTE_NAMES } from '@app/core/constants';
 import { ToastService } from '@app/modules/ui/toast';
 import { PasswordValidators } from '@app/shared/validators';
 import { AuthService } from '../../services/auth.service';
+import { SpinnerService } from '@app/core/services';
 
 
 @Component({
@@ -22,7 +23,8 @@ export class LoginComponent implements OnInit {
     private authService: AuthService,
     private toastService: ToastService,
     private router: Router,
-    private translationService: TranslateService
+    private translationService: TranslateService,
+    public spinnerService: SpinnerService
   ) { }
 
   ngOnInit(): void {
@@ -45,7 +47,7 @@ export class LoginComponent implements OnInit {
         });
         return;
       }
-      this.router.navigateByUrl(CORE_ROUTE_NAMES.USER);
+      this.router.navigateByUrl(CORE_ROUTE_NAMES.ADMIN);
     });
   }
 

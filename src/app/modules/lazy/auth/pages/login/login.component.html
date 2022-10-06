@@ -9,7 +9,7 @@
       <app-input controlName="password" label="login.password.label" placeholder="login.password.placeholder" class="mb-rem-2" type="password"></app-input>
     </form>
 
-    <app-button-primary (buttonPrimaryClick)="onSubmitForm()" title="core.button.submit" class="app-submit-button" [filled]="true" [disabled]="!form.valid"></app-button-primary>
+    <app-button-primary (buttonPrimaryClick)="onSubmitForm()" title="core.button.submit" class="app-submit-button" [loading]="spinnerService.isOn$ | async" [filled]="true" [disabled]="!form.valid"></app-button-primary>
 
     <div class="mt-4 d-flex flex-column flex-md-row justify-content-between">
       <app-go-to text="login.goto-register.text" linkUrl="/auth/register" linkText="login.goto-register.link"></app-go-to>
