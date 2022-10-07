@@ -39,7 +39,12 @@ export class FirstLoginComponent implements OnInit {
   }
 
   public onSubmitForm(): void {
-    this.authService.firstLogin(this.form.value).subscribe((res: boolean) => {
+    const req = {
+      id: 'some_id',
+      password: this.form.value.password,
+      email_address: this.form.value.email_address
+    };
+    this.authService.firstLogin(req).subscribe((res: boolean) => {
       if (res) {
         this.toastService.show({
           text: this.translationService.instant('core.http-errors.general'),

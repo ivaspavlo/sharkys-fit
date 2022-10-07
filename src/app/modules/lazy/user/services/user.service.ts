@@ -26,17 +26,18 @@ export class UserService extends ApiService {
 
   public getAccountData(): Observable<any> {
     return of({
-      firstName: 'John',
-      lastName: 'Smith',
+      first_name: 'John',
+      last_name: 'Smith',
       email: 'john.smith@gmail.com',
       address: 'Sometown 1010, Somestreet 12',
-      phoneNumber: '+1 555 777 000',
-      instagram: '@johnsmith',
-      quote: 'Chuck Norris stands faster than anyone can run.',
-      location: 'Some location',
-      sports: 'Karate dancing',
-      certification: 'Some certification',
-      bio: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Sunt minus quod temporibus consequatur totam tenetur magni asperiores aperiam enim doloremque natus vel, error reprehenderit similique. Consectetur accusamus repudiandae vitae blanditiis.'
+      phone_number: '+1 555 777 000',
+      training_location: 'Pasadena',
+      market_of_interest: 'Pasadena',
+      number_of_clients: 1000,
+      favorite_location: 'Pasadena',
+      specialization: 'Karate dancing',
+      bio: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Sunt minus quod temporibus consequatur totam tenetur magni asperiores aperiam enim doloremque natus vel, error reprehenderit similique. Consectetur accusamus repudiandae vitae blanditiis.',
+      certified_trainer: true
     });
   }
 
@@ -60,9 +61,9 @@ export class UserService extends ApiService {
     );
   }
 
-  public getPayoutsData(): Observable<any[]> {
+  public getPayoutsData(userId: string): Observable<any[]> {
     this.spinnerService.on();
-    return this.get('payouts').pipe(
+    return this.get(`payouts/${userId}`).pipe(
       map(() => [0,1]),
       catchError(() => of([])),
       delay(1000),

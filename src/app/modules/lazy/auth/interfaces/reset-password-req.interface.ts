@@ -1,4 +1,4 @@
 export interface IResetPasswordReq {
   password: string;
-  fp_token: string;
+  password_reset_token: string;
 }

@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule } from '@angular/forms';
 import { SharedModule } from '@app/shared/shared.module';
 import { CoreTranslationModule } from '@app/core/core-translation.module';
-import { SpinnerModule, InputModule, CropperModule, DialogModule, ButtonPrimaryModule, AsideModule, TableModule, ToastModule } from '@app/modules/ui';
+import { SpinnerModule, InputModule, CropperModule, DialogModule, ButtonPrimaryModule, AsideModule, TableModule, ToastModule, SelectModule } from '@app/modules/ui';
 import { UserRoutingModule } from './user-routing.module';
 import { PAGES } from './pages';
 import { PARTIALS } from './partials';
@@ -30,6 +30,7 @@ import { MODALS } from './modals';
     TableModule,
     ToastModule,
     SpinnerModule,
+    SelectModule,
     CoreTranslationModule.forChild()
   ],
   providers: [

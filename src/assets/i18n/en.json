@@ -27,6 +27,56 @@
       "save": "Save",
       "upload-photo": "Upload photo",
       "cancel-trainer": "Cancel trainer"
+    },
+    "form": {
+      "firstName": {
+        "label": "First Name",
+        "placeholder": "Enter first name"
+      },
+      "lastName": {
+        "label": "Last Name",
+        "placeholder": "Enter last name"
+      },
+      "email": {
+        "label": "Email",
+        "placeholder": "Enter email"
+      },
+      "address": {
+        "label": "Address",
+        "placeholder": "Enter address"
+      },
+      "phoneNumber": {
+        "label": "Phone",
+        "placeholder": "e.g. (123) 456-7800"
+      },
+      "trainingLocation": {
+        "label": "Training Location",
+        "placeholder": "Where do you train?"
+      },
+      "clientsQty": {
+        "label": "Clients Quantity",
+        "placeholder": "How many clients do you have?"
+      },
+      "cityOfInterest": {
+        "label": "City/Market of Interest",
+        "placeholder": "Enter your city or market of interest"
+      },
+      "sports": {
+        "label": "Sports Specialization",
+        "placeholder": "Enter your sports specialization"
+      },
+      "isCertified": {
+        "label": "Certification",
+        "placeholder": "Are you a certified trainer?"
+      },
+      "personalBackground": {
+        "label": "Brief Background",
+        "placeholder": "Enter breifly your background"
+      },
+      "favoriteLocation": {
+        "label": "Favorite Sharky's location",
+        "placeholder": "-- Select your favorite Sharky's location --"
+      }
     }
   },
   "not-found": {
@@ -37,54 +87,6 @@
     "success": {
       "line-1": "THANK YOU FOR YOUR SUBMISSION",
       "line-2": "YOU’LL HEAR FROM US SOON."
-    },
-    "firstName": {
-      "label": "First Name",
-      "placeholder": "Enter first name"
-    },
-    "lastName": {
-      "label": "Last Name",
-      "placeholder": "Enter last name"
-    },
-    "email": {
-      "label": "Email",
-      "placeholder": "Enter email"
-    },
-    "address": {
-      "label": "Address",
-      "placeholder": "Enter address"
-    },
-    "phoneNumber": {
-      "label": "Phone",
-      "placeholder": "e.g. (123) 456-7800"
-    },
-    "trainingLocation": {
-      "label": "Training Location",
-      "placeholder": "Where do you train?"
-    },
-    "clientsQty": {
-      "label": "Clients Quantity",
-      "placeholder": "How many clients do you have?"
-    },
-    "cityOfInterest": {
-      "label": "City/Market of Interest",
-      "placeholder": "Enter your city or market of interest"
-    },
-    "sports": {
-      "label": "Sports Specialization",
-      "placeholder": "Enter your sports specialization"
-    },
-    "isCertified": {
-      "label": "Certification",
-      "placeholder": "Are you a certified trainer?"
-    },
-    "personalBackground": {
-      "label": "Brief Background",
-      "placeholder": "Enter breifly your background"
-    },
-    "favoriteLocation": {
-      "label": "Favorite Sharky's location",
-      "placeholder": "-- Select your favorite Sharky's location --"
     },
     "goto-login": {
       "text": "Already have an account?",
@@ -163,52 +165,6 @@
     "how-to-order": "How to order",
     "promoting": "Promoting",
     "contact-us": "Contact us"
-  },
-  "account": {
-    "firstName": {
-      "label": "First Name",
-      "placeholder": "Enter first name"
-    },
-    "lastName": {
-      "label": "Last Name",
-      "placeholder": "Enter last name"
-    },
-    "email": {
-      "label": "Email",
-      "placeholder": "Enter email"
-    },
-    "address": {
-      "label": "Address",
-      "placeholder": "Enter address"
-    },
-    "phoneNumber": {
-      "label": "Phone",
-      "placeholder": "e.g. (123) 456-7800"
-    },
-    "instagram": {
-      "label": "Instagram",
-      "placeholder": "Enter your Instagram name"
-    },
-    "quote": {
-      "label": "Quote or mantra",
-      "placeholder": "Enter your quote or mantra about training"
-    },
-    "location": {
-      "label": "Location",
-      "placeholder": "Enter your location"
-    },
-    "sports": {
-      "label": "Sports Specialization",
-      "placeholder": "Enter your sports specialization"
-    },
-    "certification": {
-      "label": "Trainer certification",
-      "placeholder": "Enter your certification"
-    },
-    "bio": {
-      "label": "Bio",
-      "placeholder": "Enter breifly your biography"
-    }
   },
   "payments": {
     "title": "Payments",
