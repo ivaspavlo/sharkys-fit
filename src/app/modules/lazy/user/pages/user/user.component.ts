@@ -1,8 +1,8 @@
 import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
+import { ChildrenOutletContexts } from '@angular/router';
+import { basicRoutingAnimation } from '@app/core/animations';
 import { Observable } from 'rxjs';
 import { IAsideButton } from '@app/modules/ui/aside/interfaces';
-import { routingAnimations } from '@app/core/animations';
 import { UserService } from '../../services/user.service';
 import { UserAsideButtons } from '../../constants';
 
@@ -11,7 +11,7 @@ import { UserAsideButtons } from '../../constants';
   selector: 'app-user',
   templateUrl: './user.component.html',
   styleUrls: ['./user.component.scss'],
-  animations: [routingAnimations],
+  animations: [basicRoutingAnimation],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class UserComponent implements OnInit {
@@ -20,15 +20,16 @@ export class UserComponent implements OnInit {
   public userData$: Observable<any>;
 
   constructor(
-    private userService: UserService
+    private userService: UserService,
+    private contexts: ChildrenOutletContexts
   ) { }
 
   ngOnInit(): void {
     this.userData$ = this.userService.getUserData();
   }
 
-  public prepareRoute(outlet: RouterOutlet) {
-    return outlet && outlet.activatedRouteData && outlet.activatedRouteData['animationState'];
+  public prepareRoute() {
+    return this.contexts.getContext('primary')?.route?.snapshot?.data?.['animation'];
   }
 
 }

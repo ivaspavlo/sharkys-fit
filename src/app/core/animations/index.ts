@@ -1,1 +1,1 @@
-export * from './routing.animation';
+export * from './basic-routing.animation';

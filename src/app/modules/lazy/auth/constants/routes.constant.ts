@@ -28,21 +28,23 @@ export const ROUTES: Routes = [
       }, {
         path: ROUTE_NAMES.TRAINER_SUBMISSION,
         component: TrainerSubmissionComponent,
-        data: { animationState: 'One' }
+        data: { animation: ROUTE_NAMES.TRAINER_SUBMISSION }
       }, {
         path: ROUTE_NAMES.LOGIN,
         component: LoginComponent,
-        data: { animationState: 'Two' }
+        data: { animation: ROUTE_NAMES.LOGIN }
       }, {
         path: ROUTE_NAMES.REMIND_PASSWORD,
         component: ForgotPasswordComponent,
-        data: { animationState: 'Three' }
+        data: { animation: ROUTE_NAMES.REMIND_PASSWORD }
       }, {
         path: ROUTE_NAMES.FIRST_LOGIN,
-        component: FirstLoginComponent
+        component: FirstLoginComponent,
+        data: { animation: ROUTE_NAMES.FIRST_LOGIN }
       }, {
         path: ROUTE_NAMES.RESET_PASSWORD,
-        component: ResetPasswordComponent
+        component: ResetPasswordComponent,
+        data: { animation: ROUTE_NAMES.RESET_PASSWORD }
       }
     ]
   }
