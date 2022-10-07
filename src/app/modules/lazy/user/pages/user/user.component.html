@@ -8,11 +8,13 @@
 
     <app-delimeter class="d-none d-md-flex"></app-delimeter>
 
-    <div [@triggerName]="prepareRoute(outlet)" class="user-page__content">
+    <div class="d-flex flex-column flex-grow-1">
       <app-header [hasMobileMenu]="true">
         <ng-container *ngTemplateOutlet="aside; context: data"></ng-container>
       </app-header>
-      <router-outlet #outlet="outlet"></router-outlet>
+      <div [@routeAnimations]="prepareRoute()" class="user-page__content">
+        <router-outlet></router-outlet>
+      </div>
     </div>
 
   </ng-container>

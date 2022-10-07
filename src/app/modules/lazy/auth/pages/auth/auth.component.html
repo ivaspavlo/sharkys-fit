@@ -1,5 +1,5 @@
 <app-header></app-header>
-<div [@triggerName]="prepareRoute(outlet)" class="d-flex flex-column flex-grow-1">
-  <router-outlet #outlet="outlet"></router-outlet>
+<div [@routeAnimations]="prepareRoute()" class="d-flex flex-column flex-grow-1">
+  <router-outlet></router-outlet>
 </div>
 <app-footer></app-footer>

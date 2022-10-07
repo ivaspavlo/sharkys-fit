@@ -31,25 +31,32 @@ export const ROUTES: Routes = [
         redirectTo: ROUTE_NAMES.ACCOUNT
       }, {
         path: ROUTE_NAMES.ACCOUNT,
-        component: AccountComponent
+        component: AccountComponent,
+        data: { animation: ROUTE_NAMES.ACCOUNT }
       }, {
         path: ROUTE_NAMES.PAYMENTS,
-        component: PaymentsComponent
+        component: PaymentsComponent,
+        data: { animation: ROUTE_NAMES.PAYMENTS }
       }, {
         path: ROUTE_NAMES.GETTING_STARTED,
-        component: GettingStartedComponent
+        component: GettingStartedComponent,
+        data: { animation: ROUTE_NAMES.GETTING_STARTED }
       }, {
         path: ROUTE_NAMES.EARNINGS_INFO,
-        component: EarningsInfoComponent
+        component: EarningsInfoComponent,
+        data: { animation: ROUTE_NAMES.EARNINGS_INFO }
       }, {
         path: ROUTE_NAMES.ORDERS_INFO,
-        component: OrdersInfoComponent
+        component: OrdersInfoComponent,
+        data: { animation: ROUTE_NAMES.ORDERS_INFO }
       }, {
         path: ROUTE_NAMES.PROMOTIONS,
-        component: PromotionsComponent
+        component: PromotionsComponent,
+        data: { animation: ROUTE_NAMES.PROMOTIONS }
       }, {
         path: ROUTE_NAMES.CONTACTS,
-        component: ContactsComponent
+        component: ContactsComponent,
+        data: { animation: ROUTE_NAMES.CONTACTS }
       }
     ]
   }

@@ -1,19 +1,23 @@
 import { Component, ChangeDetectionStrategy } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
-import { routingAnimations } from '@app/core/animations';
+import { ChildrenOutletContexts, RouterOutlet } from '@angular/router';
+import { basicRoutingAnimation } from '@app/core/animations';
 
 
 @Component({
   selector: 'app-auth',
   templateUrl: './auth.component.html',
   styleUrls: ['./auth.component.scss'],
-  animations: [routingAnimations],
+  animations: [basicRoutingAnimation],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class AuthComponent {
 
-  public prepareRoute(outlet: RouterOutlet) {
-    return outlet && outlet.activatedRouteData && outlet.activatedRouteData['animationState'];
+  constructor(
+    private contexts: ChildrenOutletContexts
+  ) { }
+
+  public prepareRoute() {
+    return this.contexts.getContext('primary')?.route?.snapshot?.data?.['animation'];
   }
 
 }

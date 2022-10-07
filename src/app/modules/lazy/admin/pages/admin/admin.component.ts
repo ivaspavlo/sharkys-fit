@@ -1,4 +1,5 @@
 import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
+import { ChildrenOutletContexts } from '@angular/router';
 import { IAsideButton } from '@app/modules/ui/aside/interfaces';
 import { AsideButtons } from '../../constants';
 
@@ -13,9 +14,15 @@ export class AdminComponent implements OnInit {
 
   public buttons: IAsideButton[] = AsideButtons;
 
-  constructor() { }
+  constructor(
+    private contexts: ChildrenOutletContexts
+  ) { }
 
   ngOnInit(): void {
+  }
+
+  public prepareRoute() {
+    return this.contexts.getContext('primary')?.route?.snapshot?.data?.['animation'];
   }
 
 }
