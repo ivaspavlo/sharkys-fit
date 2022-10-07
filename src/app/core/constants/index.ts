@@ -3,3 +3,4 @@ export * from './keys.constant';
 export * from './form-errors.constant';
 export * from './core-routes.constant';
 export * from './dialog-sizes.constant';
+export * from './favorite-location-options.constant';

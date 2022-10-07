@@ -16,9 +16,9 @@ export class AdminService extends ApiService {
     super(injector);
   }
 
-  public getTrainers(type: 'approved' |'pending'): Observable<ITrainer[]> {
+  public getTrainers(type: 'approved' | 'pending'): Observable<ITrainer[]> {
     this.spinnerService.on();
-    return this.get(`admin/trainers?type=${type}`).pipe(
+    return this.get(`admin/trainers?status=${type}`).pipe(
       map(() => [{},{},{}]),
       catchError(() => of([{},{},{}])),
       delay(1000),
@@ -46,7 +46,7 @@ export class AdminService extends ApiService {
 
   public cancelTrainer(id: string = '1'): Observable<boolean> {
     this.spinnerService.on();
-    return this.post('admin/trainers', { status: 'declined', id }).pipe(
+    return this.delete('admin/trainers', { id }).pipe(
       map(() => true),
       catchError(() => of(false)),
       delay(1000),

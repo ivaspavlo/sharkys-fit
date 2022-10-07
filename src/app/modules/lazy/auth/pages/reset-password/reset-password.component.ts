@@ -41,7 +41,7 @@ export class ResetPasswordComponent implements OnInit {
   public onSubmitForm(): void {
     const req = {
       password: this.form.value.password,
-      fp_token: this.resetToken
+      password_reset_token: this.resetToken
     };
     this.authService.resetPassword(req).subscribe((res: boolean) => {
       if (!res) {

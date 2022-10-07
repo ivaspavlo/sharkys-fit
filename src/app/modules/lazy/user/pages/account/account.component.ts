@@ -4,9 +4,11 @@ import { of } from 'rxjs';
 import { catchError, switchMap, takeUntil } from 'rxjs/operators';
 import { TranslateService } from '@ngx-translate/core';
 import { SpinnerService } from '@app/core/services';
+import { FavoriteLocationOptions } from '@app/core/constants';
 import { DestroySubscriptions } from '@app/shared/classes';
 import { DialogService } from '@app/modules/ui';
 import { ToastService } from '@app/modules/ui/toast';
+import { ISelectOption } from '@app/modules/ui/select/interfaces';
 import { UploadImageModalComponent } from '../../modals/upload-image-modal/upload-image-modal.component';
 import { UserService } from '../../services/user.service';
 import { IUserAccount } from '../../interfaces';
@@ -21,6 +23,7 @@ import { IUserAccount } from '../../interfaces';
 export class AccountComponent extends DestroySubscriptions implements OnInit {
 
   public form: FormGroup;
+  public favLocationOptions: ISelectOption[] = FavoriteLocationOptions;
 
   constructor(
     private fb: FormBuilder,
@@ -36,24 +39,27 @@ export class AccountComponent extends DestroySubscriptions implements OnInit {
   ngOnInit(): void {
     this.userService.getAccountData().pipe(
       catchError(() => of({}))
-    ).subscribe((res: object) => {
+    ).subscribe((res: Omit<IUserAccount, 'id'>) => {
       this.initForm(res);
     });
   }
 
-  private initForm(data: IUserAccount): void {
+  private initForm(data: Omit<IUserAccount, 'id'>): void {
     this.form = this.fb.group({
-      firstName: [data.firstName, [Validators.required, Validators.minLength(2)]],
-      lastName: [data.lastName, [Validators.required, Validators.minLength(2)]],
+      id: ['some_id', [Validators.required, Validators.minLength(2)]],
+      first_name: [data.first_name, [Validators.required, Validators.minLength(2)]],
+      last_name: [data.last_name, [Validators.required, Validators.minLength(2)]],
       email: [data.email, [Validators.required, Validators.email]],
       address: [data.address, [Validators.required, Validators.minLength(10)]],
-      phoneNumber: [data.phoneNumber, [Validators.required, Validators.minLength(7)]],
-      instagram: [data.instagram, [Validators.required, Validators.minLength(3)]],
-      quote: [data.quote, [Validators.required, Validators.minLength(3)]],
-      location: [data.location, [Validators.required, Validators.minLength(3)]],
-      sports: [data.sports, [Validators.required, Validators.minLength(3)]],
-      certification: [data.certification, [Validators.required, Validators.minLength(3)]],
-      bio: [data.bio, [Validators.required, Validators.minLength(3)]]
+      phone_number: [data.phone_number, [Validators.required, Validators.minLength(7)]],
+      training_location: [data.training_location, [Validators.required, Validators.minLength(3)]],
+      market_of_interest: [data.market_of_interest, [Validators.required, Validators.minLength(3)]],
+      number_of_clients: [data.number_of_clients, [Validators.required]],
+      favorite_location: [data.favorite_location, [Validators.required, Validators.minLength(3)]],
+      specialization: [data.specialization, [Validators.required, Validators.minLength(3)]],
+      bio: [data.bio, [Validators.required, Validators.minLength(30)]],
+      certified_trainer: [data.certified_trainer, [Validators.required]],
+      image_url: ['', [Validators.required]]
     });
   }
 
