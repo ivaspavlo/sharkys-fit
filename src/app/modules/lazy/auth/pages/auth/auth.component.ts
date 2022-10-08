@@ -1,5 +1,5 @@
 import { Component, ChangeDetectionStrategy } from '@angular/core';
-import { ChildrenOutletContexts, RouterOutlet } from '@angular/router';
+import { ChildrenOutletContexts } from '@angular/router';
 import { basicRoutingAnimation } from '@app/core/animations';
 
 
@@ -16,7 +16,7 @@ export class AuthComponent {
     private contexts: ChildrenOutletContexts
   ) { }
 
-  public prepareRoute() {
+  public prepareRoute(): string {
     return this.contexts.getContext('primary')?.route?.snapshot?.data?.['animation'];
   }
 

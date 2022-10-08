@@ -23,16 +23,16 @@
 
 <app-footer></app-footer>
 
-<ng-template #aside let-avatar="avatar" let-name="name" let-payoutAmount="payoutAmount">
+<ng-template #aside let-avatar="image_url" let-firstName="first_name" let-lastName="last_name" let-payoutAmount="payout_amount">
   <app-aside [buttons]="buttons" class="user-aside">
 
     <app-user-avatar [imageSrc]="avatar"></app-user-avatar>
 
     <div class="mt-3 mb-4 d-flex flex-column">
-      <p class="user-aside__name">{{ name }}</p>
+      <p class="user-aside__name">{{ firstName && lastName ? firstName + ' ' + lastName : ''}}</p>
       <p class="user-payout">
-        <span>{{ 'user.payout' | translate }}</span>
-        <span class="user-payout__amount">${{ payoutAmount }}</span>
+        <span>{{'user.payout' | translate}}</span>
+        <span class="user-payout__amount">${{payoutAmount || '0.00'}}</span>
       </p>
     </div>
 

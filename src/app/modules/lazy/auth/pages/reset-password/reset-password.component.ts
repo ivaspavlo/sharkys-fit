@@ -1,11 +1,13 @@
 import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
 import { PasswordValidators } from '@app/shared/validators';
 import { ToastService } from '@app/modules/ui/toast';
 import { AuthService } from '../../services/auth.service';
 import { RESET_TOKEN } from '../../constants';
+import { IResponseApi } from '@app/core/interfaces';
+import { CORE_ROUTE_NAMES } from '@app/core/constants';
 
 
 @Component({
@@ -24,6 +26,7 @@ export class ResetPasswordComponent implements OnInit {
     private toastService: ToastService,
     private route : ActivatedRoute,
     private translationService: TranslateService,
+    private router: Router
   ) { }
 
   ngOnInit(): void {
@@ -43,13 +46,18 @@ export class ResetPasswordComponent implements OnInit {
       password: this.form.value.password,
       password_reset_token: this.resetToken
     };
-    this.authService.resetPassword(req).subscribe((res: boolean) => {
-      if (!res) {
+    this.authService.resetPassword(req).subscribe((res: IResponseApi) => {
+      if (!res.value) {
         this.toastService.show({
-          text: this.translationService.instant('core.http-errors.general'),
+          text: res.error_message || this.translationService.instant('core.http-errors.general'),
           type: 'warn'
         });
-        return;
+      } else {
+        this.toastService.show({
+          text: this.translationService.instant('reset-password.success'),
+          type: 'success'
+        });
+        this.router.navigateByUrl(CORE_ROUTE_NAMES.AUTH);
       }
     });
   }

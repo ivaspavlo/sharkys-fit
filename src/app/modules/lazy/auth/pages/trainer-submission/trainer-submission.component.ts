@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { TranslateService } from '@ngx-translate/core';
 import { FavoriteLocationOptions } from '@app/core/constants';
 import { SpinnerService } from '@app/core/services';
+import { IResponseApi } from '@app/core/interfaces';
 import { ISelectOption } from '@app/modules/ui/select/interfaces';
 import { ToastService } from '@app/modules/ui/toast';
 import { AuthService } from '../../services/auth.service';
@@ -42,21 +43,21 @@ export class TrainerSubmissionComponent implements OnInit {
       number_of_clients: ['11', [Validators.required]],
       market_of_interest: ['aaaaaa', [Validators.required, Validators.minLength(3)]],
       specialization: ['aaaaaaaa', [Validators.required, Validators.minLength(3)]],
-      certified_trainer: [true, [Validators.required]],
+      certified_trainer: ['most likely yes', [Validators.required]],
       bio: ['We will create an account automatically for you and include', [Validators.required, Validators.minLength(30)]],
-      favorite_location: ['', [Validators.required, Validators.minLength(3)]]
+      favorite_location: ['Tarzana', [Validators.required, Validators.minLength(3)]]
     });
   }
 
   public onSubmitForm(): void {
-    this.authService.submitTrainerData(this.form.value).subscribe((res: boolean) => {
-      if (!res) {
+    this.authService.submitTrainerData(this.form.value).subscribe((res: IResponseApi) => {
+      this.success = res.value;
+      if (!res.value) {
         this.toastService.show({
-          text: this.translationService.instant('core.http-errors.general'),
+          text: res.error_message || this.translationService.instant('core.http-errors.general'),
           type: 'warn'
         });
       }
-      this.success = res;
     });
   }
 

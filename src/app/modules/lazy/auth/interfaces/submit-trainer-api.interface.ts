@@ -10,5 +10,5 @@ export interface ISubmitTrainerReq {
   favorite_location: string;
   specialization: string;
   bio: string;
-  certified_trainer: boolean;
+  certified_trainer: string;
 }

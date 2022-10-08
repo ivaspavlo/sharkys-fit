@@ -3,10 +3,11 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
 import { CORE_ROUTE_NAMES } from '@app/core/constants';
-import { ToastService } from '@app/modules/ui/toast';
-import { PasswordValidators } from '@app/shared/validators';
-import { AuthService } from '../../services/auth.service';
 import { SpinnerService } from '@app/core/services';
+import { IResponseApi } from '@app/core/interfaces';
+import { PasswordValidators } from '@app/shared/validators';
+import { ToastService } from '@app/modules/ui/toast';
+import { AuthService } from '../../services/auth.service';
 
 
 @Component({
@@ -39,10 +40,10 @@ export class LoginComponent implements OnInit {
   }
 
   public onSubmitForm(): void {
-    this.authService.login(this.form.value).subscribe((res: boolean) => {
-      if (!res) {
+    this.authService.login(this.form.value).subscribe((res: IResponseApi) => {
+      if (!res.value) {
         this.toastService.show({
-          text: this.translationService.instant('core.http-errors.general'),
+          text: res.error_message || this.translationService.instant('core.http-errors.general'),
           type: 'warn'
         });
         return;
