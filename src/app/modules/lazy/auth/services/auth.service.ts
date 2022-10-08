@@ -10,7 +10,7 @@ import { IFirstLoginReq, ILoginFailureRes, ILoginReq, ILoginSuccessRes, IRemindP
 
 const mockLoginData = {
   token: 'some_token',
-  role: 'admin'
+  role: 'user'
 }
 
 @Injectable()
