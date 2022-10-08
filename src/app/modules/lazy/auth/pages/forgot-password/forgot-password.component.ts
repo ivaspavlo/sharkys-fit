@@ -2,6 +2,7 @@ import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { TranslateService } from '@ngx-translate/core';
 import { SpinnerService } from '@app/core/services';
+import { IResponseApi } from '@app/core/interfaces';
 import { ToastService } from '@app/modules/ui/toast';
 import { AuthService } from '../../services/auth.service';
 
@@ -35,15 +36,14 @@ export class ForgotPasswordComponent implements OnInit {
   }
 
   public onSubmitForm(): void {
-    this.authService.remindPassword(this.form.value).subscribe((res: boolean) => {
-      if (!res) {
+    this.authService.remindPassword(this.form.value).subscribe((res: IResponseApi) => {
+      this.success = res.value;
+      if (!res.value) {
         this.toastService.show({
-          text: this.translationService.instant('core.http-errors.general'),
+          text: res.error_message || this.translationService.instant('core.http-errors.general'),
           type: 'warn'
         });
-        return;
       }
-      this.success = res;
     });
   }
 

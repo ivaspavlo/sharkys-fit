@@ -76,6 +76,14 @@
       "favoriteLocation": {
         "label": "Favorite Sharky's location",
         "placeholder": "-- Select your favorite Sharky's location --"
+      },
+      "password": {
+        "label": "Password",
+        "placeholder": "Enter password"
+      },
+      "confirmPassword": {
+        "label": "Confirm Password",
+        "placeholder": "Enter password once more"
       }
     }
   },
@@ -99,29 +107,10 @@
       "line-2": "SHARKY'S FIT TEAM."
     },
     "subtitle": "CREATE A USER ACCOUNT TO GET STARTED.",
-    "email": {
-      "label": "Email",
-      "placeholder": "Enter email"
-    },
-    "password": {
-      "label": "Password",
-      "placeholder": "Enter password"
-    },
-    "confirmPassword": {
-      "label": "Confirm Password",
-      "placeholder": "Enter password once more"
-    }
+    "success": "Welcom to the team!"
   },
   "login": {
     "title": "WELCOME BACK!",
-    "email": {
-      "label": "Email",
-      "placeholder": "Enter email"
-    },
-    "password": {
-      "label": "Password",
-      "placeholder": "Enter password"
-    },
     "goto-register": {
       "text": "Don't have an account?",
       "link": "Register"
@@ -136,10 +125,6 @@
     "success": {
       "line-1": "PLEASE CHECK YOUR EMAIL BOX"
     },
-    "email": {
-      "label": "Email",
-      "placeholder": "Enter email"
-    },
     "goto-login": {
       "text": "Go back to",
       "link": "Login"
@@ -147,14 +132,7 @@
   },
   "reset-password": {
     "title": "RESET PASSWORD",
-    "password": {
-      "label": "Password",
-      "placeholder": "Enter password"
-    },
-    "confirmPassword": {
-      "label": "Confirm Password",
-      "placeholder": "Enter password once more"
-    }
+    "success": "Password was successfully reset. Please login with the new credentials."
   },
   "user": {
     "payout": "Payout",
@@ -164,7 +142,11 @@
     "what-you-earn": "What you earn",
     "how-to-order": "How to order",
     "promoting": "Promoting",
-    "contact-us": "Contact us"
+    "contact-us": "Contact us",
+    "messages": {
+      "file-uploaded": "File was successfully uploaded.",
+      "user-updated": "Account data was successfully updated"
+    }
   },
   "payments": {
     "title": "Payments",

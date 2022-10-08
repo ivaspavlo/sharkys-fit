@@ -3,6 +3,8 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
 import { SpinnerService } from '@app/core/services';
+import { IResponseApi } from '@app/core/interfaces';
+import { CORE_ROUTE_NAMES } from '@app/core/constants';
 import { PasswordValidators } from '@app/shared/validators';
 import { ToastService } from '@app/modules/ui/toast';
 import { AuthService } from '../../services/auth.service';
@@ -39,20 +41,25 @@ export class FirstLoginComponent implements OnInit {
   }
 
   public onSubmitForm(): void {
+    // TODO: the source of user id to be clarified
     const req = {
       id: 'some_id',
       password: this.form.value.password,
       email_address: this.form.value.email_address
     };
-    this.authService.firstLogin(req).subscribe((res: boolean) => {
-      if (res) {
+    this.authService.firstLogin(req).subscribe((res: IResponseApi) => {
+      if (!res.value) {
         this.toastService.show({
-          text: this.translationService.instant('core.http-errors.general'),
+          text: res.error_message || this.translationService.instant('core.http-errors.general'),
           type: 'warn'
         });
-        return;
+      } else {
+        this.toastService.show({
+          text: this.translationService.instant('first-login.success'),
+          type: 'success'
+        });
+        this.router.navigateByUrl(CORE_ROUTE_NAMES.ADMIN);
       }
-      this.router.navigateByUrl('user');
     });
   }
 

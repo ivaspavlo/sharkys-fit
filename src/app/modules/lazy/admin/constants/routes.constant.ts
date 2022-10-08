@@ -28,9 +28,11 @@ export const ROUTES: Routes = [
           {
             path: ROUTE_NAMES.BLANK,
             pathMatch: 'full',
+            data: { animation: 'ApprovedTrainersComponent' },
             component: ApprovedTrainersComponent
           }, {
             path: ROUTE_NAMES.TRAINER,
+            data: { animation: 'TrainerApprovedComponent' },
             component: TrainerApprovedComponent
           }
         ]
@@ -40,9 +42,11 @@ export const ROUTES: Routes = [
           {
             path: ROUTE_NAMES.BLANK,
             pathMatch: 'full',
+            data: { animation: 'PendingTrainersComponent' },
             component: PendingTrainersComponent
           }, {
             path: ROUTE_NAMES.TRAINER,
+            data: { animation: 'TrainerPendingComponent' },
             component: TrainerPendingComponent
           }
         ]

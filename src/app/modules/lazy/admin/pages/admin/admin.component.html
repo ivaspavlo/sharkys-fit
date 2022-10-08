@@ -10,8 +10,8 @@
     <app-header [hasMobileMenu]="true" class="d-flex d-md-none">
       <ng-container [ngTemplateOutlet]="aside"></ng-container>
     </app-header>
-    <div class="admin__page-wrapper">
-      <router-outlet></router-outlet>
+    <div [@routeAnimations]="prepareRoute()" class="admin__page-wrapper">
+      <router-outlet ></router-outlet>
     </div>
   </div>
 

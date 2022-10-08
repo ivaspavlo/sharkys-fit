@@ -1,5 +1,6 @@
 import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { ChildrenOutletContexts } from '@angular/router';
+import { basicRoutingAnimation } from '@app/core/animations';
 import { IAsideButton } from '@app/modules/ui/aside/interfaces';
 import { AsideButtons } from '../../constants';
 
@@ -8,6 +9,7 @@ import { AsideButtons } from '../../constants';
   selector: 'app-admin',
   templateUrl: './admin.component.html',
   styleUrls: ['./admin.component.scss'],
+  animations: [basicRoutingAnimation],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class AdminComponent implements OnInit {
@@ -21,7 +23,7 @@ export class AdminComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  public prepareRoute() {
+  public prepareRoute(): string {
     return this.contexts.getContext('primary')?.route?.snapshot?.data?.['animation'];
   }
 

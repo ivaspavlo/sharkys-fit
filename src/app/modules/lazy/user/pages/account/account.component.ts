@@ -1,10 +1,11 @@
 import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { of } from 'rxjs';
-import { catchError, switchMap, takeUntil } from 'rxjs/operators';
+import { switchMap, takeUntil } from 'rxjs/operators';
 import { TranslateService } from '@ngx-translate/core';
 import { SpinnerService } from '@app/core/services';
 import { FavoriteLocationOptions } from '@app/core/constants';
+import { IResponseApi } from '@app/core/interfaces';
 import { DestroySubscriptions } from '@app/shared/classes';
 import { DialogService } from '@app/modules/ui';
 import { ToastService } from '@app/modules/ui/toast';
@@ -37,16 +38,18 @@ export class AccountComponent extends DestroySubscriptions implements OnInit {
   }
 
   ngOnInit(): void {
-    this.userService.getAccountData().pipe(
-      catchError(() => of({}))
-    ).subscribe((res: Omit<IUserAccount, 'id'>) => {
-      this.initForm(res);
+    this.userService.getCachedUserData().pipe(
+      takeUntil(this.componentDestroyed$)
+    ).subscribe((res: IUserAccount | null) => {
+      if (res !== null) {
+        this.initForm(res);
+      }
     });
   }
 
-  private initForm(data: Omit<IUserAccount, 'id'>): void {
+  private initForm(data: IUserAccount): void {
     this.form = this.fb.group({
-      id: ['some_id', [Validators.required, Validators.minLength(2)]],
+      id: [data.id, [Validators.required, Validators.minLength(2)]],
       first_name: [data.first_name, [Validators.required, Validators.minLength(2)]],
       last_name: [data.last_name, [Validators.required, Validators.minLength(2)]],
       email: [data.email, [Validators.required, Validators.email]],
@@ -59,7 +62,7 @@ export class AccountComponent extends DestroySubscriptions implements OnInit {
       specialization: [data.specialization, [Validators.required, Validators.minLength(3)]],
       bio: [data.bio, [Validators.required, Validators.minLength(30)]],
       certified_trainer: [data.certified_trainer, [Validators.required]],
-      image_url: ['', [Validators.required]]
+      image_url: [data.image_url, [Validators.required]]
     });
   }
 
@@ -70,21 +73,32 @@ export class AccountComponent extends DestroySubscriptions implements OnInit {
         return req instanceof FormData ?
           this.userService.fileUpload(req) : of(null);
       })
-    ).subscribe((res: boolean | null) => {
-      if (res === false) {
+    ).subscribe((res: IResponseApi | null) => {
+      if (res && !res.value) {
         this.toastService.show({
-          text: this.translationService.instant('core.http-errors.file-upload'),
+          text: res.error_message || this.translationService.instant('core.http-errors.file-upload'),
           type: 'warn'
+        });
+      } else if (res?.value) {
+        this.form.get('image_url')?.patchValue(res.data.url);
+        this.toastService.show({
+          text: this.translationService.instant('user.messages.file-uploaded'),
+          type: 'success'
         });
       }
     });
   }
 
   public onSubmitForm(): void {
-    this.userService.updateAccount(this.form.value).subscribe((res: boolean) => {
-      if (!res) {
+    this.userService.updateAccount(this.form.value).subscribe((res: IResponseApi) => {
+      if (!res.value) {
         this.toastService.show({
-          text: this.translationService.instant('core.http-errors.general'),
+          text: res.error_message || this.translationService.instant('core.http-errors.general'),
+          type: 'warn'
+        });
+      } else {
+        this.toastService.show({
+          text: this.translationService.instant('user.messages.user-updated'),
           type: 'warn'
         });
       }
