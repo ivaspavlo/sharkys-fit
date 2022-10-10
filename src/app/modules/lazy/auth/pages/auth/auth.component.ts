@@ -1,13 +1,13 @@
 import { Component, ChangeDetectionStrategy } from '@angular/core';
 import { ChildrenOutletContexts } from '@angular/router';
-import { basicRoutingAnimation } from '@app/core/animations';
+import { authRoutingAnimation } from '@app/core/animations';
 
 
 @Component({
   selector: 'app-auth',
   templateUrl: './auth.component.html',
   styleUrls: ['./auth.component.scss'],
-  animations: [basicRoutingAnimation],
+  animations: [authRoutingAnimation],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class AuthComponent {

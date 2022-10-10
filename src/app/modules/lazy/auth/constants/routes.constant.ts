@@ -28,15 +28,15 @@ export const ROUTES: Routes = [
       }, {
         path: ROUTE_NAMES.TRAINER_SUBMISSION,
         component: TrainerSubmissionComponent,
-        data: { animation: ROUTE_NAMES.TRAINER_SUBMISSION }
+        data: { animation: 'One' }
       }, {
         path: ROUTE_NAMES.LOGIN,
         component: LoginComponent,
-        data: { animation: ROUTE_NAMES.LOGIN }
+        data: { animation: 'Two' }
       }, {
         path: ROUTE_NAMES.REMIND_PASSWORD,
         component: ForgotPasswordComponent,
-        data: { animation: ROUTE_NAMES.REMIND_PASSWORD }
+        data: { animation: 'Three' }
       }, {
         path: ROUTE_NAMES.FIRST_LOGIN,
         component: FirstLoginComponent,
