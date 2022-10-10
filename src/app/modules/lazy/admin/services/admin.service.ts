@@ -7,6 +7,8 @@ import { ApiService } from '@app/shared/classes';
 import { ITrainer } from '../interfaces';
 
 
+const mockAllTrainers = [{},{},{}];
+
 const mockTrainer: ITrainer = {
   name: 'John Smith',
   location: 'Pasadena',
@@ -27,11 +29,12 @@ export class AdminService extends ApiService {
   public getTrainers(type: 'approved' | 'pending'): Observable<IResponseApi> {
     this.spinnerService.on();
     // TODO: response format is unknown
-    return this.get<any>(`admin/trainers?status=${type}`).pipe(
+    return of(mockAllTrainers).pipe(
+    // return this.get<any>(`admin/trainers?status=${type}`).pipe(
       map((res: any) => {
         return {
           value: true,
-          data: [{},{},{}]
+          data: mockAllTrainers
         }
       }),
       catchError((res: any) => of({
@@ -45,7 +48,8 @@ export class AdminService extends ApiService {
   public getSingleTrainer(trainerId: string): Observable<IResponseApi> {
     this.spinnerService.on();
     // TODO: response format is unknown
-    return this.get(`admin/trainers/${trainerId}`).pipe(
+    return of(mockTrainer).pipe(
+    // return this.get<any>(`admin/trainers/${trainerId}`).pipe(
       map((res: any) => {
         return {
           value: true,
@@ -60,22 +64,34 @@ export class AdminService extends ApiService {
     );
   }
 
-  public cancelTrainer(id: string = '1'): Observable<boolean> {
+  public cancelTrainer(id: string = '1'): Observable<IResponseApi> {
     this.spinnerService.on();
-    return this.delete('admin/trainers', { id }).pipe(
-      map(() => true),
-      catchError(() => of(false)),
-      delay(1000),
+    // TODO: response format is unknown
+    return of(true).pipe(
+    // return this.delete('admin/trainers', { id }).pipe(
+      map((res: any) => ({
+        value: true
+      })),
+      catchError((res: any) => of({
+        error_message: res.error_message,
+        value: false
+      })),
       tap(() => this.spinnerService.off())
     );
   }
 
-  public approveTrainer(id: string = '1'): Observable<boolean> {
+  public approveTrainer(id: string = '1'): Observable<IResponseApi> {
     this.spinnerService.on();
-    return this.post('admin/trainers', { status: 'approved', id }).pipe(
-      map(() => true),
-      catchError(() => of(false)),
-      delay(1000),
+    // TODO: response format is unknown
+    return of(true).pipe(
+    // return this.post('admin/trainers', { status: 'approved', id }).pipe(
+      map((res: any) => ({
+        value: true
+      })),
+      catchError((res: any) => of({
+        error_message: res.error_message,
+        value: false
+      })),
       tap(() => this.spinnerService.off())
     );
   }

@@ -1,5 +1,7 @@
 import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
+import { IResponseApi } from '@app/core/interfaces';
 import { Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
 import { TrainerType } from '../../constants';
 import { ITrainer } from '../../interfaces';
 import { AdminService } from '../../services/admin.service';
@@ -20,7 +22,9 @@ export class PendingTrainersComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.trainers$ = this.adminService.getTrainers(this.type);
+    this.trainers$ = this.adminService.getTrainers(this.type).pipe(
+      map((res: IResponseApi) => res.data)
+    );
   }
 
 }
