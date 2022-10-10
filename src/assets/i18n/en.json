@@ -3,7 +3,7 @@
     "upload-photo-plh": "Please select a photo",
     "no-data": "No data found.",
     "http-errors": {
-      "general": "Error occurred while saving the data. Please try again later.",
+      "general": "Error occurred while processing the data. Please try again later.",
       "file-upload": "Error occurred while saving the picture.",
       "get-data": "We could not obtain data from the server."
     },
