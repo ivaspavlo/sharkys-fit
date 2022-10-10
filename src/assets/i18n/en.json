@@ -168,6 +168,10 @@
       "bio": "bio",
       "payouts": "payouts",
       "photos": "photos"
+    },
+    "messages": {
+      "trainer-cancelled": "Trainer application was cancelled",
+      "trainer-approved": "Trainer application was approved"
     }
   }
 }
