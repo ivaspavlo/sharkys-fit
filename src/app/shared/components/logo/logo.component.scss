@@ -1,3 +1,35 @@
-.sm { height: 35px; }
-.md { height: 70px; }
-.lg { height: 100px; }
+@keyframes shine {
+  100% {
+    left: 125%;
+  }
+}
+
+.app-logo {
+  position: relative;
+  overflow: hidden;
+  cursor: pointer;
+  &.sm { height: 35px; }
+  &.md { height: 70px; }
+  &.lg { height: 100px; }
+  &:hover {
+		&::before {
+			animation: shine 0.4s;
+		}
+	}
+  &::before {
+    background: linear-gradient(
+			to right,
+			fade_out(#fff, .7) 0%,
+			fade_out(#fff, .9) 100%
+		);
+		content: '';
+		display: block;
+		height: 100%;
+		left: -75%;
+		position: absolute;
+		top: 0;
+		transform: skewX(-30deg);
+		width: 50%;
+		z-index: 2;
+  }
+}
