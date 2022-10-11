@@ -41,7 +41,7 @@ export class LoginComponent implements OnInit {
 
   public onSubmitForm(): void {
     this.authService.login(this.form.value).subscribe((res: IResponseApi) => {
-      if (!res.value) {
+      if (!res.valid) {
         this.toastService.show({
           text: res.error_message || this.translationService.instant('core.http-errors.general'),
           type: 'warn'

@@ -51,8 +51,8 @@ export class TrainerSubmissionComponent implements OnInit {
 
   public onSubmitForm(): void {
     this.authService.submitTrainerData(this.form.value).subscribe((res: IResponseApi) => {
-      this.success = res.value;
-      if (!res.value) {
+      this.success = res.valid;
+      if (!res.valid) {
         this.toastService.show({
           text: res.error_message || this.translationService.instant('core.http-errors.general'),
           type: 'warn'

@@ -47,7 +47,7 @@ export class ResetPasswordComponent implements OnInit {
       password_reset_token: this.resetToken
     };
     this.authService.resetPassword(req).subscribe((res: IResponseApi) => {
-      if (!res.value) {
+      if (!res.valid) {
         this.toastService.show({
           text: res.error_message || this.translationService.instant('core.http-errors.general'),
           type: 'warn'

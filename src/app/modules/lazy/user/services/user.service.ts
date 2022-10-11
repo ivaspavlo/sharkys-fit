@@ -43,12 +43,12 @@ export class UserService extends ApiService {
       map((res: IUserAccount) => {
         this.cacheUserData(res);
         return {
-          value: true,
+          valid: true,
           data: res
         };
       }),
       catchError((res: any) => of({
-        value: false,
+        valid: false,
         error_message: res.error_message || ''
       })),
       tap(() => this.spinnerService.off())
@@ -67,11 +67,11 @@ export class UserService extends ApiService {
     this.spinnerService.on();
     return this.post<any>('upload', req).pipe(
       map((res: IUploadFileSuccessRes) => ({
-        value: true,
+        valid: true,
         data: res
       })),
       catchError((res: any) => of({
-        value: false,
+        valid: false,
         error_message: res.error_message
       })),
       tap(() => this.spinnerService.off())
@@ -84,12 +84,12 @@ export class UserService extends ApiService {
       map((res: IUserAccount) => {
         this.cacheUserData(res);
         return {
-          value: true,
+          valid: true,
           data: res
         }
       }),
       catchError((res: any) => of({
-        value: false,
+        valid: false,
         error_message: res.error_message
       })),
       tap(() => this.spinnerService.off())

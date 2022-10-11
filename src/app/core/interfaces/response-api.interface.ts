@@ -1,5 +1,5 @@
 export interface IResponseApi {
-  value: boolean;
+  valid: boolean;
   error_message?: string;
   data?: any;
 }

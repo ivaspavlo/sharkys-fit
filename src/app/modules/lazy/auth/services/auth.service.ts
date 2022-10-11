@@ -27,7 +27,7 @@ export class AuthService extends ApiService {
   public submitTrainerData(value: ISubmitTrainerReq): Observable<IResponseApi> {
     this.spinnerService.on();
     return this.post<IResponseApi>('signup', value).pipe(
-      catchError((res: IResponseApi) => of({ value: false, error_message: res.error_message || '' })),
+      catchError((res: IResponseApi) => of({ valid: false, error_message: res.error_message || '' })),
       tap(() => this.spinnerService.off())
     );
   }
@@ -38,10 +38,10 @@ export class AuthService extends ApiService {
     return of(mockLoginData as ILoginSuccessRes).pipe(
     // return this.post<any>('accounts', value).pipe(
       map((res: ILoginSuccessRes) => ({
-        value: true,
+        valid: true,
         data: res
       })),
-      catchError((res: ILoginFailureRes) => of({ value: false, error_message: res.error_message })),
+      catchError((res: ILoginFailureRes) => of({ valid: false, error_message: res.error_message })),
       tap(this.afterLogin.bind(this))
     );
   }
@@ -51,10 +51,10 @@ export class AuthService extends ApiService {
     return of(mockLoginData as ILoginSuccessRes).pipe(
     // return this.post<any>('login', value).pipe(
       map((res: ILoginSuccessRes) => ({
-        value: true,
+        valid: true,
         data: res
       })),
-      catchError((res: ILoginFailureRes) => of({ value: false, error_message: res.error_message })),
+      catchError((res: ILoginFailureRes) => of({ valid: false, error_message: res.error_message })),
       tap(this.afterLogin.bind(this))
     );
   }
@@ -62,9 +62,9 @@ export class AuthService extends ApiService {
   public remindPassword(value: IRemindPasswordReq): Observable<IResponseApi> {
     this.spinnerService.on();
     return this.post<any>('forgotten/password', value).pipe(
-      map((res: IRemindPasswordRes) => ({ value: true, data: res })),
+      map((res: IRemindPasswordRes) => ({ valid: true, data: res })),
       catchError((res: any) => of({
-        value: false
+        valid: false
       })),
       tap(() => this.spinnerService.off())
     );
@@ -74,10 +74,10 @@ export class AuthService extends ApiService {
     this.spinnerService.on();
     return this.post<any>('reset/password', value).pipe(
       map(() => ({
-        value: true
+        valid: true
       })),
       catchError((res: IResetPasswordFailureRes) => of({
-        value: false,
+        valid: false,
         error_message: res.error_message
       })),
       tap(() => this.spinnerService.off())
@@ -85,7 +85,7 @@ export class AuthService extends ApiService {
   }
 
   private afterLogin(res: IResponseApi): void {
-    if (res.value) {
+    if (res.valid) {
       this.storageService.set(IS_ADMIN, res.data.role === 'admin');
       this.storageService.set(ACCESS_TOKEN, res.data.token);
     }

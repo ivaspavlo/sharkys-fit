@@ -17,23 +17,23 @@ export class ApiService {
   }
 
   public get<T>(path: string, options: { [param: string]: any } = {}): Observable<T> {
-    return this.httpClient.get<T>(`${this.apiUrl}/${this.version}/${path}/`, options);
+    return this.httpClient.get<T>(`${this.apiUrl}/${this.version}/${path}`, options);
   }
 
   public post<T>(path: string, body: any, options: { [param: string]: any } = {}): Observable<T> {
-    return this.httpClient.post<T>(`${this.apiUrl}/${this.version}/${path}/`, body, options);
+    return this.httpClient.post<T>(`${this.apiUrl}/${this.version}/${path}`, body, options);
   }
 
   public patch<T>(path: string, body: any, options: { [param: string]: any } = {}): Observable<T> {
-    return this.httpClient.patch<T>(`${this.apiUrl}/${this.version}/${path}/`, body, options);
+    return this.httpClient.patch<T>(`${this.apiUrl}/${this.version}/${path}`, body, options);
   }
 
   public put<T>(path: string, body: any, options: { [param: string]: any } = {}): Observable<T> {
-    return this.httpClient.put<T>(`${this.apiUrl}/${this.version}/${path}/`, body, options);
+    return this.httpClient.put<T>(`${this.apiUrl}/${this.version}/${path}`, body, options);
   }
 
   public delete<T>(path: string, options: { [param: string]: any } = {}): Observable<T> {
-    return this.httpClient.delete<T>(`${this.apiUrl}/${this.version}/${path}/`, options);
+    return this.httpClient.delete<T>(`${this.apiUrl}/${this.version}/${path}`, options);
   }
 
 }

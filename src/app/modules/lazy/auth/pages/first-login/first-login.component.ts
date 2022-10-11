@@ -1,6 +1,6 @@
 import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
 import { SpinnerService } from '@app/core/services';
 import { IResponseApi } from '@app/core/interfaces';
@@ -18,17 +18,20 @@ import { AuthService } from '../../services/auth.service';
 export class FirstLoginComponent implements OnInit {
 
   public form: FormGroup;
+  private firstToken: string;
 
   constructor(
     private fb: FormBuilder,
     private authService: AuthService,
     private toastService: ToastService,
     private translationService: TranslateService,
+    private activatedRoute: ActivatedRoute,
     private router: Router,
     public spinnerService: SpinnerService
   ) { }
 
   ngOnInit(): void {
+    this.firstToken = this.activatedRoute.snapshot.params.firstToken;
     this.initForm();
   }
 
@@ -41,14 +44,13 @@ export class FirstLoginComponent implements OnInit {
   }
 
   public onSubmitForm(): void {
-    // TODO: the source of user id to be clarified
     const req = {
-      id: 'some_id',
+      id: this.firstToken,
       password: this.form.value.password,
       email_address: this.form.value.email_address
     };
     this.authService.firstLogin(req).subscribe((res: IResponseApi) => {
-      if (!res.value) {
+      if (!res.valid) {
         this.toastService.show({
           text: res.error_message || this.translationService.instant('core.http-errors.general'),
           type: 'warn'
