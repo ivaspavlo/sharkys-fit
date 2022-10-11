@@ -33,12 +33,12 @@ export class AdminService extends ApiService {
     // return this.get<any>(`admin/trainers?status=${type}`).pipe(
       map((res: any) => {
         return {
-          value: true,
+          valid: true,
           data: mockAllTrainers
         }
       }),
       catchError((res: any) => of({
-        value: false,
+        valid: false,
         error_message: res.error_message
       })),
       tap(() => this.spinnerService.off())
@@ -52,12 +52,12 @@ export class AdminService extends ApiService {
     // return this.get<any>(`admin/trainers/${trainerId}`).pipe(
       map((res: any) => {
         return {
-          value: true,
+          valid: true,
           data: mockTrainer
         };
       }),
       catchError((res: any) => of({
-        value: false,
+        valid: false,
         error_message: res.error_message
       })),
       tap(() => this.spinnerService.off())
@@ -70,11 +70,11 @@ export class AdminService extends ApiService {
     return of(true).pipe(
     // return this.delete('admin/trainers', { id }).pipe(
       map((res: any) => ({
-        value: true
+        valid: true
       })),
       catchError((res: any) => of({
         error_message: res.error_message,
-        value: false
+        valid: false
       })),
       tap(() => this.spinnerService.off())
     );
@@ -86,11 +86,11 @@ export class AdminService extends ApiService {
     return of(true).pipe(
     // return this.post('admin/trainers', { status: 'approved', id }).pipe(
       map((res: any) => ({
-        value: true
+        valid: true
       })),
       catchError((res: any) => of({
         error_message: res.error_message,
-        value: false
+        valid: false
       })),
       tap(() => this.spinnerService.off())
     );

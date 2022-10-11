@@ -36,7 +36,7 @@ export class TrainerPendingComponent implements OnInit {
     this.trainer$ = this.adminService.getSingleTrainer(trainerId).pipe(
       map((res: IResponseApi) => {
         this.isLoaded = true;
-        if (!res.value) {
+        if (!res.valid) {
           this.toastService.show({
             text: this.translationService.instant('core.http-errors.general'),
             type: 'warn'
@@ -53,7 +53,7 @@ export class TrainerPendingComponent implements OnInit {
       this.adminService.approveTrainer(trainer.id) :
       this.adminService.cancelTrainer(trainer.id);
     req.subscribe((res: IResponseApi) => {
-      if (!res.value) {
+      if (!res.valid) {
         this.toastService.show({
           text: this.translationService.instant('core.http-errors.general'),
           type: 'warn'

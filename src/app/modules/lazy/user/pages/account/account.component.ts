@@ -74,12 +74,12 @@ export class AccountComponent extends DestroySubscriptions implements OnInit {
           this.userService.fileUpload(req) : of(null);
       })
     ).subscribe((res: IResponseApi | null) => {
-      if (res && !res.value) {
+      if (res && !res.valid) {
         this.toastService.show({
           text: res.error_message || this.translationService.instant('core.http-errors.file-upload'),
           type: 'warn'
         });
-      } else if (res?.value) {
+      } else if (res?.valid) {
         this.form.get('image_url')?.patchValue(res.data.url);
         this.toastService.show({
           text: this.translationService.instant('user.messages.file-uploaded'),
@@ -91,7 +91,7 @@ export class AccountComponent extends DestroySubscriptions implements OnInit {
 
   public onSubmitForm(): void {
     this.userService.updateAccount(this.form.value).subscribe((res: IResponseApi) => {
-      if (!res.value) {
+      if (!res.valid) {
         this.toastService.show({
           text: res.error_message || this.translationService.instant('core.http-errors.general'),
           type: 'warn'

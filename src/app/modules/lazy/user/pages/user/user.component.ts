@@ -35,7 +35,7 @@ export class UserComponent implements OnInit {
     // TODO: the source of user id to be clarified
     this.userData$ = this.userService.getUserData('some_id').pipe(
       map((res: IResponseApi) => {
-        if (res.value) {
+        if (res.valid) {
           return res.data;
         }
         this.toastService.show({

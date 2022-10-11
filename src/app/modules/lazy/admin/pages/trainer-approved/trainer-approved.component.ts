@@ -26,7 +26,7 @@ export class TrainerApprovedComponent implements OnInit {
 
   constructor(
     private adminService: AdminService,
-    private route: ActivatedRoute,
+    private activatedRoute: ActivatedRoute,
     private toastService: ToastService,
     private translationService: TranslateService,
     private router: Router,
@@ -34,11 +34,11 @@ export class TrainerApprovedComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    const trainerId = this.route.snapshot.params.id;
+    const trainerId = this.activatedRoute.snapshot.params.id;
     this.trainer$ = this.adminService.getSingleTrainer(trainerId).pipe(
       map((res: IResponseApi) => {
         this.isLoaded = true;
-        if (!res.value) {
+        if (!res.valid) {
           this.toastService.show({
             text: this.translationService.instant('core.http-errors.general'),
             type: 'warn'
@@ -52,7 +52,7 @@ export class TrainerApprovedComponent implements OnInit {
 
   public onCancelTrainer(trainer: ITrainer): void {
     this.adminService.cancelTrainer(trainer.id).subscribe((res: IResponseApi) => {
-      if (!res.value) {
+      if (!res.valid) {
         this.toastService.show({
           text: res.error_message || this.translationService.instant('core.http-errors.general'),
           type: 'warn'
