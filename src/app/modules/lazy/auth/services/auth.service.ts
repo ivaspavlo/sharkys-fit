@@ -35,8 +35,7 @@ export class AuthService extends ApiService {
   public firstLogin(value: IFirstLoginReq): Observable<IResponseApi> {
     // TODO: response format is unknown
     this.spinnerService.on();
-    return of(mockLoginData as ILoginSuccessRes).pipe(
-    // return this.post<any>('accounts', value).pipe(
+    return this.post<any>('accounts', value).pipe(
       map((res: ILoginSuccessRes) => ({
         valid: true,
         data: res
@@ -48,8 +47,7 @@ export class AuthService extends ApiService {
 
   public login(value: ILoginReq): Observable<IResponseApi> {
     this.spinnerService.on();
-    return of(mockLoginData as ILoginSuccessRes).pipe(
-    // return this.post<any>('login', value).pipe(
+    return this.post<any>('login', value).pipe(
       map((res: ILoginSuccessRes) => ({
         valid: true,
         data: res

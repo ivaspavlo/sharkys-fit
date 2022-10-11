@@ -4,7 +4,7 @@ import { HttpRequest, HttpHandler, HttpEvent, HttpInterceptor, HttpErrorResponse
 import { Observable, throwError } from 'rxjs';
 import { catchError } from 'rxjs/operators';
 import { CoreStorageService } from '../services';
-import { ACCESS_TOKEN } from '../constants';
+import { ACCESS_TOKEN, CORE_ROUTE_NAMES } from '../constants';
 
 
 @Injectable()
@@ -23,7 +23,7 @@ export class AuthInterceptor implements HttpInterceptor {
     return next.handle(request).pipe(
       catchError((err: any) => {
         if (err instanceof HttpErrorResponse && err.status === 401) {
-          this.router.navigate(['login']);
+          this.router.navigateByUrl(CORE_ROUTE_NAMES.AUTH);
         }
         return throwError(err);
       })
