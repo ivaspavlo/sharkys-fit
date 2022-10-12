@@ -3,7 +3,6 @@
 
 .upload-photo-button {
   max-width: 170px;
-  margin-top: 2rem;
 }
 
 .account-button {
@@ -34,4 +33,12 @@
       @include bg-img('/assets/img/svg/avatar.svg');
     }
   }
+}
+
+.image-link {
+  padding: 0 1rem;
+  display: flex;
+  align-items: center;
+  color: $white;
+  cursor: pointer;
 }

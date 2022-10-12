@@ -8,22 +8,27 @@
 
       <app-input controlName="first_name" label="core.form.firstName.label" placeholder="core.form.firstName.placeholder" class="mb-rem-2"></app-input>
       <app-input controlName="last_name" label="core.form.lastName.label" placeholder="core.form.lastName.placeholder" class="mb-rem-2"></app-input>
-      <app-input controlName="email" label="core.form.email.label" placeholder="core.form.email.placeholder" class="mb-rem-2"></app-input>
+      <app-input controlName="email_address" label="core.form.email.label" placeholder="core.form.email.placeholder" class="mb-rem-2"></app-input>
       <app-input controlName="address" label="core.form.address.label" placeholder="core.form.address.placeholder" class="mb-rem-2"></app-input>
       <app-input controlName="phone_number" label="core.form.phoneNumber.label" placeholder="core.form.phoneNumber.placeholder" class="mb-rem-2"></app-input>
       <app-input controlName="training_location" label="core.form.trainingLocation.label" placeholder="core.form.trainingLocation.placeholder" class="mb-rem-2"></app-input>
       <app-input controlName="number_of_clients" label="core.form.clientsQty.label" placeholder="core.form.clientsQty.placeholder" type="number" class="mb-rem-2"></app-input>
       <app-input controlName="market_of_interest" label="core.form.cityOfInterest.label" placeholder="core.form.cityOfInterest.placeholder" class="mb-rem-2"></app-input>
       <app-input controlName="specialization" label="core.form.sports.label" placeholder="core.form.sports.placeholder" class="mb-rem-2"></app-input>
-      <!-- <app-input controlName="certified_trainer" label="core.form.isCertified.label" placeholder="core.form.isCertified.placeholder" class="mb-rem-2"></app-input> -->
+      <app-input controlName="certified_trainer" label="core.form.isCertified.label" placeholder="core.form.isCertified.placeholder" class="mb-rem-2"></app-input>
       <app-input controlName="bio" label="core.form.personalBackground.label" placeholder="core.form.personalBackground.placeholder" type="textarea" class="mb-rem-2"></app-input>
       <app-select controlName="favorite_location" label="core.form.favoriteLocation.label" [options]="favLocationOptions"></app-select>
 
-      <app-button-primary [disabled]="!form.valid" (buttonPrimaryClick)="onSubmitForm()" title="core.button.confirm" class="app-submit-button" [loading]="spinnerService.isOn$ | async" [filled]="true"></app-button-primary>
-
-      <app-button-primary (click)="onLoadImage()" [disabled]="spinnerService.isOn$ | async" size="sm" title="core.button.upload-photo" class="upload-photo-button">
-        <app-icon name="avatar"></app-icon>
-      </app-button-primary>
+      <div class="mt-rem-3 d-flex">
+        <app-button-primary (click)="onLoadImage()" [disabled]="spinnerService.isOn$ | async" size="sm" title="core.button.upload-photo" class="upload-photo-button">
+          <app-icon name="avatar"></app-icon>
+        </app-button-primary>
+        <a *ngIf="form.get('image_url')?.value" href="form.get('image_url')?.value" target="_blank" class="image-link">{{form.get('image_url')?.value}}</a>
+      </div>
+      
+      <div class="d-flex justify-content-start">
+        <app-button-primary [disabled]="!form.valid" (buttonPrimaryClick)="onSubmitForm()" title="core.button.confirm" class="app-submit-button" [loading]="spinnerService.isOn$ | async" [filled]="true"></app-button-primary>
+      </div>
 
     </form>
 

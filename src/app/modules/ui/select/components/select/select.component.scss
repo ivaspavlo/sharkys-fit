@@ -12,6 +12,7 @@ $warn-color: #ff6363;
   align-items: center;
   position: relative;
   border-radius: $border-radius;
+  z-index: 1;
 
   &--invalid {
     border-color: $warn-color;
@@ -61,6 +62,25 @@ $warn-color: #ff6363;
     width: 100%;
     position: absolute; bottom: -19px;
     opacity: 0;
+  }
+
+  &__arrow {
+    position: absolute; right: 12px;
+    width: 15px;
+    height: 15px;
+    display: flex;
+    background: url('/assets/img/svg/arrow.svg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    z-index: -1;
+    cursor: pointer;
+  }
+
+  &:focus {
+    .select__arrow {
+      transform: rotate(180deg);
+    }
   }
 
 }

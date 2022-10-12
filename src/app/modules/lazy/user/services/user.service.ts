@@ -1,10 +1,12 @@
 import { Injectable, Injector } from '@angular/core';
 import { BehaviorSubject, Observable, of } from 'rxjs';
 import { catchError, delay, map, tap } from 'rxjs/operators';
-import { SpinnerService } from '@app/core/services';
+import { CoreStorageService, SpinnerService } from '@app/core/services';
 import { IResponseApi } from '@app/core/interfaces';
+import { USER_ID } from '@app/core/constants';
 import { ApiService } from '@app/shared/classes';
-import { ISetupPayoutsReq, IUploadFileSuccessRes, IUserAccount } from '../interfaces';
+import { IPaymentData, ISetpuPayoutsSuccessRes, ISetupPayoutsReq, IUploadFileSuccessRes, IUserAccount } from '../interfaces';
+import { HttpErrorResponse } from '@angular/common/http';
 
 
 const mockUserData = of({
@@ -32,21 +34,25 @@ export class UserService extends ApiService {
   constructor(
     protected injector: Injector,
     private spinnerService: SpinnerService,
+    private storageService: CoreStorageService
   ) {
     super(injector);
   }
 
-  public getUserData(userId: string): Observable<IResponseApi> {
+  private getUserId(): string {
+    return this.storageService.get(USER_ID);
+  }
+
+  public getUserData(): Observable<IResponseApi> {
     this.spinnerService.on();
-    // TODO: response format is not known
-    return this.get<any>(`accounts/${userId}`).pipe(
-      map((res: IUserAccount) => {
+    return this.get<any>(`accounts/${this.getUserId()}`).pipe(
+      tap((res: IUserAccount) => {
         this.cacheUserData(res);
-        return {
-          valid: true,
-          data: res
-        };
       }),
+      map((res: IUserAccount) => ({
+        valid: true,
+        data: res
+      })),
       catchError((res: any) => of({
         valid: false,
         error_message: res.error_message || ''
@@ -96,22 +102,36 @@ export class UserService extends ApiService {
     );
   }
 
-  public setupPayouts(req: ISetupPayoutsReq): Observable<boolean> {
+  public getPayoutsData(): Observable<IResponseApi> {
     this.spinnerService.on();
-    return this.post('payouts', req).pipe(
-      map(() => true),
-      catchError(() => of(false)),
-      delay(1000),
+    return this.get<any>(`payouts/${this.getUserId()}`).pipe(
+      map((res: IPaymentData[]) => {
+        return {
+          valid: true,
+          data: res
+        }
+      }),
+      catchError(() => of({
+        valid: false,
+        data: []
+      })),
       tap(() => this.spinnerService.off())
     );
   }
 
-  public getPayoutsData(userId: string): Observable<any[]> {
+  public setupPayouts(): Observable<IResponseApi> {
     this.spinnerService.on();
-    return this.get(`payouts/${userId}`).pipe(
-      map(() => [0,1]),
-      catchError(() => of([])),
-      delay(1000),
+    return this.post<any>('payouts', { id: this.getUserId() }).pipe(
+      map((res: ISetpuPayoutsSuccessRes) => {
+        return {
+          valid: true,
+          data: res
+        };
+      }),
+      catchError((res: HttpErrorResponse) => of({
+        valid: false,
+        error_message: res.error.error_message
+      })),
       tap(() => this.spinnerService.off())
     );
   }

@@ -1,9 +1,14 @@
-import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Component, OnInit, ChangeDetectionStrategy, ChangeDetectorRef, Inject } from '@angular/core';
+import { BehaviorSubject, of } from 'rxjs';
+import { map, switchMap, takeUntil, tap } from 'rxjs/operators';
 import { TranslateService } from '@ngx-translate/core';
+import { WINDOW } from '@app/core/providers';
 import { SpinnerService } from '@app/core/services';
+import { DestroySubscriptions } from '@app/shared/classes';
 import { ToastService } from '@app/modules/ui/toast';
 import { UserService } from '../../services/user.service';
+import { IPaymentData, IUserAccount } from '../../interfaces';
+import { IResponseApi } from '@app/core/interfaces';
 
 
 @Component({
@@ -12,28 +17,54 @@ import { UserService } from '../../services/user.service';
   styleUrls: ['./payments.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class PaymentsComponent implements OnInit {
+export class PaymentsComponent extends DestroySubscriptions implements OnInit {
 
-  public payouts$: Observable<any[]>;
+  public payouts$ = new BehaviorSubject<IPaymentData[]>([]);
+  public isPayoutsSetup = false;
+  public isLoading = true;
 
   constructor(
+    @Inject(WINDOW) private window: Window,
     private userService: UserService,
     private toastService: ToastService,
     private translationService: TranslateService,
+    private cdr: ChangeDetectorRef,
     public spinnerService: SpinnerService
-  ) { }
+  ) {
+    super();
+  }
 
   ngOnInit(): void {
-    this.payouts$ = this.userService.getPayoutsData('some_id');
+    this.userService.getCachedUserData().pipe(
+      tap((res: IUserAccount | null) => {
+        this.isPayoutsSetup = !!res?.stripe_payout_setup;
+      }),
+      switchMap(() => {
+        return this.isPayoutsSetup ?
+          this.userService.getPayoutsData().pipe(
+            map((res: IResponseApi) => {
+              return res.data;
+            })
+          ) : of([]);
+      }),
+      tap((res: IPaymentData[]) => {
+        this.payouts$.next(res);
+        this.isLoading = false;
+        this.cdr.markForCheck();
+      }),
+      takeUntil(this.componentDestroyed$)
+    ).subscribe();
   }
 
   public onSetupPayouts(): void {
-    this.userService.setupPayouts({ id: 'some_id' }).subscribe((res: boolean) => {
-      if (!res) {
+    this.userService.setupPayouts().subscribe((res: IResponseApi) => {
+      if (!res.valid || !res?.data?.url) {
         this.toastService.show({
-          text: this.translationService.instant('core.http-errors.general'),
+          text: res.error_message || this.translationService.instant('core.http-errors.general'),
           type: 'warn'
         });
+      } else {
+        this.window.open(res.data.url);
       }
     });
   }

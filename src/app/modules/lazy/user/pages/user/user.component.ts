@@ -28,12 +28,11 @@ export class UserComponent implements OnInit {
     private userService: UserService,
     private contexts: ChildrenOutletContexts,
     private toastService: ToastService,
-    private translationService: TranslateService,
+    private translationService: TranslateService
   ) { }
 
   ngOnInit(): void {
-    // TODO: the source of user id to be clarified
-    this.userData$ = this.userService.getUserData('some_id').pipe(
+    this.userData$ = this.userService.getUserData().pipe(
       map((res: IResponseApi) => {
         if (res.valid) {
           return res.data;
