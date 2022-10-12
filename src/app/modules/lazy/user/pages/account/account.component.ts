@@ -41,8 +41,14 @@ export class AccountComponent extends DestroySubscriptions implements OnInit {
     this.userService.getCachedUserData().pipe(
       takeUntil(this.componentDestroyed$)
     ).subscribe((res: IUserAccount | null) => {
-      if (res !== null) {
-        this.initForm(res);
+      if (!res) {
+        return;
+      }
+      if (!this.form) {
+        return this.initForm(res);
+      }
+      if (res.image_url !== this.form.value.image_url) {
+        return this.form.get('image_url')?.patchValue(res.image_url);
       }
     });
   }
@@ -52,7 +58,7 @@ export class AccountComponent extends DestroySubscriptions implements OnInit {
       id: [data.id, [Validators.required, Validators.minLength(2)]],
       first_name: [data.first_name, [Validators.required, Validators.minLength(2)]],
       last_name: [data.last_name, [Validators.required, Validators.minLength(2)]],
-      email: [data.email, [Validators.required, Validators.email]],
+      email_address: [data.email_address, [Validators.required, Validators.email]],
       address: [data.address, [Validators.required, Validators.minLength(10)]],
       phone_number: [data.phone_number, [Validators.required, Validators.minLength(7)]],
       training_location: [data.training_location, [Validators.required, Validators.minLength(3)]],
@@ -99,7 +105,7 @@ export class AccountComponent extends DestroySubscriptions implements OnInit {
       } else {
         this.toastService.show({
           text: this.translationService.instant('user.messages.user-updated'),
-          type: 'warn'
+          type: 'success'
         });
       }
     });

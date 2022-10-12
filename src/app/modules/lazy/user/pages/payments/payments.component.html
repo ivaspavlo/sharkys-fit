@@ -1,20 +1,24 @@
 <section class="w-100 p-rem-2 d-flex flex-column align-items-center">
 
-  <ng-container *ngIf="(payouts$ | async) as payouts; else spinner">
+  <h2 class="app-title mb-rem-3">{{'payments.title' | translate}}</h2>
 
-    <h2 class="app-title mb-rem-3">{{ 'payments.title' | translate }}</h2>
+  <ng-container *ngIf="!isLoading; else spinner">
 
-    <div *ngIf="!payouts.length" class="app-content">
-      <h4 class="app-desc">{{ 'payments.desc' | translate }}</h4>
-      <app-button-primary (buttonPrimaryClick)="onSetupPayouts()" title="payments.button.setup" [loading]="spinnerService.isOn$ | async" [filled]="true" class="app-submit-button"></app-button-primary>
+    <div *ngIf="!isPayoutsSetup" class="app-content">
+      <h4 class="app-desc">{{'payments.desc' | translate}}</h4>
+      <div class="d-flex justify-content-start">
+        <app-button-primary (buttonPrimaryClick)="onSetupPayouts()" title="payments.button.setup" [loading]="spinnerService.isOn$ | async" [filled]="true" class="app-submit-button"></app-button-primary>
+      </div>
     </div>
 
-    <div *ngIf="payouts.length" class="w-100 d-flex flex-column align-items-center">
+    <div *ngIf="isPayoutsSetup" class="w-100 d-flex flex-column align-items-center">
       <div class="app-table">
-        <div *ngFor="let item of payouts; let index = index;" app-table-row [ngClass]="{'app-row--even': index%2}" class="app-row app-row--even">
-          <div app-table-data [data]="{ width: 50 }"><span class="px-rem-1">29.09.2022</span></div>
-          <div app-table-data [data]="{ width: 50 }"><span class="px-rem-1">$100.00</span></div>
+        <div *ngFor="let item of (payouts$ | async); let index = index;" app-table-row [ngClass]="{'app-row--even': index%2}" class="app-row app-row--even">
+          <div app-table-data [data]="{ width: 50 }"><span class="px-rem-1">{{item.date}}</span></div>
+          <div app-table-data [data]="{ width: 50 }"><span class="px-rem-1">${{(item.amount / 100) | number:'1.2-2'}}</span></div>
         </div>
+      </div>
+      <div class="w-100 d-flex justify-content-start">
         <app-button-primary (buttonPrimaryClick)="onSetupPayouts()" title="payments.button.change-setup" class="app-submit-button" [loading]="spinnerService.isOn$ | async" [filled]="true"></app-button-primary>
       </div>
     </div>

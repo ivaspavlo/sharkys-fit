@@ -2,10 +2,11 @@ import { Injectable, Injector } from '@angular/core';
 import { Observable, of } from 'rxjs';
 import { catchError, map, tap } from 'rxjs/operators';
 import { CoreStorageService, SpinnerService } from '@app/core/services';
-import { ACCESS_TOKEN, IS_ADMIN } from '@app/core/constants';
+import { ACCESS_TOKEN, IS_ADMIN, USER_ID } from '@app/core/constants';
 import { IResponseApi } from '@app/core/interfaces';
 import { ApiService } from '@app/shared/classes';
-import { IFirstLoginReq, ILoginFailureRes, ILoginReq, ILoginSuccessRes, IRemindPasswordReq, IRemindPasswordRes, IResetPasswordFailureRes, IResetPasswordReq, ISubmitTrainerReq } from '../interfaces';
+import { IFirstLoginReq, ILoginReq, ILoginSuccessRes, IRemindPasswordReq, IRemindPasswordRes, IResetPasswordReq, ISubmitTrainerReq } from '../interfaces';
+import { HttpErrorResponse } from '@angular/common/http';
 
 
 const mockLoginData = {
@@ -33,14 +34,17 @@ export class AuthService extends ApiService {
   }
 
   public firstLogin(value: IFirstLoginReq): Observable<IResponseApi> {
-    // TODO: response format is unknown
+    // TODO: needs to be tested
     this.spinnerService.on();
     return this.post<any>('accounts', value).pipe(
       map((res: ILoginSuccessRes) => ({
         valid: true,
         data: res
       })),
-      catchError((res: ILoginFailureRes) => of({ valid: false, error_message: res.error_message })),
+      catchError((res: HttpErrorResponse) => of({
+        valid: false,
+        error_message: res.error.error_message
+      })),
       tap(this.afterLogin.bind(this))
     );
   }
@@ -52,17 +56,25 @@ export class AuthService extends ApiService {
         valid: true,
         data: res
       })),
-      catchError((res: ILoginFailureRes) => of({ valid: false, error_message: res.error_message })),
+      catchError((res: HttpErrorResponse) => of({
+        valid: false,
+        error_message: res.error.error_message
+      })),
       tap(this.afterLogin.bind(this))
     );
   }
 
   public remindPassword(value: IRemindPasswordReq): Observable<IResponseApi> {
+    // TODO: needs to be tested
     this.spinnerService.on();
     return this.post<any>('forgotten/password', value).pipe(
-      map((res: IRemindPasswordRes) => ({ valid: true, data: res })),
-      catchError((res: any) => of({
-        valid: false
+      map((res: IRemindPasswordRes) => ({
+        valid: true,
+        data: res
+      })),
+      catchError((res: HttpErrorResponse) => of({
+        valid: false,
+        error_message: res.error.error_message
       })),
       tap(() => this.spinnerService.off())
     );
@@ -74,9 +86,9 @@ export class AuthService extends ApiService {
       map(() => ({
         valid: true
       })),
-      catchError((res: IResetPasswordFailureRes) => of({
+      catchError((res: HttpErrorResponse) => of({
         valid: false,
-        error_message: res.error_message
+        error_message: res.error.error_message
       })),
       tap(() => this.spinnerService.off())
     );
@@ -84,6 +96,7 @@ export class AuthService extends ApiService {
 
   private afterLogin(res: IResponseApi): void {
     if (res.valid) {
+      this.storageService.set(USER_ID, res.data.user_id);
       this.storageService.set(IS_ADMIN, res.data.role === 'admin');
       this.storageService.set(ACCESS_TOKEN, res.data.token);
     }

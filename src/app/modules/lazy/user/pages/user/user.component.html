@@ -32,7 +32,7 @@
       <p class="user-aside__name">{{ firstName && lastName ? firstName + ' ' + lastName : ''}}</p>
       <p class="user-payout">
         <span>{{'user.payout' | translate}}</span>
-        <span class="user-payout__amount">${{payoutAmount || '0.00'}}</span>
+        <span class="user-payout__amount">${{payoutAmount | number:'1.2-2'}}</span>
       </p>
     </div>
 

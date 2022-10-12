@@ -15,8 +15,12 @@ export class SelectComponent {
   @Input() controlName = '';
   @Input() label = '';
 
-  public get form(): FormGroup { return this.controlContainer.control as FormGroup; }
-  public get control(): FormControl { return this.form.get(this.controlName) as FormControl; }
+  public get form(): FormGroup {
+    return this.controlContainer.control as FormGroup;
+  }
+  public get control(): FormControl {
+    return this.form.get(this.controlName) as FormControl;
+  }
 
   constructor(
     @Optional() private controlContainer: ControlContainer

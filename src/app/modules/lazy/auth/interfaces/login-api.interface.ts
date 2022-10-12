@@ -4,11 +4,7 @@ export interface ILoginReq {
 }
 
 export interface ILoginSuccessRes {
+  user_id: string;
   role: 'user' | 'admin',
   token: string;
-}
-
-export interface ILoginFailureRes {
-  error_type: string;
-  error_message: string;
 }
