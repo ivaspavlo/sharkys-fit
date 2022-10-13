@@ -84,6 +84,14 @@
       "confirmPassword": {
         "label": "Confirm Password",
         "placeholder": "Enter password once more"
+      },
+      "name": {
+        "label": "Name",
+        "placeholder": "Enter your name"
+      },
+      "message": {
+        "label": "Message",
+        "placeholder": "Enter message"
       }
     }
   },
@@ -144,8 +152,9 @@
     "promoting": "Promoting",
     "contact-us": "Contact us",
     "messages": {
-      "file-uploaded": "File was successfully uploaded.",
-      "user-updated": "Account data was successfully updated"
+      "file-uploaded": "File uploaded. Click Confirm button in order to save.",
+      "user-updated": "Account data was successfully updated",
+      "contacted": "Your message was sent successfully."
     }
   },
   "payments": {

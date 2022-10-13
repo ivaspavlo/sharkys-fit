@@ -6,6 +6,17 @@
 
     <h4 class="app-desc">{{ 'payments.desc' | translate }}</h4>
 
+    <form *ngIf="form" [formGroup]="form" markTouched class="my-rem-3">
+      <app-input controlName="name" label="core.form.name.label" placeholder="core.form.name.placeholder" class="mb-rem-2"></app-input>
+      <app-input controlName="email_address" label="core.form.email.label" placeholder="core.form.email.placeholder" class="mb-rem-2"></app-input>
+      <app-input controlName="phone_number" label="core.form.phoneNumber.label" placeholder="core.form.phoneNumber.placeholder" class="mb-rem-2"></app-input>
+      <app-input controlName="message" label="core.form.message.label" placeholder="core.form.message.placeholder" class="mb-rem-2"></app-input>
+    </form>
+
+    <div class="d-flex justify-content-start">
+      <app-button-primary [disabled]="!form.valid" (buttonPrimaryClick)="onSubmitForm()" title="core.button.confirm" class="app-submit-button" [loading]="spinnerService.isOn$ | async" [filled]="true"></app-button-primary>
+    </div>
+
   </div>
 
 </section>

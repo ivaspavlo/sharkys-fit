@@ -1,11 +1,11 @@
 import { Injectable, Injector } from '@angular/core';
 import { BehaviorSubject, Observable, of } from 'rxjs';
-import { catchError, delay, map, tap } from 'rxjs/operators';
+import { catchError, map, tap } from 'rxjs/operators';
 import { CoreStorageService, SpinnerService } from '@app/core/services';
 import { IResponseApi } from '@app/core/interfaces';
 import { USER_ID } from '@app/core/constants';
 import { ApiService } from '@app/shared/classes';
-import { IPaymentData, ISetpuPayoutsSuccessRes, ISetupPayoutsReq, IUploadFileSuccessRes, IUserAccount } from '../interfaces';
+import { IPaymentData, ISetpuPayoutsSuccessRes, IUploadFileSuccessRes, IUserAccount } from '../interfaces';
 import { HttpErrorResponse } from '@angular/common/http';
 
 
@@ -88,6 +88,7 @@ export class UserService extends ApiService {
     this.spinnerService.on();
     return this.put<any>('accounts', req).pipe(
       map((res: IUserAccount) => {
+        debugger;
         this.cacheUserData(res);
         return {
           valid: true,
@@ -126,6 +127,22 @@ export class UserService extends ApiService {
         return {
           valid: true,
           data: res
+        };
+      }),
+      catchError((res: HttpErrorResponse) => of({
+        valid: false,
+        error_message: res.error.error_message
+      })),
+      tap(() => this.spinnerService.off())
+    );
+  }
+
+  public contact(req: any): Observable<IResponseApi> {
+    this.spinnerService.on();
+    return this.post<any>('contact', req).pipe(
+      map(() => {
+        return {
+          valid: true
         };
       }),
       catchError((res: HttpErrorResponse) => of({
