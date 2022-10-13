@@ -13,7 +13,7 @@
       <app-input controlName="message" label="core.form.message.label" placeholder="core.form.message.placeholder" class="mb-rem-2"></app-input>
     </form>
 
-    <div class="d-flex justify-content-start">
+    <div class="d-flex justify-content-center">
       <app-button-primary [disabled]="!form.valid" (buttonPrimaryClick)="onSubmitForm()" title="core.button.confirm" class="app-submit-button" [loading]="spinnerService.isOn$ | async" [filled]="true"></app-button-primary>
     </div>
 

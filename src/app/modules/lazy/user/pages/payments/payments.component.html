@@ -7,7 +7,7 @@
     <div *ngIf="!isPayoutsSetup" class="app-content">
       <ng-container *ngIf="!isRedirected">
         <h4 class="app-desc">{{'payments.desc' | translate}}</h4>
-        <div class="d-flex justify-content-start">
+        <div class="d-flex justify-content-center">
           <app-button-primary (buttonPrimaryClick)="onSetupPayouts()" title="payments.button.setup" [loading]="spinnerService.isOn$ | async" [filled]="true" class="app-submit-button"></app-button-primary>
         </div>
       </ng-container>
@@ -26,7 +26,7 @@
           <div app-table-data [data]="{ width: 50 }"><span class="px-rem-1">${{(item.amount / 100) | number:'1.2-2'}}</span></div>
         </div>
       </div>
-      <div class="w-100 d-flex justify-content-start">
+      <div class="w-100 d-flex justify-content-center">
         <app-button-primary (buttonPrimaryClick)="onSetupPayouts()" title="payments.button.change-setup" class="app-submit-button" [loading]="spinnerService.isOn$ | async" [filled]="true"></app-button-primary>
       </div>
     </div>
