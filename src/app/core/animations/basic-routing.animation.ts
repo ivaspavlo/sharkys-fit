@@ -13,7 +13,7 @@ export const basicRoutingAnimation = trigger('routeAnimations', [
 			}),
 		]),
 		query(':enter', [
-			animate('600ms ease', style({ opacity: 1, transform: 'scale(1) translateY(0)' })),
+			animate('300ms ease', style({ opacity: 1, transform: 'scale(1) translateY(0)' })),
 		])
 	]),
 ]);
