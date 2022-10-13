@@ -3,12 +3,12 @@ import { BehaviorSubject, of } from 'rxjs';
 import { map, switchMap, takeUntil, tap } from 'rxjs/operators';
 import { TranslateService } from '@ngx-translate/core';
 import { WINDOW } from '@app/core/providers';
+import { IResponseApi } from '@app/core/interfaces';
 import { SpinnerService } from '@app/core/services';
 import { DestroySubscriptions } from '@app/shared/classes';
 import { ToastService } from '@app/modules/ui/toast';
 import { UserService } from '../../services/user.service';
 import { IPaymentData, IUserAccount } from '../../interfaces';
-import { IResponseApi } from '@app/core/interfaces';
 
 
 @Component({
@@ -22,6 +22,7 @@ export class PaymentsComponent extends DestroySubscriptions implements OnInit {
   public payouts$ = new BehaviorSubject<IPaymentData[]>([]);
   public isPayoutsSetup = false;
   public isLoading = true;
+  public isRedirected = false;
 
   constructor(
     @Inject(WINDOW) private window: Window,
@@ -37,7 +38,7 @@ export class PaymentsComponent extends DestroySubscriptions implements OnInit {
   ngOnInit(): void {
     this.userService.getCachedUserData().pipe(
       tap((res: IUserAccount | null) => {
-        this.isPayoutsSetup = !!res?.stripe_payout_setup;
+        this.isPayoutsSetup = !res?.stripe_payout_setup;
       }),
       switchMap(() => {
         return this.isPayoutsSetup ?
@@ -64,6 +65,7 @@ export class PaymentsComponent extends DestroySubscriptions implements OnInit {
           type: 'warn'
         });
       } else {
+        this.isRedirected = true;
         this.window.open(res.data.url);
       }
     });
