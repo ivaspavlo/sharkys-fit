@@ -9,22 +9,24 @@ import { IPaymentData, ISetpuPayoutsSuccessRes, IUploadFileSuccessRes, IUserAcco
 import { HttpErrorResponse } from '@angular/common/http';
 
 
-const mockUserData = of({
+const mockUserData = {
+  id: 'some_id',
   first_name: 'John',
   last_name: 'Smith',
-  email: 'john.smith@gmail.com',
+  email_address: 'john.smith@gmail.com',
   address: 'Sometown 1010, Somestreet 12',
   phone_number: '+1 555 777 000',
   training_location: 'Pasadena',
   market_of_interest: 'Pasadena',
-  number_of_clients: 1000,
+  number_of_clients: '1000',
   favorite_location: 'Pasadena',
   specialization: 'Karate dancing',
   bio: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Sunt minus quod temporibus consequatur totam tenetur magni asperiores aperiam enim doloremque natus vel, error reprehenderit similique. Consectetur accusamus repudiandae vitae blanditiis.',
-  certified_trainer: true,
+  certified_trainer: 'yes',
   image_url: '/assets/img/png/mock-avatar.png',
-  payout_amount: '100.00'
-});
+  payout_amount: 10000,
+  stripe_payout_setup: true
+};
 
 @Injectable()
 export class UserService extends ApiService {
@@ -45,7 +47,8 @@ export class UserService extends ApiService {
 
   public getUserData(): Observable<IResponseApi> {
     this.spinnerService.on();
-    return this.get<any>(`accounts/${this.getUserId()}`).pipe(
+    return of(mockUserData).pipe(
+    // return this.get<any>(`accounts/${this.getUserId()}`).pipe(
       tap((res: IUserAccount) => {
         this.cacheUserData(res);
       }),
