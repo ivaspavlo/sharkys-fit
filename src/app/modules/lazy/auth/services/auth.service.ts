@@ -9,11 +9,6 @@ import { IFirstLoginReq, ILoginReq, ILoginSuccessRes, IRemindPasswordReq, IRemin
 import { HttpErrorResponse } from '@angular/common/http';
 
 
-const mockLoginData = {
-  token: 'some_token',
-  role: 'user'
-}
-
 @Injectable()
 export class AuthService extends ApiService {
 
@@ -28,6 +23,11 @@ export class AuthService extends ApiService {
   public submitTrainerData(value: ISubmitTrainerReq): Observable<IResponseApi> {
     this.spinnerService.on();
     return this.post<IResponseApi>('signup', value).pipe(
+      map(() => {
+        return {
+          valid: true
+        }
+      }),
       catchError((res: HttpErrorResponse) => {
         return of({ valid: false, error_message: res.error.error_message || '' });
       }),
@@ -67,7 +67,6 @@ export class AuthService extends ApiService {
   }
 
   public remindPassword(value: IRemindPasswordReq): Observable<IResponseApi> {
-    // TODO: needs to be tested
     this.spinnerService.on();
     return this.post<any>('forgotten/password', value).pipe(
       map((res: IRemindPasswordRes) => ({

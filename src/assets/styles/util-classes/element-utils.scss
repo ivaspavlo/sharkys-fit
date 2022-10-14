@@ -1,5 +1,5 @@
 @import '_core-colors';
-@import 'mixins/elements';
+@import 'mixins/_all';
 
 .app-container {
   width: 100%;
@@ -15,9 +15,12 @@
 }
 
 .app-submit-button {
-  min-width: 250px;
-  max-width: 350px;
+  width: 100%;
   margin: 50px 0 0;
+  @include sm {
+    min-width: 250px;
+    max-width: 350px;
+  }
 }
 
 .app-desc {
