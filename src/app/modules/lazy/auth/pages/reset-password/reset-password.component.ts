@@ -42,6 +42,9 @@ export class ResetPasswordComponent implements OnInit {
   }
 
   public onSubmitForm(): void {
+    if (!this.form.valid) {
+      return;
+    }
     const req = {
       password: this.form.value.password,
       password_reset_token: this.resetToken

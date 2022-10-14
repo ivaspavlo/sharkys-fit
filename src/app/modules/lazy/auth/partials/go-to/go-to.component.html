@@ -1,4 +1,4 @@
 <div class="goTo">
   <p class="goTo__text">{{ text | translate }}</p>
-  <a [routerLink]="linkUrl" class="goTo__link">{{ linkText | translate }}</a>
+  <a (click)="linkClick.emit(linkUrl || '')" [routerLink]="linkUrl || null" class="goTo__link">{{ linkText | translate }}</a>
 </div>

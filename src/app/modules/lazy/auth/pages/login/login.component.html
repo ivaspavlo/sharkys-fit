@@ -4,7 +4,7 @@
 
     <h2 class="app-title">{{ 'login.title' | translate }}</h2>
 
-    <form [formGroup]="form" markTouched class="my-rem-3">
+    <form [formGroup]="form" (keyup.enter)="onSubmitForm()" class="my-rem-3">
       <app-input controlName="email_address" label="core.form.email.label" placeholder="core.form.email.placeholder" class="mb-rem-2" type="email"></app-input>
       <app-input controlName="password" label="core.form.password.label" placeholder="core.form.password.placeholder" class="mb-rem-2" type="password"></app-input>
     </form>

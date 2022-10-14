@@ -5,7 +5,7 @@ import { CORE_ROUTES } from './constants/core-routes.constant';
 
 @NgModule({
   imports: [
-    RouterModule.forRoot(CORE_ROUTES)
+    RouterModule.forRoot(CORE_ROUTES, { scrollPositionRestoration: 'top' })
   ],
   exports: [
     RouterModule

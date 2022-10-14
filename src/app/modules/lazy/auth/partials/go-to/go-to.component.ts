@@ -1,4 +1,4 @@
-import { Component, ChangeDetectionStrategy, Input } from '@angular/core';
+import { Component, ChangeDetectionStrategy, Input, Output, EventEmitter } from '@angular/core';
 
 
 @Component({
@@ -12,5 +12,6 @@ export class GoToComponent {
   @Input() text: string;
   @Input() linkUrl: string;
   @Input() linkText: string;
+  @Output() linkClick: EventEmitter<string> = new EventEmitter();
 
 }
