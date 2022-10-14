@@ -19,11 +19,13 @@
       <app-input controlName="bio" label="core.form.personalBackground.label" placeholder="core.form.personalBackground.placeholder" type="textarea" class="mb-rem-2"></app-input>
       <app-select controlName="favorite_location" label="core.form.favoriteLocation.label" [options]="favLocationOptions"></app-select>
 
-      <div class="mt-rem-3 d-flex flex-column">
-        <app-button-primary (click)="onLoadImage()" [disabled]="spinnerService.isOn$ | async" size="sm" title="core.button.upload-photo" class="upload-photo-button">
+      <div class="image-container">
+        <figure *ngIf="form.get('image_url')?.value" class="w-100 mb-rem-1">
+          <img [src]="form.get('image_url')?.value" class="w-100" />
+        </figure>
+        <app-button-primary (click)="onLoadImage()" [disabled]="spinnerService.isOn$ | async" size="sm" title="core.button.upload-photo" class="w-100">
           <app-icon name="avatar"></app-icon>
         </app-button-primary>
-        <a *ngIf="form.get('image_url')?.value" href="form.get('image_url')?.value" target="_blank" class="image-link">{{form.get('image_url')?.value}}</a>
       </div>
       
       <div class="d-flex justify-content-center">
