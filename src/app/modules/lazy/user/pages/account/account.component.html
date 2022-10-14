@@ -19,7 +19,7 @@
       <app-input controlName="bio" label="core.form.personalBackground.label" placeholder="core.form.personalBackground.placeholder" type="textarea" class="mb-rem-2"></app-input>
       <app-select controlName="favorite_location" label="core.form.favoriteLocation.label" [options]="favLocationOptions"></app-select>
 
-      <div class="mt-rem-3 d-flex">
+      <div class="mt-rem-3 d-flex flex-column">
         <app-button-primary (click)="onLoadImage()" [disabled]="spinnerService.isOn$ | async" size="sm" title="core.button.upload-photo" class="upload-photo-button">
           <app-icon name="avatar"></app-icon>
         </app-button-primary>
