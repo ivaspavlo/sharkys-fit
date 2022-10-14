@@ -39,6 +39,9 @@ export class LoginComponent implements OnInit {
   }
 
   public onSubmitForm(): void {
+    if (!this.form.valid) {
+      return;
+    }
     this.authService.login(this.form.value).subscribe((res: IResponseApi) => {
       if (!res.valid) {
         this.toastService.show({

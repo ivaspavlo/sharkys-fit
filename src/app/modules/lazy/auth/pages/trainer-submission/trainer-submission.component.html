@@ -25,7 +25,7 @@
 
       </form>
 
-      <app-go-to text="submission.goto-login.text" linkUrl="/auth/login" linkText="submission.goto-login.link"></app-go-to>
+      <app-go-to (linkClick)="onGoToLogin()" text="submission.goto-login.text" linkText="submission.goto-login.link"></app-go-to>
 
     </ng-container>
 

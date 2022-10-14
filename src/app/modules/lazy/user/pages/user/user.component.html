@@ -12,8 +12,10 @@
       <app-header [hasMobileMenu]="true">
         <ng-container *ngTemplateOutlet="aside; context: data"></ng-container>
       </app-header>
-      <div [@routeAnimations]="prepareRoute()" class="user-page__content">
-        <router-outlet></router-outlet>
+      <div class="outlet-wrapper">
+        <div [@routeAnimations]="prepareRoute()" class="user-page__content">
+          <router-outlet></router-outlet>
+        </div>
       </div>
     </div>
 

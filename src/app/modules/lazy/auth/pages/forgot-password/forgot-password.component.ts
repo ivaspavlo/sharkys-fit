@@ -36,6 +36,9 @@ export class ForgotPasswordComponent implements OnInit {
   }
 
   public onSubmitForm(): void {
+    if (!this.form.valid) {
+      return;
+    }
     this.authService.remindPassword(this.form.value).subscribe((res: IResponseApi) => {
       this.success = res.valid;
       if (!res.valid) {

@@ -44,6 +44,9 @@ export class FirstLoginComponent implements OnInit {
   }
 
   public onSubmitForm(): void {
+    if (!this.form.valid) {
+      return;
+    }
     const req = {
       id: this.firstToken,
       password: this.form.value.password,

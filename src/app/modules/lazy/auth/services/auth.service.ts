@@ -28,7 +28,9 @@ export class AuthService extends ApiService {
   public submitTrainerData(value: ISubmitTrainerReq): Observable<IResponseApi> {
     this.spinnerService.on();
     return this.post<IResponseApi>('signup', value).pipe(
-      catchError((res: IResponseApi) => of({ valid: false, error_message: res.error_message || '' })),
+      catchError((res: HttpErrorResponse) => {
+        return of({ valid: false, error_message: res.error.error_message || '' });
+      }),
       tap(() => this.spinnerService.off())
     );
   }
