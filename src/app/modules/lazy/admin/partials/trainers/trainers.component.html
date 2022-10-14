@@ -3,14 +3,15 @@
   <h2 class="app-title mb-rem-4">{{ ('admin.' + type) | translate }}</h2>
 
   <ng-container *ngIf="trainers; else spinner">
-
-    <div class="app-table">
+    <div *ngIf="trainers?.length" class="app-table">
       <div *ngFor="let item of trainers; let index = index;" routerLink="./trainer/{{ '1' }}" app-table-row [ngClass]="{'app-row--even': index%2}" class="app-row cursor-pointer">
         <div app-table-data [data]="{ width: 50 }"><span class="px-rem-1">John Smith</span></div>
         <div app-table-data [data]="{ width: 50 }"><span class="px-rem-1">{{ type | uppercase }}</span></div>
       </div>
     </div>
-
+    <h2 *ngIf="!trainers?.length" class="app-title">
+      <p>{{ 'admin.no-trainers' | translate }}</p>
+    </h2>
   </ng-container>
 
 </section>
