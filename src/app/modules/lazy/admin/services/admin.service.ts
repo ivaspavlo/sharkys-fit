@@ -1,6 +1,6 @@
 import { Injectable, Injector } from '@angular/core';
 import { Observable, of } from 'rxjs';
-import { catchError, delay, map, tap } from 'rxjs/operators';
+import { catchError, map, tap } from 'rxjs/operators';
 import { SpinnerService } from '@app/core/services';
 import { IResponseApi } from '@app/core/interfaces';
 import { ApiService } from '@app/shared/classes';
@@ -29,12 +29,11 @@ export class AdminService extends ApiService {
   public getTrainers(type: 'approved' | 'pending'): Observable<IResponseApi> {
     this.spinnerService.on();
     // TODO: response format is unknown
-    return of(mockAllTrainers).pipe(
-    // return this.get<any>(`admin/trainers?status=${type}`).pipe(
+    return this.get<any>(`admin/trainers?status=${type}`).pipe(
       map((res: any) => {
         return {
           valid: true,
-          data: mockAllTrainers
+          data: res
         }
       }),
       catchError((res: any) => of({
