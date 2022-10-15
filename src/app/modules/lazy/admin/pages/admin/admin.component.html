@@ -10,8 +10,10 @@
     <app-header [hasMobileMenu]="true" class="d-flex d-md-none">
       <ng-container [ngTemplateOutlet]="aside"></ng-container>
     </app-header>
-    <div [@routeAnimations]="prepareRoute()" class="d-flex flex-column flex-grow-1">
-      <router-outlet></router-outlet>
+    <div class="outlet-wrapper">
+      <div [@routeAnimations]="prepareRoute()" class="d-flex flex-column flex-grow-1">
+        <router-outlet></router-outlet>
+      </div>
     </div>
   </div>
 
