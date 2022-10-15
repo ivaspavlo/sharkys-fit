@@ -37,4 +37,8 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+  &__figure {
+    width: 100%;
+    overflow: hidden;
+  }
 }

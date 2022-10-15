@@ -15,16 +15,7 @@ export class ButtonPrimaryComponent {
   @Input() noBorder = false;
   @Input() disabled: boolean | null = false;
   @Input() size = '';
-
-  @Input() set loading(value: any) {
-    this.disabled = value;
-    this._loading = value;
-  };
-  get loading() {
-    return this._loading;
-  }
-
-  private _loading = false;
+  @Input() loading: boolean | null = false;
 
   @Output() buttonPrimaryClick: EventEmitter<void> = new EventEmitter();
 

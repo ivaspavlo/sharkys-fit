@@ -152,7 +152,7 @@
     "promoting": "Promoting",
     "contact-us": "Contact us",
     "messages": {
-      "file-uploaded": "File uploaded. Click Confirm button in order to save.",
+      "file-uploaded": "Click 'Confirm' button in order to save the uploaded photo.",
       "user-updated": "Account data was successfully updated",
       "contacted": "Your message was sent successfully."
     }

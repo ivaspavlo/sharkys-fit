@@ -2,7 +2,7 @@
   (click)="onClick()"
   [routerLink]="routerLink"
   [routerLinkActive]="routerLink ? 'filled' : ''"
-  [disabled]="disabled"
+  [disabled]="disabled || loading"
   class="button-secondary"
   [ngClass]="{
     'filled': filled && !routerLink,
