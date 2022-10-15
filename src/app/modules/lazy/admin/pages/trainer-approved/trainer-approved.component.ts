@@ -62,7 +62,7 @@ export class TrainerApprovedComponent implements OnInit {
           text: this.translationService.instant('admin.messages.trainer-cancelled'),
           type: 'success'
         });
-        this.router.navigateByUrl(ROUTE_NAMES.APPROVED);
+        this.router.navigateByUrl(`/admin/${ROUTE_NAMES.APPROVED}`);
       }
     });
   }

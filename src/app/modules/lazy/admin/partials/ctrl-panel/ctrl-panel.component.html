@@ -1,3 +1,3 @@
 <ul class="ctrl-panel">
-  <li (click)="ctrlClick.emit(btn)" *ngFor="let btn of buttons" class="ctrl-panel__item">{{ btn.uiName | translate }}</li>
+  <li (click)="onClick(btn)" *ngFor="let btn of buttons" class="ctrl-panel__item" [ngClass]="{'ctrl-panel__item--current': currentButton === btn}">{{ btn.uiName | translate }}</li>
 </ul>

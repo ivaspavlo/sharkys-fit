@@ -29,7 +29,8 @@ export class AdminService extends ApiService {
   public getTrainers(type: 'approved' | 'pending'): Observable<IResponseApi> {
     this.spinnerService.on();
     // TODO: response format is unknown
-    return this.get<any>(`admin/trainers?status=${type}`).pipe(
+    return of(mockAllTrainers).pipe(
+    // return this.get<any>(`admin/trainers?status=${type}`).pipe(
       map((res: any) => {
         return {
           valid: true,

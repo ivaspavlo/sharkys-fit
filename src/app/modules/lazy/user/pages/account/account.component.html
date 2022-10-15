@@ -21,13 +21,13 @@
 
       <div class="image-container">
         <figure *ngIf="form.get('image_url')?.value" class="image-container__figure">
-          <img [src]="form.get('image_url')?.value" class="w-100"/>
+          <img [src]="form.get('image_url')?.value" class="w-100 border-radius-4"/>
         </figure>
-        <app-button-primary (click)="onLoadImage()" [disabled]="spinnerService.isOn$ | async" size="sm" title="core.button.upload-photo" class="w-100 mt-rem-1">
+        <app-button-primary (buttonPrimaryClick)="onLoadImage()" [disabled]="spinnerService.isOn$ | async" size="sm" title="core.button.upload-photo" class="w-100 mt-rem-1">
           <app-icon name="avatar"></app-icon>
         </app-button-primary>
       </div>
-      
+
       <div class="d-flex justify-content-center">
         <app-button-primary [disabled]="!form.valid" (buttonPrimaryClick)="onSubmitForm()" title="core.button.confirm" class="app-submit-button" [loading]="spinnerService.isOn$ | async" [filled]="true"></app-button-primary>
       </div>
