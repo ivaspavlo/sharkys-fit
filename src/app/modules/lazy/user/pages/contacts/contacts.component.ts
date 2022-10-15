@@ -1,7 +1,8 @@
 import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { TranslateService } from '@ngx-translate/core';
-import { takeUntil } from 'rxjs/operators';
+import { Observable } from 'rxjs';
+import { map, startWith, takeUntil, tap } from 'rxjs/operators';
 import { SpinnerService } from '@app/core/services';
 import { IResponseApi } from '@app/core/interfaces';
 import { DestroySubscriptions } from '@app/shared/classes';
@@ -43,7 +44,7 @@ export class ContactsComponent extends DestroySubscriptions implements OnInit {
       name: [data ? `${data.first_name} ${data.last_name}` : '', [Validators.required, Validators.minLength(2)]],
       email_address: [data?.email_address, [Validators.required, Validators.email]],
       phone_number: [data?.phone_number, [Validators.required, Validators.minLength(7)]],
-      message: ['', [Validators.required, Validators.minLength(30)]]
+      message: ['', [Validators.required, Validators.minLength(10)]]
     });
   }
 

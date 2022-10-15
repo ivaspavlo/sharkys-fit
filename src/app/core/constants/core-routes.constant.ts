@@ -26,7 +26,7 @@ export const CORE_ROUTES: Routes = [
     loadChildren: () => import('@app/modules/lazy/user/user.module').then(m => m.UserModule)
   }, {
     path: CORE_ROUTE_NAMES.ADMIN,
-    canLoad: [AuthGuard, AdminGuard],
+    // canLoad: [AuthGuard, AdminGuard],
     loadChildren: () => import('@app/modules/lazy/admin/admin.module').then(m => m.AdminModule)
   }, {
     path: CORE_ROUTE_NAMES.OTHER,

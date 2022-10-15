@@ -20,10 +20,10 @@
       <app-select controlName="favorite_location" label="core.form.favoriteLocation.label" [options]="favLocationOptions"></app-select>
 
       <div class="image-container">
-        <figure *ngIf="form.get('image_url')?.value" class="w-100 mb-rem-1">
-          <img [src]="form.get('image_url')?.value" class="w-100" />
+        <figure *ngIf="form.get('image_url')?.value" class="image-container__figure">
+          <img [src]="form.get('image_url')?.value" class="w-100"/>
         </figure>
-        <app-button-primary (click)="onLoadImage()" [disabled]="spinnerService.isOn$ | async" size="sm" title="core.button.upload-photo" class="w-100">
+        <app-button-primary (click)="onLoadImage()" [disabled]="spinnerService.isOn$ | async" size="sm" title="core.button.upload-photo" class="w-100 mt-rem-1">
           <app-icon name="avatar"></app-icon>
         </app-button-primary>
       </div>
