@@ -7,7 +7,7 @@
 
       <p class="app-desc">{{ trainer.bio }}</p>
 
-      <div class="w-100 d-flex">
+      <div class="w-100 d-flex flex-column flex-lg-row">
         <app-button-primary (buttonPrimaryClick)="onApproveReject(trainer, true)" title="admin.button.approve" [loading]="spinnerService.isOn$ | async" [filled]="true" class="app-submit-button w-100 mr-rem-2"></app-button-primary>
         <app-button-primary (buttonPrimaryClick)="onApproveReject(trainer, false)" title="admin.button.reject" [loading]="spinnerService.isOn$ | async" class="app-submit-button w-100"></app-button-primary>
       </div>

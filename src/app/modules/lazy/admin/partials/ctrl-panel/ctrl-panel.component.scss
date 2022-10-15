@@ -16,7 +16,11 @@
     padding: 0 2rem;
     text-transform: uppercase;
     border-right: 1px solid $white;
+    transition: .3s;
     cursor: pointer;
+    &--current {
+      text-decoration: underline;
+    }
     &:last-of-type {
       border-right: 0;
     }

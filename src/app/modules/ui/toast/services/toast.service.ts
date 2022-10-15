@@ -24,6 +24,8 @@ export class ToastService {
   ) { }
 
   public show(data: ToastData): ToastRef {
+    this?.lastToast?.close();
+
     const positionStrategy = this.getPositionStrategy();
     const overlayRef = this.overlay.create({ positionStrategy });
 

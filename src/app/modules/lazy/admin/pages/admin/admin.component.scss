@@ -1,5 +1,5 @@
 @import '_core-colors';
-@import 'mixins/_all';
+@import 'mixins/elements';
 
 :host {
   @include page;
@@ -13,8 +13,5 @@
     flex-direction: column;
     flex-grow: 1;
     position: relative;
-    @include md {
-      margin: 4rem 2rem 2rem;
-    }
   }
 }

@@ -64,7 +64,7 @@ export class TrainerPendingComponent implements OnInit {
           text: this.translationService.instant(message),
           type: 'success'
         });
-        this.router.navigateByUrl(ROUTE_NAMES.PENDING);
+        this.router.navigateByUrl(`/admin/${ROUTE_NAMES.PENDING}`);
       }
     });
   }

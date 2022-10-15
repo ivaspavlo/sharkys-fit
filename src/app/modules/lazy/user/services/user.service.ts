@@ -91,7 +91,6 @@ export class UserService extends ApiService {
     this.spinnerService.on();
     return this.put<any>('accounts', req).pipe(
       map((res: IUserAccount) => {
-        debugger;
         this.cacheUserData(res);
         return {
           valid: true,
