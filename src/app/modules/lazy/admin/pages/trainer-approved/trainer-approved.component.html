@@ -3,8 +3,8 @@
   <ng-container *ngIf="(trainer$ | async) as trainer; else spinner">
     <ng-container *ngIf="isLoaded && trainer !== true; else noItems">
 
-      <header class="w-100 mb-rem-2 d-flex">
-        <app-user-avatar imageSrc="/assets/img/png/mock-avatar.png"></app-user-avatar>
+      <header class="w-100 mb-rem-2 d-flex flex-column flex-md-row justify-content-center">
+        <app-user-avatar imageSrc="/assets/img/png/mock-avatar.png" class="d-flex justify-content-center mb-4 mb-md-0"></app-user-avatar>
         <div class="ml-rem-1 d-flex flex-column justify-content-center align-items-center">
           <h2 class="color-white">{{ trainer.name }}</h2>
           <h4 class="color-main">{{ trainer.location }}</h4>
@@ -14,7 +14,7 @@
       <app-ctrl-panel (ctrlClick)="this.current = $event" [buttons]="buttons" class="mb-rem-3"></app-ctrl-panel>
     
       <div [ngSwitch]="current" class="app-content w-100 d-flex flex-grow-1 align-items-center">
-    
+
         <p *ngSwitchCase="buttons[0]" class="app-desc">{{ trainer.bio }}</p>
 
         <div *ngSwitchCase="buttons[1]" class="app-table">
@@ -32,7 +32,7 @@
     
       </div>
     
-      <div class="w-100 d-flex">
+      <div class="w-100 d-flex justify-content-center">
         <app-button-primary (buttonPrimaryClick)="onCancelTrainer(trainer)" title="core.button.cancel-trainer" [loading]="spinnerService.isOn$ | async" [filled]="true" class="app-submit-button w-100"></app-button-primary>
       </div>
   
