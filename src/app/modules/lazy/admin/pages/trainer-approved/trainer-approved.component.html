@@ -13,7 +13,7 @@
     
       <app-ctrl-panel (ctrlClick)="this.current = $event" [buttons]="buttons" class="mb-rem-3"></app-ctrl-panel>
     
-      <div [ngSwitch]="current" class="app-content w-100 d-flex flex-grow-1 align-items-center">
+      <div [ngSwitch]="current" class="app-content w-100 d-flex">
 
         <p *ngSwitchCase="buttons[0]" class="app-desc">{{ trainer.bio }}</p>
 
@@ -26,7 +26,7 @@
           </ng-container>
         </div>
 
-        <figure *ngSwitchCase="buttons[2]" class="w-100 my-rem-2">
+        <figure *ngSwitchCase="buttons[2]" class="w-100">
           <img src="/assets/img/png/mock-avatar.png" alt="Trainer image" class="w-100 border-radius-4">
         </figure>
     

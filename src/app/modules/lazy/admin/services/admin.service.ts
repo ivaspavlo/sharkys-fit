@@ -29,8 +29,8 @@ export class AdminService extends ApiService {
   public getTrainers(type: 'approved' | 'pending'): Observable<IResponseApi> {
     this.spinnerService.on();
     // TODO: response format is unknown
-    return of(mockAllTrainers).pipe(
-    // return this.get<any>(`admin/trainers?status=${type}`).pipe(
+    // return of(mockAllTrainers).pipe(
+    return this.get<any>(`admin/trainers?status=${type}`).pipe(
       map((res: any) => {
         return {
           valid: true,
@@ -48,8 +48,8 @@ export class AdminService extends ApiService {
   public getSingleTrainer(trainerId: string): Observable<IResponseApi> {
     this.spinnerService.on();
     // TODO: response format is unknown
-    return of(mockTrainer).pipe(
-    // return this.get<any>(`admin/trainers/${trainerId}`).pipe(
+    // return of(mockTrainer).pipe(
+    return this.get<any>(`admin/trainers/${trainerId}`).pipe(
       map((res: any) => {
         return {
           valid: true,
@@ -67,8 +67,8 @@ export class AdminService extends ApiService {
   public cancelTrainer(id: string = '1'): Observable<IResponseApi> {
     this.spinnerService.on();
     // TODO: response format is unknown
-    return of(true).pipe(
-    // return this.delete('admin/trainers', { id }).pipe(
+    // return of(true).pipe(
+    return this.delete('admin/trainers', { id }).pipe(
       map((res: any) => ({
         valid: true
       })),
@@ -83,8 +83,8 @@ export class AdminService extends ApiService {
   public approveTrainer(id: string = '1'): Observable<IResponseApi> {
     this.spinnerService.on();
     // TODO: response format is unknown
-    return of(true).pipe(
-    // return this.post('admin/trainers', { status: 'approved', id }).pipe(
+    // return of(true).pipe(
+    return this.post('admin/trainers', { status: 'approved', id }).pipe(
       map((res: any) => ({
         valid: true
       })),
