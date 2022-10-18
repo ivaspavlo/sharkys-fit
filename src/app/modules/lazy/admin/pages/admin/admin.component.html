@@ -1,6 +1,6 @@
 <section class="admin">
 
-  <div class="d-none d-md-flex">
+  <div class="d-none d-md-flex flex-column">
     <ng-container [ngTemplateOutlet]="aside"></ng-container>
   </div>
 
@@ -22,7 +22,7 @@
 <app-footer></app-footer>
 
 <ng-template #aside>
-  <app-aside [buttons]="buttons">
+  <app-aside [buttons]="buttons" class="admin__aside">
     <app-logo class="d-none d-md-flex mb-rem-4" size="lg"></app-logo>
   </app-aside>
 </ng-template>
