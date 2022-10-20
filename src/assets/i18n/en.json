@@ -141,7 +141,13 @@
   },
   "reset-password": {
     "title": "RESET PASSWORD",
-    "success": "Password was successfully reset. Please login with the new credentials."
+    "success": {
+      "line-1": "Password was successfully reset.",
+      "line-2": "Please login with the new credentials."
+    },
+    "failure": {
+      "line-1": "Reset token is invalid."
+    }
   },
   "user": {
     "payout": "Payout",

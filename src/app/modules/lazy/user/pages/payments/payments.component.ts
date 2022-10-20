@@ -6,7 +6,8 @@ import { WINDOW } from '@core/providers';
 import { IPaymentData, IResponseApi } from '@app/interfaces';
 import { PaymentsService, SpinnerService } from '@core/services';
 import { DestroySubscriptions } from '@app/shared/classes';
-import { ToastService } from '@app/modules/ui/toast';
+import { ToastService } from '@app/modules/ui';
+
 import { UserService } from '../../services/user.service';
 import { IUserAccount } from '../../interfaces';
 
@@ -67,7 +68,7 @@ export class PaymentsComponent extends DestroySubscriptions implements OnInit {
         });
       } else {
         this.isRedirected = true;
-        this.window.open(res.data.url);
+        window.location.href = res.data.url;
       }
     });
   }

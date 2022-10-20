@@ -56,6 +56,7 @@ export class ContactsComponent extends DestroySubscriptions implements OnInit {
           type: 'warn'
         });
       } else {
+        this.form.get('message')?.reset();
         this.toastService.show({
           text: this.translationService.instant('user.messages.contacted'),
           type: 'success'
