@@ -5,8 +5,7 @@ import { TranslateService } from '@ngx-translate/core';
 import { IResponseApi } from '@app/interfaces';
 import { FavoriteLocationOptions } from '@core/constants';
 import { SpinnerService, CoreLayoutService, AuthService } from '@core/services';
-import { ISelectOption } from '@app/modules/ui/select/interfaces';
-import { ToastService } from '@app/modules/ui/toast';
+import { ToastService, ISelectOption } from '@app/modules/ui';
 
 
 @Component({
@@ -36,18 +35,18 @@ export class TrainerSubmissionComponent implements OnInit {
 
   private initForm(): void {
     this.form = this.fb.group({
-      first_name: ['We will create an account automatically for you and include', [Validators.required, Validators.minLength(2)]],
-      last_name: ['We will create an account automatically for you and include', [Validators.required, Validators.minLength(2)]],
-      email: ['aaaaaa@gggg.com', [Validators.required, Validators.email]],
-      address: ['We will create an account automatically for you and include', [Validators.required, Validators.minLength(10)]],
-      phone_number: ['We will create an account automatically for you and include', [Validators.required, Validators.minLength(7)]],
-      training_location: ['We will create an account automatically for you and include', [Validators.required, Validators.minLength(3)]],
-      number_of_clients: ['11', [Validators.required]],
-      market_of_interest: ['aaaaaa', [Validators.required, Validators.minLength(3)]],
-      specialization: ['aaaaaaaa', [Validators.required, Validators.minLength(3)]],
-      certified_trainer: ['most likely yes', [Validators.required]],
-      bio: ['We will create an account automatically for you and include', [Validators.required, Validators.minLength(30)]],
-      favorite_location: ['Tarzana', [Validators.required, Validators.minLength(3)]]
+      first_name: ['', [Validators.required, Validators.minLength(2)]],
+      last_name: ['', [Validators.required, Validators.minLength(2)]],
+      email: ['', [Validators.required, Validators.email]],
+      address: ['', [Validators.required, Validators.minLength(10)]],
+      phone_number: ['', [Validators.required, Validators.minLength(7)]],
+      training_location: ['', [Validators.required, Validators.minLength(3)]],
+      number_of_clients: ['', [Validators.required]],
+      market_of_interest: ['', [Validators.required, Validators.minLength(3)]],
+      specialization: ['', [Validators.required, Validators.minLength(3)]],
+      certified_trainer: ['', [Validators.required]],
+      bio: ['', [Validators.required, Validators.minLength(30)]],
+      favorite_location: ['', [Validators.required, Validators.minLength(3)]]
     });
   }
 

@@ -6,8 +6,8 @@
       <header class="w-100 mb-rem-2 d-flex flex-column flex-md-row justify-content-center">
         <app-user-avatar imageSrc="/assets/img/png/mock-avatar.png" class="d-flex justify-content-center mb-4 mb-md-0"></app-user-avatar>
         <div class="ml-rem-1 d-flex flex-column justify-content-center align-items-center">
-          <!-- <h2 class="color-white">{{ trainer.name }}</h2>
-          <h4 class="color-main">{{ trainer.location }}</h4> -->
+          <h2 class="color-white">{{trainer.first_name}} {{trainer.last_name}}</h2>
+          <!-- <h4 class="color-main">{{ trainer.location }}</h4> -->
         </div>
       </header>
     
@@ -18,12 +18,14 @@
         <p *ngSwitchCase="buttons[0]" class="app-desc">{{ trainer.bio }}</p>
 
         <div *ngSwitchCase="buttons[1]" class="app-table">
-          <!-- <ng-container *ngIf="trainer.payouts?.length; else noItems">
-            <div *ngFor="let item of trainer.payouts; let index = index;" app-table-row [ngClass]="{'app-row--even': index%2}" class="app-row app-row--even">
-              <div app-table-data [data]="{ width: 50 }"><span class="px-rem-1">29.09.2022</span></div>
-              <div app-table-data [data]="{ width: 50 }"><span class="px-rem-1">$100.00</span></div>
-            </div>
-          </ng-container> -->
+          <ng-container *ngIf="(payments$ | async) as payments">
+            <ng-container *ngIf="payments?.length; else noItems">
+              <div *ngFor="let item of payments; let index = index;" app-table-row [ngClass]="{'app-row--even': index%2}" class="app-row app-row--even">
+                <div app-table-data [data]="{ width: 50 }"><span class="px-rem-1">29.09.2022</span></div>
+                <div app-table-data [data]="{ width: 50 }"><span class="px-rem-1">$100.00</span></div>
+              </div>
+            </ng-container>
+          </ng-container>
         </div>
 
         <figure *ngSwitchCase="buttons[2]" class="w-100">

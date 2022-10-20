@@ -3,7 +3,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { TranslateService } from '@ngx-translate/core';
-import { SpinnerService } from '@core/services';
+import { PaymentsService, SpinnerService } from '@core/services';
 import { IPaymentData, IUserAccount, IResponseApi } from '@app/interfaces';
 import { ToastService } from '@app/modules/ui/toast';
 import { CtrlPanelButtons, ROUTE_NAMES } from '../../constants';
@@ -20,7 +20,7 @@ import { AdminService } from '../../services/admin.service';
 export class TrainerApprovedComponent implements OnInit {
 
   public trainer$: Observable<IUserAccount | true>;
-  public payments$: Observable<IPaymentData>;
+  public payments$: Observable<IPaymentData[]>;
   public buttons: ICtrlPanelButton[] = CtrlPanelButtons;
   public current: ICtrlPanelButton = this.buttons[0];
   public isLoaded = false;
@@ -31,6 +31,7 @@ export class TrainerApprovedComponent implements OnInit {
     private toastService: ToastService,
     private translationService: TranslateService,
     private router: Router,
+    private paymentsService: PaymentsService,
     public spinnerService: SpinnerService
   ) { }
 
@@ -49,7 +50,9 @@ export class TrainerApprovedComponent implements OnInit {
         return res.data;
       })
     );
-    // this.payments$ = this.
+    this.payments$ = this.paymentsService.getPayoutsData(trainerId).pipe(
+      map((res: IResponseApi) => res.data)
+    );
   }
 
   public onCancelTrainer(trainer: IUserAccount): void {

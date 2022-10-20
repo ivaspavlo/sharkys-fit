@@ -4,12 +4,13 @@ import { map, switchMap, takeUntil, tap } from 'rxjs/operators';
 import { TranslateService } from '@ngx-translate/core';
 import { WINDOW } from '@core/providers';
 import { IPaymentData, IResponseApi } from '@app/interfaces';
-import { PaymentsService, SpinnerService } from '@core/services';
+import { CoreStorageService, PaymentsService, SpinnerService } from '@core/services';
 import { DestroySubscriptions } from '@app/shared/classes';
 import { ToastService } from '@app/modules/ui';
 
 import { UserService } from '../../services/user.service';
 import { IUserAccount } from '../../interfaces';
+import { USER_ID } from '@app/core/constants';
 
 
 @Component({
@@ -32,6 +33,7 @@ export class PaymentsComponent extends DestroySubscriptions implements OnInit {
     private translationService: TranslateService,
     private cdr: ChangeDetectorRef,
     private paymentsService: PaymentsService,
+    private storageService: CoreStorageService,
     public spinnerService: SpinnerService
   ) {
     super();
@@ -44,7 +46,7 @@ export class PaymentsComponent extends DestroySubscriptions implements OnInit {
       }),
       switchMap(() => {
         return this.isPayoutsSetup ?
-          this.paymentsService.getPayoutsData().pipe(
+          this.paymentsService.getPayoutsData(this.storageService.get(USER_ID)).pipe(
             map((res: IResponseApi) => {
               return res.data;
             })
