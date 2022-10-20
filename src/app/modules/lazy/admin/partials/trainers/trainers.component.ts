@@ -1,6 +1,6 @@
 import { Component, ChangeDetectionStrategy, Input } from '@angular/core';
+import { IUserAccount } from '@app/modules/lazy/user/interfaces';
 import { TrainerType } from '../../constants';
-import { ITrainer } from '../../interfaces';
 
 
 @Component({
@@ -11,6 +11,6 @@ import { ITrainer } from '../../interfaces';
 export class TrainersComponent {
 
   @Input() type: TrainerType;
-  @Input() trainers: ITrainer[] | null;
+  @Input() trainers: IUserAccount[] | null;
 
 }

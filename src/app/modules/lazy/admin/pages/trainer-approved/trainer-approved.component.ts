@@ -1,14 +1,14 @@
 import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { ToastService } from '@app/modules/ui/toast';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { TranslateService } from '@ngx-translate/core';
-import { SpinnerService } from '@app/core/services';
+import { SpinnerService } from '@core/services';
+import { IPaymentData, IUserAccount, IResponseApi } from '@app/interfaces';
+import { ToastService } from '@app/modules/ui/toast';
 import { CtrlPanelButtons, ROUTE_NAMES } from '../../constants';
-import { ICtrlPanelButton, ITrainer } from '../../interfaces';
+import { ICtrlPanelButton } from '../../interfaces';
 import { AdminService } from '../../services/admin.service';
-import { IResponseApi } from '@app/core/interfaces';
 
 
 @Component({
@@ -19,7 +19,8 @@ import { IResponseApi } from '@app/core/interfaces';
 })
 export class TrainerApprovedComponent implements OnInit {
 
-  public trainer$: Observable<ITrainer | true>;
+  public trainer$: Observable<IUserAccount | true>;
+  public payments$: Observable<IPaymentData>;
   public buttons: ICtrlPanelButton[] = CtrlPanelButtons;
   public current: ICtrlPanelButton = this.buttons[0];
   public isLoaded = false;
@@ -48,9 +49,10 @@ export class TrainerApprovedComponent implements OnInit {
         return res.data;
       })
     );
+    // this.payments$ = this.
   }
 
-  public onCancelTrainer(trainer: ITrainer): void {
+  public onCancelTrainer(trainer: IUserAccount): void {
     this.adminService.cancelTrainer(trainer.id).subscribe((res: IResponseApi) => {
       if (!res.valid) {
         this.toastService.show({

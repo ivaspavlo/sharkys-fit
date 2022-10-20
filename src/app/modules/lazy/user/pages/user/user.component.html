@@ -26,7 +26,7 @@
 <app-footer></app-footer>
 
 <ng-template #aside let-avatar="image_url" let-firstName="first_name" let-lastName="last_name" let-payoutAmount="payout_amount">
-  <app-aside [buttons]="buttons" class="user-aside">
+  <app-aside (asideBtnClick)="onAsideBtnClick($event)" [buttons]="buttons" class="user-aside">
 
     <app-user-avatar [imageSrc]="avatar"></app-user-avatar>
 

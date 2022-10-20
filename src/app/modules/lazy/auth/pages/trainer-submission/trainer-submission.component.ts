@@ -2,12 +2,11 @@ import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
-import { FavoriteLocationOptions } from '@app/core/constants';
-import { SpinnerService, CoreLayoutService } from '@app/core/services';
-import { IResponseApi } from '@app/core/interfaces';
+import { IResponseApi } from '@app/interfaces';
+import { FavoriteLocationOptions } from '@core/constants';
+import { SpinnerService, CoreLayoutService, AuthService } from '@core/services';
 import { ISelectOption } from '@app/modules/ui/select/interfaces';
 import { ToastService } from '@app/modules/ui/toast';
-import { AuthService } from '../../services/auth.service';
 
 
 @Component({

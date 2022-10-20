@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
-import { CoreTranslationModule } from '@app/core/core-translation.module';
+import { CoreTranslationModule } from '@core/core-translation.module';
 import { SpinnerModule } from '../spinner/spinner.module';
 import { COMPONENTS } from './components';
 

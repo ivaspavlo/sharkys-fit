@@ -1,6 +1,6 @@
 import { Component, ChangeDetectionStrategy, Input } from '@angular/core';
 import { DialogRef } from '@app/modules/ui/dialog';
-import { DIALOG_SIZES } from '@app/core/constants';
+import { DIALOG_SIZES } from '@core/constants';
 
 
 @Component({

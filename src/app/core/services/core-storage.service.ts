@@ -1,5 +1,5 @@
 import { Injectable, Inject } from '@angular/core';
-import { LOCAL_STORAGE } from '@app/core/providers';
+import { LOCAL_STORAGE } from '@core/providers';
 
 
 @Injectable({

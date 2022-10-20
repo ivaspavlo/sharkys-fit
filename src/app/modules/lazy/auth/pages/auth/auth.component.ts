@@ -1,6 +1,6 @@
 import { Component, ChangeDetectionStrategy } from '@angular/core';
 import { ChildrenOutletContexts } from '@angular/router';
-import { authRoutingAnimation } from '@app/core/animations';
+import { authRoutingAnimation } from '@core/animations';
 
 
 @Component({

@@ -2,13 +2,13 @@ import { Component, OnInit, ChangeDetectionStrategy, ChangeDetectorRef, Inject }
 import { BehaviorSubject, of } from 'rxjs';
 import { map, switchMap, takeUntil, tap } from 'rxjs/operators';
 import { TranslateService } from '@ngx-translate/core';
-import { WINDOW } from '@app/core/providers';
-import { IResponseApi } from '@app/core/interfaces';
-import { SpinnerService } from '@app/core/services';
+import { WINDOW } from '@core/providers';
+import { IPaymentData, IResponseApi } from '@app/interfaces';
+import { PaymentsService, SpinnerService } from '@core/services';
 import { DestroySubscriptions } from '@app/shared/classes';
 import { ToastService } from '@app/modules/ui/toast';
 import { UserService } from '../../services/user.service';
-import { IPaymentData, IUserAccount } from '../../interfaces';
+import { IUserAccount } from '../../interfaces';
 
 
 @Component({
@@ -30,6 +30,7 @@ export class PaymentsComponent extends DestroySubscriptions implements OnInit {
     private toastService: ToastService,
     private translationService: TranslateService,
     private cdr: ChangeDetectorRef,
+    private paymentsService: PaymentsService,
     public spinnerService: SpinnerService
   ) {
     super();
@@ -42,7 +43,7 @@ export class PaymentsComponent extends DestroySubscriptions implements OnInit {
       }),
       switchMap(() => {
         return this.isPayoutsSetup ?
-          this.userService.getPayoutsData().pipe(
+          this.paymentsService.getPayoutsData().pipe(
             map((res: IResponseApi) => {
               return res.data;
             })
@@ -58,7 +59,7 @@ export class PaymentsComponent extends DestroySubscriptions implements OnInit {
   }
 
   public onSetupPayouts(): void {
-    this.userService.setupPayouts().subscribe((res: IResponseApi) => {
+    this.paymentsService.setupPayouts().subscribe((res: IResponseApi) => {
       if (!res.valid || !res?.data?.url) {
         this.toastService.show({
           text: res.error_message || this.translationService.instant('core.http-errors.general'),

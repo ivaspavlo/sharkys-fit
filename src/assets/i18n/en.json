@@ -26,7 +26,8 @@
       "open": "Open",
       "save": "Save",
       "upload-photo": "Upload photo",
-      "cancel-trainer": "Cancel trainer"
+      "cancel-trainer": "Cancel trainer",
+      "logout": "Logout"
     },
     "form": {
       "firstName": {
@@ -171,7 +172,7 @@
   },
   "admin": {
     "approved": "Approved trainers",
-    "pending": "Pending trainers",
+    "new": "Pending trainers",
     "no-trainers": "There are no trainers yet.",
     "button": {
       "approve": "Approve",

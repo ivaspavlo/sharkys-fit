@@ -3,11 +3,11 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { TranslateService } from '@ngx-translate/core';
-import { SpinnerService } from '@app/core/services';
-import { IResponseApi } from '@app/core/interfaces';
+import { IUserAccount } from '@app/interfaces';
+import { SpinnerService } from '@core/services';
+import { IResponseApi } from '@app/interfaces';
 import { ToastService } from '@app/modules/ui/toast';
 import { AdminService } from '../../services/admin.service';
-import { ITrainer } from '../../interfaces';
 import { ROUTE_NAMES } from '../../constants';
 
 
@@ -19,7 +19,7 @@ import { ROUTE_NAMES } from '../../constants';
 })
 export class TrainerPendingComponent implements OnInit {
 
-  public trainer$: Observable<ITrainer | true>;
+  public trainer$: Observable<IUserAccount | true>;
   public isLoaded = false;
 
   constructor(
@@ -48,7 +48,7 @@ export class TrainerPendingComponent implements OnInit {
     );
   }
 
-  public onApproveReject(trainer: ITrainer, isApproved: boolean): void {
+  public onApproveReject(trainer: IUserAccount, isApproved: boolean): void {
     const req: Observable<IResponseApi> = isApproved ?
       this.adminService.approveTrainer(trainer.id) :
       this.adminService.cancelTrainer(trainer.id);

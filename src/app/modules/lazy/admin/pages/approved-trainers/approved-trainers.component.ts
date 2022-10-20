@@ -1,9 +1,8 @@
 import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
-import { IResponseApi } from '@app/core/interfaces';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
+import { IResponseApi, IUserAccount } from '@app/interfaces';
 import { TrainerType } from '../../constants';
-import { ITrainer } from '../../interfaces';
 import { AdminService } from '../../services/admin.service';
 
 
@@ -15,7 +14,7 @@ import { AdminService } from '../../services/admin.service';
 export class ApprovedTrainersComponent implements OnInit {
 
   public type: TrainerType = 'approved';
-  public trainers$: Observable<ITrainer[]>;
+  public trainers$: Observable<IUserAccount[]>;
 
   constructor(
     private adminService: AdminService

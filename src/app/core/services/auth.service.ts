@@ -1,15 +1,16 @@
 import { Injectable, Injector } from '@angular/core';
+import { HttpErrorResponse } from '@angular/common/http';
 import { Observable, of } from 'rxjs';
 import { catchError, map, tap } from 'rxjs/operators';
-import { CoreStorageService, SpinnerService } from '@app/core/services';
-import { ACCESS_TOKEN, IS_ADMIN, USER_ID } from '@app/core/constants';
-import { IResponseApi } from '@app/core/interfaces';
+import { IFirstLoginReq, ILoginReq, ILoginSuccessRes, IRemindPasswordReq, IRemindPasswordRes, IResetPasswordReq, IResponseApi, ISubmitTrainerReq } from '@app/interfaces';
+import { CoreStorageService, SpinnerService } from '@core/services';
+import { ACCESS_TOKEN, IS_ADMIN, USER_ID } from '@core/constants';
 import { ApiService } from '@app/shared/classes';
-import { IFirstLoginReq, ILoginReq, ILoginSuccessRes, IRemindPasswordReq, IRemindPasswordRes, IResetPasswordReq, ISubmitTrainerReq } from '../interfaces';
-import { HttpErrorResponse } from '@angular/common/http';
 
 
-@Injectable()
+@Injectable({
+  providedIn: 'root'
+})
 export class AuthService extends ApiService {
 
   constructor(
@@ -36,7 +37,6 @@ export class AuthService extends ApiService {
   }
 
   public firstLogin(value: IFirstLoginReq): Observable<IResponseApi> {
-    // TODO: needs to be tested
     this.spinnerService.on();
     return this.post<any>('accounts', value).pipe(
       map((res: ILoginSuccessRes) => ({
@@ -93,6 +93,13 @@ export class AuthService extends ApiService {
       })),
       tap(() => this.spinnerService.off())
     );
+  }
+
+  public logout(): Observable<boolean> {
+    this.storageService.remove(USER_ID);
+    this.storageService.remove(IS_ADMIN);
+    this.storageService.remove(ACCESS_TOKEN);
+    return of(true);
   }
 
   private afterLogin(res: IResponseApi): void {
