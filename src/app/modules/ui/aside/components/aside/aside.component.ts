@@ -1,4 +1,4 @@
-import { Component, ChangeDetectionStrategy, Input } from '@angular/core';
+import { Component, ChangeDetectionStrategy, Input, Output, EventEmitter } from '@angular/core';
 import { IAsideButton } from '../../interfaces';
 
 
@@ -11,5 +11,6 @@ import { IAsideButton } from '../../interfaces';
 export class AsideComponent {
 
   @Input() buttons: IAsideButton[];
+  @Output() asideBtnClick: EventEmitter<IAsideButton> = new EventEmitter();
 
 }

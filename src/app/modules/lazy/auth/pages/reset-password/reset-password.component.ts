@@ -2,11 +2,11 @@ import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
-import { IResponseApi } from '@app/core/interfaces';
-import { CORE_ROUTE_NAMES } from '@app/core/constants';
+import { IResponseApi } from '@app/interfaces';
+import { CORE_ROUTE_NAMES } from '@core/constants';
+import { AuthService, SpinnerService } from '@core/services';
 import { PasswordValidators } from '@app/shared/validators';
 import { ToastService } from '@app/modules/ui/toast';
-import { AuthService } from '../../services/auth.service';
 import { RESET_TOKEN } from '../../constants';
 
 
@@ -26,7 +26,8 @@ export class ResetPasswordComponent implements OnInit {
     private toastService: ToastService,
     private route : ActivatedRoute,
     private translationService: TranslateService,
-    private router: Router
+    private router: Router,
+    public spinnerService: SpinnerService
   ) { }
 
   ngOnInit(): void {

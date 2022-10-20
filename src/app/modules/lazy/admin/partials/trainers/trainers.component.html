@@ -4,8 +4,8 @@
 
   <ng-container *ngIf="trainers; else spinner">
     <div *ngIf="trainers?.length" class="app-table">
-      <div *ngFor="let item of trainers; let index = index;" routerLink="./trainer/{{ '1' }}" app-table-row [ngClass]="{'app-row--even': index%2}" class="app-row cursor-pointer">
-        <div app-table-data [data]="{ width: 50 }"><span class="px-rem-1">John Smith</span></div>
+      <div *ngFor="let item of trainers; let index = index;" routerLink="./trainer/{{ item.id }}" app-table-row [ngClass]="{'app-row--even': index%2}" class="app-row cursor-pointer">
+        <div app-table-data [data]="{ width: 50 }"><span class="px-rem-1">{{ item.first_name }} {{ item.last_name }}</span></div>
         <div app-table-data [data]="{ width: 50 }"><span class="px-rem-1">{{ type | uppercase }}</span></div>
       </div>
     </div>

@@ -1,9 +1,8 @@
 import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
-import { IResponseApi } from '@app/core/interfaces';
+import { IUserAccount, IResponseApi } from '@app/interfaces';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { TrainerType } from '../../constants';
-import { ITrainer } from '../../interfaces';
 import { AdminService } from '../../services/admin.service';
 
 
@@ -14,8 +13,8 @@ import { AdminService } from '../../services/admin.service';
 })
 export class PendingTrainersComponent implements OnInit {
 
-  public type: TrainerType = 'pending';
-  public trainers$: Observable<ITrainer[]>;
+  public type: TrainerType = 'new';
+  public trainers$: Observable<IUserAccount[]>;
 
   constructor(
     private adminService: AdminService

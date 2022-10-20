@@ -1,4 +1,4 @@
 export interface IAsideButton {
   uiName: string;
-  link: string;
+  link: string | null;
 }

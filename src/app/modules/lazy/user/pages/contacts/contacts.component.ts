@@ -1,12 +1,12 @@
 import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { TranslateService } from '@ngx-translate/core';
-import { Observable } from 'rxjs';
-import { map, startWith, takeUntil, tap } from 'rxjs/operators';
-import { SpinnerService } from '@app/core/services';
-import { IResponseApi } from '@app/core/interfaces';
+import { takeUntil } from 'rxjs/operators';
+import { IResponseApi } from '@app/interfaces';
+import { SpinnerService } from '@core/services';
 import { DestroySubscriptions } from '@app/shared/classes';
-import { ToastService } from '@app/modules/ui/toast';
+import { ToastService } from '@app/modules/ui';
+
 import { UserService } from '../../services/user.service';
 import { IUserAccount } from '../../interfaces';
 

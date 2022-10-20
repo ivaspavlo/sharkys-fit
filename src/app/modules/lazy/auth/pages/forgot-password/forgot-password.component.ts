@@ -1,10 +1,9 @@
 import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { TranslateService } from '@ngx-translate/core';
-import { SpinnerService } from '@app/core/services';
-import { IResponseApi } from '@app/core/interfaces';
+import { SpinnerService, AuthService } from '@core/services';
+import { IResponseApi } from '@app/interfaces';
 import { ToastService } from '@app/modules/ui/toast';
-import { AuthService } from '../../services/auth.service';
 
 
 @Component({

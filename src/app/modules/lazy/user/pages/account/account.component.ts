@@ -3,13 +3,12 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { of } from 'rxjs';
 import { switchMap, takeUntil } from 'rxjs/operators';
 import { TranslateService } from '@ngx-translate/core';
-import { SpinnerService } from '@app/core/services';
-import { FavoriteLocationOptions } from '@app/core/constants';
-import { IResponseApi } from '@app/core/interfaces';
+import { IResponseApi } from '@app/interfaces';
+import { SpinnerService } from '@core/services';
+import { FavoriteLocationOptions } from '@core/constants';
 import { DestroySubscriptions } from '@app/shared/classes';
-import { DialogService } from '@app/modules/ui';
-import { ToastService } from '@app/modules/ui/toast';
-import { ISelectOption } from '@app/modules/ui/select/interfaces';
+import { DialogService, ToastService, ISelectOption } from '@app/modules/ui';
+
 import { UploadImageModalComponent } from '../../modals/upload-image-modal/upload-image-modal.component';
 import { UserService } from '../../services/user.service';
 import { IUserAccount } from '../../interfaces';
@@ -68,7 +67,7 @@ export class AccountComponent extends DestroySubscriptions implements OnInit {
       specialization: [data.specialization, [Validators.required, Validators.minLength(3)]],
       bio: [data.bio, [Validators.required, Validators.minLength(30)]],
       certified_trainer: [data.certified_trainer, [Validators.required]],
-      image_url: [data.image_url, [Validators.required]]
+      image_url: [data.image_url]
     });
   }
 

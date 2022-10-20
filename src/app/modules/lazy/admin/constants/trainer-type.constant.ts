@@ -1,1 +1,1 @@
-export type TrainerType = 'pending' | 'approved';
+export type TrainerType = 'new' | 'approved';

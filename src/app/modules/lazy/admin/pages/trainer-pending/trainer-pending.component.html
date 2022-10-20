@@ -1,11 +1,12 @@
-<section class="w-100 d-flex flex-column align-items-center">
+<section class="w-100 h-100 d-flex flex-column align-items-center">
 
   <ng-container *ngIf="(trainer$ | async) as trainer; else spinner">
-    <ng-container *ngIf="isLoaded && trainer !== true; else noItems" class="app-content">
+    <ng-container *ngIf="isLoaded && trainer !== true; else noItems">
 
-      <h2 class="app-title mb-rem-4">{{ trainer.name }}</h2>
-
-      <p class="app-desc">{{ trainer.bio }}</p>
+      <div class="app-content flex-grow-1">
+        <h2 class="app-title mb-rem-4">{{trainer.first_name}} {{trainer.last_name}}</h2>
+        <p class="app-desc">{{trainer.bio}}</p>
+      </div>
 
       <div class="w-100 d-flex flex-column flex-lg-row">
         <app-button-primary (buttonPrimaryClick)="onApproveReject(trainer, true)" title="admin.button.approve" [loading]="spinnerService.isOn$ | async" [filled]="true" class="app-submit-button w-100 mr-rem-2"></app-button-primary>
@@ -23,6 +24,6 @@
 
 <ng-template #noItems>
   <h2 class="app-title">
-    <p>{{ 'core.no-data' | translate }}</p>
+    <p>{{'core.no-data' | translate}}</p>
   </h2>
 </ng-template>
