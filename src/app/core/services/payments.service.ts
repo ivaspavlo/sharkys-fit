@@ -4,6 +4,7 @@ import { Observable, of } from 'rxjs';
 import { catchError, map, tap } from 'rxjs/operators';
 import { IPaymentData, IResponseApi, ISetpuPayoutsSuccessRes } from '@app/interfaces';
 import { ApiService } from '@app/shared/classes';
+
 import { SpinnerService } from './spinner.service';
 import { CoreStorageService } from './core-storage.service';
 import { USER_ID } from '../constants';
@@ -22,9 +23,9 @@ export class PaymentsService extends ApiService {
     super(injector);
   }
 
-  public getPayoutsData(): Observable<IResponseApi> {
+  public getPayoutsData(id: string): Observable<IResponseApi> {
     this.spinnerService.on();
-    return this.get<any>(`payouts/${this.storageService.get(USER_ID)}`).pipe(
+    return this.get<any>(`payouts/${id}`).pipe(
       map((res: IPaymentData[]) => {
         return {
           valid: true,
