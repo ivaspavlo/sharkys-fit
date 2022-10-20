@@ -38,13 +38,13 @@ export const ROUTES: Routes = [
         component: ForgotPasswordComponent,
         data: { animation: 'Three' }
       }, {
+        path: ROUTE_NAMES.RESET_PASSWORD,
+        component: ResetPasswordComponent,
+        data: { animation: 'Four' }
+      }, {
         path: ROUTE_NAMES.FIRST_LOGIN,
         component: FirstLoginComponent,
         data: { animation: ROUTE_NAMES.FIRST_LOGIN }
-      }, {
-        path: ROUTE_NAMES.RESET_PASSWORD,
-        component: ResetPasswordComponent,
-        data: { animation: ROUTE_NAMES.RESET_PASSWORD }
       }
     ]
   }

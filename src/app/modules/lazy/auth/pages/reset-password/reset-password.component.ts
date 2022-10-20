@@ -6,7 +6,8 @@ import { IResponseApi } from '@app/interfaces';
 import { CORE_ROUTE_NAMES } from '@core/constants';
 import { AuthService, SpinnerService } from '@core/services';
 import { PasswordValidators } from '@app/shared/validators';
-import { ToastService } from '@app/modules/ui/toast';
+import { ToastService } from '@app/modules/ui';
+
 import { RESET_TOKEN } from '../../constants';
 
 
@@ -19,6 +20,7 @@ export class ResetPasswordComponent implements OnInit {
 
   public form: FormGroup;
   public resetToken: string;
+  public success: boolean | null = null;
 
   constructor(
     private fb: FormBuilder,
@@ -43,6 +45,7 @@ export class ResetPasswordComponent implements OnInit {
   }
 
   public onSubmitForm(): void {
+    this.success = null;
     if (!this.form.valid) {
       return;
     }
@@ -52,13 +55,15 @@ export class ResetPasswordComponent implements OnInit {
     };
     this.authService.resetPassword(req).subscribe((res: IResponseApi) => {
       if (!res.valid) {
+        this.success = false;
         this.toastService.show({
           text: res.error_message || this.translationService.instant('core.http-errors.general'),
           type: 'warn'
         });
       } else {
+        this.success = true;
         this.toastService.show({
-          text: this.translationService.instant('reset-password.success'),
+          text: this.translationService.instant('reset-password.success.line-1'),
           type: 'success'
         });
         this.router.navigateByUrl(CORE_ROUTE_NAMES.AUTH);
