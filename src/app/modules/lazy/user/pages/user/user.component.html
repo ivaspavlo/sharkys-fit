@@ -28,7 +28,7 @@
 <ng-template #aside let-avatar="image_url" let-firstName="first_name" let-lastName="last_name" let-payoutAmount="payout_amount">
   <app-aside (asideBtnClick)="onAsideBtnClick($event)" [buttons]="buttons" class="user-aside">
 
-    <app-user-avatar [imageSrc]="avatar"></app-user-avatar>
+    <app-user-avatar [imageSrc]="avatar" class="d-flex justify-content-center"></app-user-avatar>
 
     <div class="mt-3 mb-4 d-flex flex-column">
       <p class="user-aside__name">{{ firstName && lastName ? firstName + ' ' + lastName : ''}}</p>
