@@ -11,11 +11,10 @@
       <app-input controlName="email_address" label="core.form.email.label" placeholder="core.form.email.placeholder" class="mb-rem-2"></app-input>
       <app-input controlName="phone_number" label="core.form.phoneNumber.label" placeholder="core.form.phoneNumber.placeholder" class="mb-rem-2"></app-input>
       <app-input controlName="message" type="textarea" label="core.form.message.label" placeholder="core.form.message.placeholder" class="mb-rem-2"></app-input>
+      <div *ngIf="form" class="d-flex justify-content-center">
+        <app-button-primary [disabled]="!form.valid" (buttonPrimaryClick)="onSubmitForm()" title="core.button.confirm" class="app-submit-button" [loading]="spinnerService.isOn$ | async" [filled]="true"></app-button-primary>
+      </div>
     </form>
-
-    <div *ngIf="form" class="d-flex justify-content-center">
-      <app-button-primary [disabled]="!form.valid" (buttonPrimaryClick)="onSubmitForm()" title="core.button.confirm" class="app-submit-button" [loading]="spinnerService.isOn$ | async" [filled]="true"></app-button-primary>
-    </div>
 
   </div>
 

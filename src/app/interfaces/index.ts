@@ -8,3 +8,4 @@ export * from './api/login-api.interface';
 export * from './api/remind-password-api.interface';
 export * from './api/submit-trainer-api.interface';
 export * from './api/reset-password-api.interface';
+export * from './api/upload-file-api.interface';

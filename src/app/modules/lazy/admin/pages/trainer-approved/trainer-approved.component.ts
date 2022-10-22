@@ -5,7 +5,8 @@ import { map } from 'rxjs/operators';
 import { TranslateService } from '@ngx-translate/core';
 import { PaymentsService, SpinnerService } from '@core/services';
 import { IPaymentData, IUserAccount, IResponseApi } from '@app/interfaces';
-import { ToastService } from '@app/modules/ui/toast';
+import { ToastService } from '@app/modules/ui';
+
 import { CtrlPanelButtons, ROUTE_NAMES } from '../../constants';
 import { ICtrlPanelButton } from '../../interfaces';
 import { AdminService } from '../../services/admin.service';
