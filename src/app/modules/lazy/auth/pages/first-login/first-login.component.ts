@@ -6,7 +6,7 @@ import { SpinnerService, AuthService } from '@core/services';
 import { IResponseApi } from '@app/interfaces';
 import { CORE_ROUTE_NAMES } from '@core/constants';
 import { PasswordValidators } from '@app/shared/validators';
-import { ToastService } from '@app/modules/ui/toast';
+import { ToastService } from '@app/modules/ui';
 
 
 @Component({

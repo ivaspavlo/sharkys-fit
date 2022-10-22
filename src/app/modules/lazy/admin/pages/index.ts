@@ -3,6 +3,7 @@ import { ApprovedTrainersComponent } from './approved-trainers/approved-trainers
 import { PendingTrainersComponent } from './pending-trainers/pending-trainers.component';
 import { TrainerApprovedComponent } from './trainer-approved/trainer-approved.component';
 import { TrainerPendingComponent } from './trainer-pending/trainer-pending.component';
+import { UserContentComponent } from './user-content/user-content.component';
 
 
 export const PAGES = [
@@ -10,5 +11,6 @@ export const PAGES = [
   ApprovedTrainersComponent,
   PendingTrainersComponent,
   TrainerApprovedComponent,
-  TrainerPendingComponent
+  TrainerPendingComponent,
+  UserContentComponent
 ];

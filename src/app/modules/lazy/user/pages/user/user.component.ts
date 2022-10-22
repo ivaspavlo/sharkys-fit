@@ -7,7 +7,7 @@ import { IResponseApi } from '@app/interfaces';
 import { AuthService } from '@core/services';
 import { basicRoutingAnimation } from '@core/animations';
 import { IAsideButton } from '@app/modules/ui/aside/interfaces';
-import { ToastService } from '@app/modules/ui/toast';
+import { ToastService } from '@app/modules/ui';
 
 import { UserService } from '../../services/user.service';
 import { UserAsideButtons } from '../../constants';
