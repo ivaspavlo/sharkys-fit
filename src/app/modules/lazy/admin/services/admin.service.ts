@@ -80,4 +80,12 @@ export class AdminService extends ApiService {
     );
   }
 
+  public getUserPageConent(): Observable<any> {
+    return of({});
+  }
+
+  public updateUserPageContent(req: any): Observable<any> {
+    return of({ valid: true });
+  }
+
 }

@@ -3,7 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { TranslateService } from '@ngx-translate/core';
 import { SpinnerService, AuthService } from '@core/services';
 import { IResponseApi } from '@app/interfaces';
-import { ToastService } from '@app/modules/ui/toast';
+import { ToastService } from '@app/modules/ui';
 
 
 @Component({

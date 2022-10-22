@@ -6,7 +6,7 @@ import { TranslateService } from '@ngx-translate/core';
 import { IUserAccount } from '@app/interfaces';
 import { SpinnerService } from '@core/services';
 import { IResponseApi } from '@app/interfaces';
-import { ToastService } from '@app/modules/ui/toast';
+import { ToastService } from '@app/modules/ui';
 import { AdminService } from '../../services/admin.service';
 import { ROUTE_NAMES } from '../../constants';
 

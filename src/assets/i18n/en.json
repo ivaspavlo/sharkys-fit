@@ -93,6 +93,30 @@
       "message": {
         "label": "Your message",
         "placeholder": "Enter your message"
+      },
+      "account-page": {
+        "label": "Account page content",
+        "placeholder": "Enter content"
+      },
+      "payments-page": {
+        "label": "Payments page content",
+        "placeholder": "Enter content"
+      },
+      "start-page": {
+        "label": "Getting Started page content",
+        "placeholder": "Enter content"
+      },
+      "earnings-page": {
+        "label": "Earnings page content",
+        "placeholder": "Enter content"
+      },
+      "orders-page": {
+        "label": "Orders page content",
+        "placeholder": "Enter content"
+      },
+      "promoting-page": {
+        "label": "Promoting page content",
+        "placeholder": "Enter content"
       }
     }
   },
@@ -179,6 +203,7 @@
   "admin": {
     "approved": "Approved trainers",
     "new": "Pending trainers",
+    "user-content": "Update user content",
     "no-trainers": "There are no trainers yet.",
     "button": {
       "approve": "Approve",
@@ -191,7 +216,8 @@
     },
     "messages": {
       "trainer-cancelled": "Trainer application was cancelled",
-      "trainer-approved": "Trainer application was approved"
+      "trainer-approved": "Trainer application was approved",
+      "user-content-updated": "Conten for user page was updated"
     }
   }
 }
