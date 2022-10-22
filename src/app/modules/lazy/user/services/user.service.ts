@@ -1,5 +1,5 @@
 import { Injectable, Injector } from '@angular/core';
-import { HttpErrorResponse } from '@angular/common/http';
+import { HttpErrorResponse, HttpHeaders } from '@angular/common/http';
 import { BehaviorSubject, Observable, of } from 'rxjs';
 import { catchError, map, tap } from 'rxjs/operators';
 import { CoreStorageService, SpinnerService } from '@core/services';
@@ -49,8 +49,12 @@ export class UserService extends ApiService {
   }
 
   public fileUpload(req: FormData): Observable<IResponseApi> {
+    // TODO: clarify request format and remove IUploadFileReq if needed
     this.spinnerService.on();
-    return this.post<any>('upload', req).pipe(
+    const headers = new HttpHeaders();
+    headers.append('Content-Type', 'multipart/form-data');
+    headers.append('Accept', 'application/json');
+    return this.post<any>('upload', req, { headers }).pipe(
       map((res: IUploadFileSuccessRes) => ({
         valid: true,
         data: res

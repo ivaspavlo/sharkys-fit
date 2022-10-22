@@ -1,4 +1,4 @@
-import { AfterViewInit, ChangeDetectionStrategy, ChangeDetectorRef, Component, ComponentRef, OnDestroy, ViewChild, ViewContainerRef } from '@angular/core';
+import { AfterViewInit, ChangeDetectionStrategy, ChangeDetectorRef, Component, ComponentRef, ViewChild, ViewContainerRef } from '@angular/core';
 import { first } from 'rxjs/operators';
 import { DialogConfig } from '../dialog-config';
 import { DialogRef } from '../dialog-ref';
@@ -11,7 +11,7 @@ import { InsertionDirective } from '../directives/insertion.directive';
   styleUrls: ['./dialog.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class DialogComponent implements AfterViewInit, OnDestroy {
+export class DialogComponent implements AfterViewInit {
   
   @ViewChild(InsertionDirective, {read: ViewContainerRef}) insertionPoint: ViewContainerRef;
   public componentRef: ComponentRef<any>;
@@ -60,11 +60,7 @@ export class DialogComponent implements AfterViewInit, OnDestroy {
     if (this.componentRef) {
       this.componentRef.destroy();
     }
-    this.dialogRef.comppleteClose();
-  }
-  
-  ngOnDestroy() {
-    this.clearComponentRef();
+    this.dialogRef.completeClose();
   }
 
 }

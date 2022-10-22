@@ -4,6 +4,7 @@ export * from './cropper/cropper.module';
 export * from './aside/aside.module';
 export * from './table/table.module';
 export * from './spinner/spinner.module';
+export * from './icon/icon.module';
 export * from './select';
 export * from './toast';
 export * from './dialog';

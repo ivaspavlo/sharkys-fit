@@ -17,7 +17,7 @@ export class DialogRef {
     this._beforeClosed.next();
   }
 
-  public comppleteClose(): void {
+  public completeClose(): void {
     this._afterClosed.next(this.result);
   }
 

@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { OverlayModule } from '@angular/cdk/overlay';
 import { CoreTranslationModule } from '@core/core-translation.module';
+
 import { COMPONENTS } from './components';
 import { DIRECTIVES } from './directives';
 

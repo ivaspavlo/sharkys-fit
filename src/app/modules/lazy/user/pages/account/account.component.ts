@@ -75,8 +75,11 @@ export class AccountComponent extends DestroySubscriptions implements OnInit {
     this.dialogService.open(UploadImageModalComponent).afterClosed.pipe(
       takeUntil(this.componentDestroyed$),
       switchMap((req: FormData | unknown) => {
-        return req instanceof FormData ?
-          this.userService.fileUpload(req) : of(null);
+        if (req instanceof FormData) {
+          req.append('id', this.form.value.id);
+          return this.userService.fileUpload(req);
+        }
+        return of(null);
       })
     ).subscribe((res: IResponseApi | null) => {
       if (res && !res.valid) {
