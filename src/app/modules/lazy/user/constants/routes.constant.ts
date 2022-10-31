@@ -7,6 +7,7 @@ import { EarningsInfoComponent } from '../pages/earnings-info/earnings-info.comp
 import { OrdersInfoComponent } from '../pages/orders-info/orders-info.component';
 import { PromotionsComponent } from '../pages/promotions/promotions.component';
 import { ContactsComponent } from '../pages/contacts/contacts.component';
+import { CanDeactivateAccountGuard } from '../guards/can-deactivate-account.guard';
 
 
 export enum ROUTE_NAMES {
@@ -32,6 +33,7 @@ export const ROUTES: Routes = [
       }, {
         path: ROUTE_NAMES.ACCOUNT,
         component: AccountComponent,
+        canDeactivate: [CanDeactivateAccountGuard],
         data: { animation: ROUTE_NAMES.ACCOUNT }
       }, {
         path: ROUTE_NAMES.PAYMENTS,

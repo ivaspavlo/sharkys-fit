@@ -6,12 +6,14 @@ import { CoreTranslationModule } from '@core/core-translation.module';
 
 import { COMPONENTS } from './components';
 import { DIRECTIVES } from './directives';
+import { MODALS } from './modals';
 
 
 @NgModule({
   declarations: [
     ...COMPONENTS,
-    ...DIRECTIVES
+    ...DIRECTIVES,
+    ...MODALS
   ],
   imports: [
     CommonModule,
@@ -21,7 +23,8 @@ import { DIRECTIVES } from './directives';
   ],
   exports: [
     ...COMPONENTS,
-    ...DIRECTIVES
+    ...DIRECTIVES,
+    ...MODALS
   ]
 })
 export class SharedModule { }

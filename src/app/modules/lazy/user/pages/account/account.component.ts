@@ -24,6 +24,7 @@ export class AccountComponent extends DestroySubscriptions implements OnInit {
 
   public form: FormGroup;
   public favLocationOptions: ISelectOption[] = FavoriteLocationOptions;
+  public initFormValue: object; // used in canDeactivate guard
 
   constructor(
     private fb: FormBuilder,
@@ -44,7 +45,7 @@ export class AccountComponent extends DestroySubscriptions implements OnInit {
         return;
       }
       if (!this.form) {
-        return this.initForm(res);
+        this.initForm(res);
       }
       if (res.image_url !== this.form.value.image_url) {
         return this.form.get('image_url')?.patchValue(res.image_url);
@@ -69,6 +70,7 @@ export class AccountComponent extends DestroySubscriptions implements OnInit {
       certified_trainer: [data.certified_trainer, [Validators.required]],
       image_url: [data.image_url]
     });
+    this.initFormValue = this.form.value;
   }
 
   public onLoadImage(): void {
