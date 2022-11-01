@@ -211,6 +211,7 @@
     "new": "Pending trainers",
     "user-content": "Update user content",
     "no-trainers": "There are no trainers yet.",
+    "modal-cancel-title": "Are you sure you want to reject the application?",
     "button": {
       "approve": "Approve",
       "reject": "Reject"
