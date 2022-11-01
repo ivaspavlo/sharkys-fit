@@ -7,10 +7,10 @@
     <form *ngIf="form" [formGroup]="form" class="my-rem-3">
       <app-input controlName="account" type="textarea" label="core.form.account-page.label" placeholder="core.form.account-page.placeholder" class="mb-rem-2"></app-input>
       <app-input controlName="payments" type="textarea" label="core.form.payments-page.label" placeholder="core.form.payments-page.placeholder" class="mb-rem-2"></app-input>
-      <app-input controlName="start" type="textarea" label="core.form.start-page.label" placeholder="core.form.start-page.placeholder" class="mb-rem-2"></app-input>
+      <app-input controlName="starting" type="textarea" label="core.form.start-page.label" placeholder="core.form.start-page.placeholder" class="mb-rem-2"></app-input>
       <app-input controlName="earnings" type="textarea" label="core.form.earnings-page.label" placeholder="core.form.earnings-page.placeholder" class="mb-rem-2"></app-input>
       <app-input controlName="orders" type="textarea" label="core.form.orders-page.label" placeholder="core.form.orders-page.placeholder" class="mb-rem-2"></app-input>
-      <app-input controlName="promoting" type="textarea" label="core.form.promoting-page.label" placeholder="core.form.promoting-page.placeholder" class="mb-rem-2"></app-input>
+      <app-input controlName="promotions" type="textarea" label="core.form.promoting-page.label" placeholder="core.form.promoting-page.placeholder" class="mb-rem-2"></app-input>
       <div *ngIf="form" class="d-flex justify-content-center">
         <app-button-primary [disabled]="!form.valid" (buttonPrimaryClick)="onSubmitForm()" title="core.button.confirm" class="app-submit-button" [loading]="spinnerService.isOn$ | async" [filled]="true"></app-button-primary>
       </div>

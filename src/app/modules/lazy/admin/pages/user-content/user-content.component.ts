@@ -3,7 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { TranslateService } from '@ngx-translate/core';
 import { SpinnerService } from '@app/core/services';
 import { ToastService } from '@app/modules/ui';
-import { IResponseApi } from '@app/interfaces';
+import { IResponseApi, IUserContent } from '@app/interfaces';
 import { AdminService } from '../../services/admin.service';
 
 
@@ -31,14 +31,14 @@ export class UserContentComponent implements OnInit {
     });
   }
 
-  private initForm(res: any): void {
+  private initForm(res: IUserContent): void {
     this.form = this.fb.group({
       account: [res?.account, [Validators.required]],
       payments: [res?.payments, [Validators.required]],
-      start: [res?.start, [Validators.required]],
+      starting: [res?.starting, [Validators.required]],
       earnings: [res?.earnings, [Validators.required]],
       orders: [res?.orders, [Validators.required]],
-      promoting: [res?.promoting, [Validators.required]]
+      promotions: [res?.promotions, [Validators.required]]
     });
   }
 

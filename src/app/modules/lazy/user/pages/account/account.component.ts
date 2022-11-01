@@ -1,7 +1,7 @@
 import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { of } from 'rxjs';
-import { switchMap, takeUntil } from 'rxjs/operators';
+import { of, Observable } from 'rxjs';
+import { map, switchMap, takeUntil } from 'rxjs/operators';
 import { TranslateService } from '@ngx-translate/core';
 import { IResponseApi } from '@app/interfaces';
 import { SpinnerService } from '@core/services';
@@ -11,7 +11,8 @@ import { DialogService, ToastService, ISelectOption } from '@app/modules/ui';
 
 import { UploadImageModalComponent } from '../../modals/upload-image-modal/upload-image-modal.component';
 import { UserService } from '../../services/user.service';
-import { IUserAccount } from '../../interfaces';
+import { IUserAccount, IUserContent } from '../../interfaces';
+import { ROUTE_NAMES } from '../../constants';
 
 
 @Component({
@@ -23,8 +24,9 @@ import { IUserAccount } from '../../interfaces';
 export class AccountComponent extends DestroySubscriptions implements OnInit {
 
   public form: FormGroup;
+  public content$: Observable<string | null>;
   public favLocationOptions: ISelectOption[] = FavoriteLocationOptions;
-  public initFormValue: object; // used in canDeactivate guard
+  public initFormValue: object; // public because it is used in canDeactivate guard
 
   constructor(
     private fb: FormBuilder,
@@ -38,6 +40,8 @@ export class AccountComponent extends DestroySubscriptions implements OnInit {
   }
 
   ngOnInit(): void {
+    this.initContent();
+
     this.userService.getCachedUserData().pipe(
       takeUntil(this.componentDestroyed$)
     ).subscribe((res: IUserAccount | null) => {
@@ -71,6 +75,12 @@ export class AccountComponent extends DestroySubscriptions implements OnInit {
       image_url: [data.image_url]
     });
     this.initFormValue = this.form.value;
+  }
+
+  private initContent(): void {
+    this.content$ = this.userService.getCahcedPagesContent().pipe(
+      map((res: IUserContent | null) => res ? res[ROUTE_NAMES.ACCOUNT] : null)
+    );
   }
 
   public onLoadImage(): void {

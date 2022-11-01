@@ -14,9 +14,9 @@ export enum ROUTE_NAMES {
   BLANK = '',
   ACCOUNT = 'account',
   PAYMENTS = 'payments',
-  GETTING_STARTED = 'getting-started',
-  EARNINGS_INFO = 'earnings-info',
-  ORDERS_INFO = 'orders-info',
+  GETTING_STARTED = 'starting',
+  EARNINGS_INFO = 'earnings',
+  ORDERS_INFO = 'orders',
   PROMOTIONS = 'promotions',
   CONTACTS = 'contacts'
 }
