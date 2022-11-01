@@ -6,6 +6,7 @@
 .dialog {
   min-height: 30vh;
   max-height: 100vh;
+  display: flex;
   position: relative;
   overflow: auto;
   @media only screen and (min-width: 576px) {
@@ -13,6 +14,8 @@
   }
   &__content {
     padding: 25px;
+    display: flex;
+    flex-grow: 1;
     position: relative;
   }
   &__close {

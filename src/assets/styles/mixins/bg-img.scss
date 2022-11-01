@@ -1,5 +1,7 @@
-@mixin bg-img($img, $bg-repeat: no-repeat, $bg-pos: center, $bg-color: transparent, $bg-size: cover) {
-  background: url('#{$img}');
+@mixin bg-img($img: '', $bg-repeat: no-repeat, $bg-pos: center, $bg-color: transparent, $bg-size: cover) {
+  @if $img != '' {
+    background: url('#{$img}');
+  }
   background-size: $bg-size;
   background-repeat: $bg-repeat;
   background-position: $bg-pos;

@@ -1,5 +1,21 @@
+@import '_core-colors';
+@import 'mixins/_all';
+
 .confirm-modal {
+  height: 100%;
   width: 50vw;
   max-width: 500px;
   display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  &__button {
+    @include button;
+    margin: 1rem 1rem 0;
+  }
+  &__icon {
+    @include bg-img;
+    width: 50px;
+    height: 50px;
+    display: flex;
+  }
 }

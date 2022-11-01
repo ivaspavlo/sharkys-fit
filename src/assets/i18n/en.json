@@ -118,6 +118,11 @@
         "label": "Promoting page content",
         "placeholder": "Enter content"
       }
+    },
+    "confirm-modal": {
+      "title": "Please confirm",
+      "confirm": "Yes",
+      "cancel": "No"
     }
   },
   "not-found": {
@@ -182,6 +187,7 @@
     "how-to-order": "How to order",
     "promoting": "Promoting",
     "contact-us": "Contact us",
+    "account-deactivate-title": "You have not saved the changes. Are you sure you want to leave the page?",
     "messages": {
       "file-uploaded": "Click 'Confirm' button in order to save the uploaded photo.",
       "user-updated": "Account data was successfully updated",
