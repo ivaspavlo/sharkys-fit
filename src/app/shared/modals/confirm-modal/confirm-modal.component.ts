@@ -1,5 +1,5 @@
-import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
-import { DialogRef } from '@app/modules/ui';
+import { Component, ChangeDetectionStrategy } from '@angular/core';
+import { DialogConfig, DialogRef } from '@app/modules/ui';
 
 
 @Component({
@@ -11,7 +11,8 @@ import { DialogRef } from '@app/modules/ui';
 export class ConfirmModalComponent {
 
   constructor(
-    public dialog: DialogRef
+    public dialog: DialogRef,
+    public config: DialogConfig
   ) { }
 
 }

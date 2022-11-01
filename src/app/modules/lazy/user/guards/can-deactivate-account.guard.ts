@@ -21,12 +21,9 @@ export class CanDeactivateAccountGuard extends DestroySubscriptions implements C
     if (JSON.stringify(component.initFormValue) === JSON.stringify(component.form.value)) {
       return of(true);
     }
-    return this.dialogService.open(ConfirmModalComponent).afterClosed.pipe(
+    return this.dialogService.open(ConfirmModalComponent, {title: 'user.account-deactivate-title', icon: 'warn-orange'}).afterClosed.pipe(
       takeUntil(this.componentDestroyed$),
-      map((res: any) => {
-        debugger;
-        return false;
-      })
+      map((res: boolean | undefined) => !!res)
     );
   }
 }
