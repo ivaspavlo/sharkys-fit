@@ -2,7 +2,7 @@
 
   <div class="app-content">
 
-    <h4 class="app-desc">{{ 'submission.desc' | translate }}</h4>
+    <h4 class="app-desc">{{(content$ | async) || ('submission.desc' | translate)}}</h4>
 
     <form *ngIf="form" [formGroup]="form" markTouched class="my-rem-3">
 

@@ -54,7 +54,7 @@ export const ROUTES: Routes = [
         ]
       }, {
         path: ROUTE_NAMES.USER_CONTENT,
-        data: { animation: 'ApprovedTrainersComponent' },
+        data: { animation: 'UserContentComponent' },
         component: UserContentComponent
       }
     ]

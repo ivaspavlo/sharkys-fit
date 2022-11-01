@@ -6,13 +6,14 @@ import { CoreStorageService, SpinnerService } from '@core/services';
 import { USER_ID } from '@core/constants';
 import { IResponseApi } from '@app/interfaces';
 import { ApiService } from '@app/shared/classes';
-import { IUploadFileSuccessRes, IUserAccount } from '../interfaces';
+import { IContact, IUploadFileSuccessRes, IUserAccount, IUserContent } from '../interfaces';
 
 
 @Injectable()
 export class UserService extends ApiService {
 
   private _cachedUserData$ = new BehaviorSubject<IUserAccount | null>(null);
+  private _cachedPagesContent$ = new BehaviorSubject<IUserContent | null>(null);
 
   constructor(
     protected injector: Injector,
@@ -22,9 +23,17 @@ export class UserService extends ApiService {
     super(injector);
   }
 
+  private cacheUserData(data: IUserAccount): void {
+    this._cachedUserData$.next(data);
+  }
+
+  public getCachedUserData(): Observable<IUserAccount | null> {
+    return this._cachedUserData$.asObservable();
+  }
+
   public getUserData(): Observable<IResponseApi> {
     this.spinnerService.on();
-    return this.get<any>(`accounts/${this.storageService.get(USER_ID)}`).pipe(
+    return this.get<IUserAccount>(`accounts/${this.storageService.get(USER_ID)}`).pipe(
       tap((res: IUserAccount) => {
         this.cacheUserData(res);
       }),
@@ -32,20 +41,12 @@ export class UserService extends ApiService {
         valid: true,
         data: res
       })),
-      catchError((res: any) => of({
+      catchError((res: HttpErrorResponse) => of({
         valid: false,
-        error_message: res.error_message || ''
+        error_message: res.error.error_message || ''
       })),
       tap(() => this.spinnerService.off())
     );
-  }
-
-  public getCachedUserData(): Observable<IUserAccount | null> {
-    return this._cachedUserData$.asObservable();
-  }
-
-  private cacheUserData(data: IUserAccount): void {
-    this._cachedUserData$.next(data);
   }
 
   public fileUpload(req: FormData): Observable<IResponseApi> {
@@ -54,14 +55,14 @@ export class UserService extends ApiService {
     const headers = new HttpHeaders();
     headers.append('Content-Type', 'multipart/form-data');
     headers.append('Accept', 'application/json');
-    return this.post<any>('upload', req, { headers }).pipe(
+    return this.post<IUploadFileSuccessRes>('upload', req, { headers }).pipe(
       map((res: IUploadFileSuccessRes) => ({
         valid: true,
         data: res
       })),
-      catchError((res: any) => of({
+      catchError((res: HttpErrorResponse) => of({
         valid: false,
-        error_message: res.error_message
+        error_message: res.error.error_message
       })),
       tap(() => this.spinnerService.off())
     );
@@ -69,7 +70,7 @@ export class UserService extends ApiService {
 
   public updateAccount(req: IUserAccount): Observable<IResponseApi> {
     this.spinnerService.on();
-    return this.put<any>('accounts', req).pipe(
+    return this.put<IUserAccount>('accounts', req).pipe(
       map((res: IUserAccount) => {
         this.cacheUserData(res);
         return {
@@ -77,20 +78,57 @@ export class UserService extends ApiService {
           data: res
         }
       }),
-      catchError((res: any) => of({
+      catchError((res: HttpErrorResponse) => of({
         valid: false,
-        error_message: res.error_message
+        error_message: res.error.error_message
       })),
       tap(() => this.spinnerService.off())
     );
   }
 
-  public contact(req: any): Observable<IResponseApi> {
+  public contact(req: IContact): Observable<IResponseApi> {
     this.spinnerService.on();
     return this.post<any>('contact', req).pipe(
       map(() => {
         return {
           valid: true
+        };
+      }),
+      catchError((res: HttpErrorResponse) => of({
+        valid: false,
+        error_message: res.error.error_message
+      })),
+      tap(() => this.spinnerService.off())
+    );
+  }
+
+  private cachePagesContent(res: IUserContent): void {
+    this._cachedPagesContent$.next(res);
+  }
+
+  public getCahcedPagesContent(): Observable<IUserContent | null> {
+    return this._cachedPagesContent$.asObservable();
+  }
+
+  public getPagesContent(): Observable<IResponseApi> {
+    this.spinnerService.on();
+    // TODO: agree the request with Ben
+    // return this.get<IUserContent>('user/content').pipe(
+    return of({
+      account: "A Sharky's Reward Account is required to join Sharky's Fit. We will create an account automatically for you and include the account username and password in the confirmation email. If you have a Sharky's Reward Account and have registered it, please make sure to use an different email address when creating your Sharky's Fit Account.",
+      payments: "A Sharky's Reward Account is required to join Sharky's Fit. We will create an account automatically for you and include the account username and password in the confirmation email. If you have a Sharky's Reward Account and have registered it, please make sure to use an different email address when creating your Sharky's Fit Account.",
+      starting: "A Sharky's Reward Account is required to join Sharky's Fit. We will create an account automatically for you and include the account username and password in the confirmation email. If you have a Sharky's Reward Account and have registered it, please make sure to use an different email address when creating your Sharky's Fit Account.",
+      earnings: "A Sharky's Reward Account is required to join Sharky's Fit. We will create an account automatically for you and include the account username and password in the confirmation email. If you have a Sharky's Reward Account and have registered it, please make sure to use an different email address when creating your Sharky's Fit Account.",
+      orders: "A Sharky's Reward Account is required to join Sharky's Fit. We will create an account automatically for you and include the account username and password in the confirmation email. If you have a Sharky's Reward Account and have registered it, please make sure to use an different email address when creating your Sharky's Fit Account.",
+      promotions: "A Sharky's Reward Account is required to join Sharky's Fit. We will create an account automatically for you and include the account username and password in the confirmation email. If you have a Sharky's Reward Account and have registered it, please make sure to use an different email address when creating your Sharky's Fit Account."
+    }).pipe(
+      tap((res: IUserContent) => {
+        this.cachePagesContent(res);
+      }),
+      map((res: IUserContent) => {
+        return {
+          valid: true,
+          data: res
         };
       }),
       catchError((res: HttpErrorResponse) => of({

@@ -1,6 +1,6 @@
 <section class="user-page">
 
-  <ng-container *ngIf="(userData$ | async) as data">
+  <ng-container *ngIf="(data$ | async) as data">
 
     <div class="d-none d-md-flex flex-column">
       <ng-container *ngTemplateOutlet="aside; context: data"></ng-container>
