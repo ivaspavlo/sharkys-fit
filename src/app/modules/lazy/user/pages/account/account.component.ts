@@ -117,6 +117,7 @@ export class AccountComponent extends DestroySubscriptions implements OnInit {
           type: 'warn'
         });
       } else {
+        this.initFormValue = this.form.value;
         this.toastService.show({
           text: this.translationService.instant('user.messages.user-updated'),
           type: 'success'

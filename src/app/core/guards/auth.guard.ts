@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
 import { CanActivate, CanLoad, Router } from '@angular/router';
 import { Observable } from 'rxjs';
-import { CoreStorageService } from '../services';
-import { CORE_ROUTE_NAMES, ACCESS_TOKEN } from '../constants';
+import { AuthService } from '../services';
+import { CORE_ROUTE_NAMES } from '../constants';
 
 
 @Injectable({
@@ -11,12 +11,12 @@ import { CORE_ROUTE_NAMES, ACCESS_TOKEN } from '../constants';
 export class AuthGuard implements CanActivate, CanLoad {
 
   constructor(
-    private storage: CoreStorageService,
+    private authSerive: AuthService,
     private router: Router
   ) { }
 
   canActivate(): Observable<boolean> | Promise<boolean> | boolean {
-    const isLoggedIn = this.isLoggedIn();
+    const isLoggedIn = this.authSerive.isLoggedIn();
     if (!isLoggedIn) {
       this.router.navigate([CORE_ROUTE_NAMES.AUTH]);
     }
@@ -24,15 +24,11 @@ export class AuthGuard implements CanActivate, CanLoad {
   }
 
   canLoad(): Observable<boolean> | Promise<boolean> | boolean {
-    const isLoggedIn = this.isLoggedIn();
+    const isLoggedIn = this.authSerive.isLoggedIn();
     if (!isLoggedIn) {
       this.router.navigate([CORE_ROUTE_NAMES.AUTH]);
     }
     return isLoggedIn;
-  }
-
-  private isLoggedIn(): boolean {
-    return !!this.storage.get(ACCESS_TOKEN);
   }
 
 }

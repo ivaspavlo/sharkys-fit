@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
 import { CanLoad, Router } from '@angular/router';
 import { Observable } from 'rxjs';
-import { CORE_ROUTE_NAMES, IS_ADMIN } from '../constants';
-import { CoreStorageService } from '../services';
+import { CORE_ROUTE_NAMES } from '../constants';
+import { AuthService } from '../services';
 
 
 @Injectable({
@@ -12,19 +12,15 @@ export class AdminGuard implements CanLoad {
 
   constructor(
     private router: Router,
-    private storage: CoreStorageService
+    private authSerive: AuthService
   ) { }
 
   canLoad(): Observable<boolean> | Promise<boolean> | boolean {
-    const isAdmin = this.isAdmin();
+    const isAdmin = this.authSerive.isAdmin();
     if (!isAdmin) {
       this.router.navigate([CORE_ROUTE_NAMES.USER]);
     }
     return isAdmin;
-  }
-
-  private isAdmin(): boolean {
-    return JSON.parse(this.storage.get(IS_ADMIN));
   }
 
 }
