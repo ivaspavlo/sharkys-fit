@@ -1,8 +1,8 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { LightgalleryModule } from 'lightgallery/angular';
+import { LightgalleryModule } from 'lightgallery/angular/13';
 
-import { COMPONENTS } from '../input/components';
+import { COMPONENTS } from './coomponents';
 
 
 @NgModule({
