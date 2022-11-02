@@ -111,4 +111,12 @@ export class AuthService extends ApiService {
     this.spinnerService.off();
   }
 
+  public isLoggedIn(): boolean {
+    return !!this.storageService.get(ACCESS_TOKEN);
+  }
+
+  public isAdmin(): boolean {
+    return JSON.parse(this.storageService.get(IS_ADMIN));
+  }
+
 }

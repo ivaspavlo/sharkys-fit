@@ -49,7 +49,9 @@ export class LoginComponent implements OnInit {
         });
         return;
       }
-      this.router.navigateByUrl(CORE_ROUTE_NAMES.ADMIN);
+      this.router.navigateByUrl(
+        this.authService.isAdmin() ? CORE_ROUTE_NAMES.ADMIN : CORE_ROUTE_NAMES.USER
+      );
     });
   }
 
