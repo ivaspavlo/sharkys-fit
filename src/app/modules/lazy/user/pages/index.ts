@@ -6,6 +6,7 @@ import { ContactsComponent } from './contacts/contacts.component';
 import { OrdersInfoComponent } from './orders-info/orders-info.component';
 import { PromotionsComponent } from './promotions/promotions.component';
 import { EarningsInfoComponent } from './earnings-info/earnings-info.component';
+import { UserGalleryComponent } from './user-gallery/user-gallery.component';
 
 
 export const PAGES = [
@@ -16,5 +17,6 @@ export const PAGES = [
   ContactsComponent,
   OrdersInfoComponent,
   PromotionsComponent,
-  EarningsInfoComponent
+  EarningsInfoComponent,
+  UserGalleryComponent
 ];

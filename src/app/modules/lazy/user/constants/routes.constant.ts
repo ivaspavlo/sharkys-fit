@@ -8,6 +8,7 @@ import { OrdersInfoComponent } from '../pages/orders-info/orders-info.component'
 import { PromotionsComponent } from '../pages/promotions/promotions.component';
 import { ContactsComponent } from '../pages/contacts/contacts.component';
 import { CanDeactivateAccountGuard } from '../guards/can-deactivate-account.guard';
+import { UserGalleryComponent } from '../pages/user-gallery/user-gallery.component';
 
 
 export enum ROUTE_NAMES {
@@ -18,7 +19,8 @@ export enum ROUTE_NAMES {
   EARNINGS_INFO = 'earnings',
   ORDERS_INFO = 'orders',
   PROMOTIONS = 'promotions',
-  CONTACTS = 'contacts'
+  CONTACTS = 'contacts',
+  GALLERY = 'gallery'
 }
 
 export const ROUTES: Routes = [
@@ -59,6 +61,10 @@ export const ROUTES: Routes = [
         path: ROUTE_NAMES.CONTACTS,
         component: ContactsComponent,
         data: { animation: ROUTE_NAMES.CONTACTS }
+      }, {
+        path: ROUTE_NAMES.GALLERY,
+        component: UserGalleryComponent,
+        data: { animation: ROUTE_NAMES.GALLERY }
       }
     ]
   }
