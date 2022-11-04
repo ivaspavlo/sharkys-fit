@@ -6,6 +6,6 @@ export const UserAsideButtons = [
   { uiName: 'user.how-to-order', link: '/user/orders' },
   { uiName: 'user.promoting', link: '/user/promotions' },
   { uiName: 'user.contact-us', link: '/user/contacts' },
-  { uiName: 'user.gallery', link: '/user/gallery' },
+  // { uiName: 'user.gallery', link: '/user/gallery' },
   { uiName: 'core.button.logout', link: null, icon: 'off' }
 ];

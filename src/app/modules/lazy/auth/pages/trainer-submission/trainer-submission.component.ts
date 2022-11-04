@@ -37,7 +37,7 @@ export class TrainerSubmissionComponent implements OnInit {
     this.form = this.fb.group({
       first_name: ['', [Validators.required, Validators.minLength(2)]],
       last_name: ['', [Validators.required, Validators.minLength(2)]],
-      email: ['', [Validators.required, Validators.email]],
+      email_address: ['', [Validators.required, Validators.email]],
       address: ['', [Validators.required, Validators.minLength(10)]],
       phone_number: ['', [Validators.required, Validators.minLength(7)]],
       training_location: ['', [Validators.required, Validators.minLength(3)]],
