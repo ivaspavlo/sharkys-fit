@@ -1,4 +1,6 @@
 import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
+import { BeforeSlideDetail } from 'lightgallery/lg-events';
+
 
 @Component({
   selector: 'app-gallery',
@@ -8,9 +10,17 @@ import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
 })
 export class GalleryComponent implements OnInit {
 
-  constructor() { }
+  settings = {
+    counter: false,
+    // plugins: [lgZoom],
+  };
+  onBeforeSlide = (detail: BeforeSlideDetail): void => {
+    const { index, prevIndex } = detail;
+    console.log(index, prevIndex);
+  };
 
-  ngOnInit(): void {
+  ngOnInit() {
+    
   }
 
 }
