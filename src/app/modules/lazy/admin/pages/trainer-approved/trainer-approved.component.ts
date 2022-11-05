@@ -48,7 +48,7 @@ export class TrainerApprovedComponent extends DestroySubscriptions implements On
         this.isLoaded = true;
         if (!res.valid) {
           this.toastService.show({
-            text: this.translationService.instant('core.http-errors.general'),
+            text: res.error_message || this.translationService.instant('core.http-errors.general'),
             type: 'warn'
           });
           return true;
@@ -56,8 +56,16 @@ export class TrainerApprovedComponent extends DestroySubscriptions implements On
         return res.data;
       })
     );
-    this.payments$ = this.paymentsService.getPayoutsData(trainerId).pipe(
-      map((res: IResponseApi) => res.data)
+    this.payments$ = this.paymentsService.getPayoutsDataAdmin(trainerId).pipe(
+      map((res: IResponseApi) => {
+        if (!res.valid) {
+          this.toastService.show({
+            text: res.error_message || this.translationService.instant('core.http-errors.general'),
+            type: 'warn'
+          });
+        }
+        return res.data || [];
+      })
     );
   }
 

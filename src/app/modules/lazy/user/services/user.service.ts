@@ -50,7 +50,6 @@ export class UserService extends ApiService {
   }
 
   public fileUpload(req: FormData): Observable<IResponseApi> {
-    // TODO: clarify request format and remove IUploadFileReq if needed
     this.spinnerService.on();
     const headers = new HttpHeaders();
     headers.append('Content-Type', 'multipart/form-data');

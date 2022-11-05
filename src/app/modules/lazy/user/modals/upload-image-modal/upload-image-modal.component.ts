@@ -1,4 +1,5 @@
 import { Component, ChangeDetectionStrategy } from '@angular/core';
+import { ISaveCroppedImageEvent } from '@app/interfaces';
 import { DialogRef } from '@app/modules/ui';
 
 
@@ -14,14 +15,8 @@ export class UploadImageModalComponent {
     private dialog: DialogRef
   ) { }
 
-  public onSaveImage(imgBase64: string | null | undefined): void {
-    if (typeof imgBase64 !== 'string') {
-      this.dialog.close(null);
-      return;
-    }
-    const req = new FormData();
-    req.append('file', imgBase64);
-    this.dialog.close(req);
+  public onSaveImage(imgSaveEvent: ISaveCroppedImageEvent): void {
+    this.dialog.close(imgSaveEvent);
   }
 
 }
