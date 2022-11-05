@@ -1,5 +1,6 @@
 import { Component, ChangeDetectionStrategy, ViewChild, Output, EventEmitter } from '@angular/core';
 import { ImageCropperComponent, ImageCroppedEvent } from 'ngx-image-cropper';
+import { ISaveCroppedImageEvent } from '../../interfaces';
 
 
 @Component({
@@ -11,12 +12,12 @@ import { ImageCropperComponent, ImageCroppedEvent } from 'ngx-image-cropper';
 export class CropperComponent {
 
   @ViewChild(ImageCropperComponent) imageCropper: ImageCropperComponent;
-  @Output() saveCroppedImage: EventEmitter<string | null | undefined> = new EventEmitter();
+  @Output() saveCroppedImage: EventEmitter<ISaveCroppedImageEvent> = new EventEmitter();
 
-  public imageChangedEvent: any = '';
-  public croppedImage: string | null | undefined = '';
+  public imageChangedEvent: Event;
+  public croppedImage: string | null | undefined;
 
-  public onChange(event: unknown): void {
+  public onChange(event: Event): void {
     this.imageChangedEvent = event;
   }
 
@@ -29,6 +30,29 @@ export class CropperComponent {
   }
 
   public onSave(): void {
-    this.saveCroppedImage.emit(this.croppedImage);
+    if (typeof this.croppedImage === 'string') {
+      const imgBlob = this.dataURIToBlob(this.croppedImage);
+      this.saveCroppedImage.emit({
+        imgBase64: this.croppedImage,
+        imgBlob
+      });
+    }
   }
+
+  private dataURIToBlob(dataURI: string): Blob {
+    const splitDataURI = dataURI.split(',');
+    const byteString = splitDataURI[0].indexOf('base64') >= 0 ?
+      atob(splitDataURI[1]) :
+      decodeURI(splitDataURI[1]);
+
+    const mimeString = splitDataURI[0].split(':')[1].split(';')[0];
+
+    const ia = new Uint8Array(byteString.length)
+    for (let i = 0; i < byteString.length; i++) {
+      ia[i] = byteString.charCodeAt(i);
+    }
+
+    return new Blob([ia], { type: mimeString });
+  }
+
 }

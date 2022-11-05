@@ -24,17 +24,25 @@ export class PaymentsService extends ApiService {
   }
 
   public getPayoutsData(id: string): Observable<IResponseApi> {
+    return this._getPayoutsData(`payouts/${id}`);
+  }
+
+  public getPayoutsDataAdmin(id: string): Observable<IResponseApi> {
+    return this._getPayoutsData(`admin/payouts/${id}`);
+  }
+
+  private _getPayoutsData(url: string): Observable<IResponseApi> {
     this.spinnerService.on();
-    return this.get<any>(`payouts/${id}`).pipe(
+    return this.get<any>(url).pipe(
       map((res: IPaymentData[]) => {
         return {
           valid: true,
           data: res
         }
       }),
-      catchError(() => of({
+      catchError((err: HttpErrorResponse) => of({
         valid: false,
-        data: []
+        error_message: err.error.error_message
       })),
       tap(() => this.spinnerService.off())
     );

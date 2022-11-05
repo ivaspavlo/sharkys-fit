@@ -48,7 +48,13 @@ export class PaymentsComponent extends DestroySubscriptions implements OnInit {
         return this.isPayoutsSetup ?
           this.paymentsService.getPayoutsData(this.storageService.get(USER_ID)).pipe(
             map((res: IResponseApi) => {
-              return res.data;
+              if (!res.valid) {
+                this.toastService.show({
+                  text: res.error_message || this.translationService.instant('core.http-errors.general'),
+                  type: 'warn'
+                });
+              }
+              return res.data || [];
             })
           ) : of([]);
       }),

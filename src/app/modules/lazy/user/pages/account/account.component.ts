@@ -1,9 +1,9 @@
 import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { of, Observable } from 'rxjs';
+import { Observable } from 'rxjs';
 import { map, switchMap, takeUntil } from 'rxjs/operators';
 import { TranslateService } from '@ngx-translate/core';
-import { IResponseApi } from '@app/interfaces';
+import { IResponseApi, ISaveCroppedImageEvent } from '@app/interfaces';
 import { SpinnerService } from '@core/services';
 import { FavoriteLocationOptions } from '@core/constants';
 import { DestroySubscriptions } from '@app/shared/classes';
@@ -27,6 +27,7 @@ export class AccountComponent extends DestroySubscriptions implements OnInit {
   public content$: Observable<string | null>;
   public favLocationOptions: ISelectOption[] = FavoriteLocationOptions;
   public initFormValue: object; // public because it is used in canDeactivate guard
+  public thumbnailImgUrl: string;
 
   constructor(
     private fb: FormBuilder,
@@ -50,9 +51,6 @@ export class AccountComponent extends DestroySubscriptions implements OnInit {
       }
       if (!this.form) {
         this.initForm(res);
-      }
-      if (res.image_url !== this.form.value.image_url) {
-        return this.form.get('image_url')?.patchValue(res.image_url);
       }
     });
   }
@@ -86,20 +84,20 @@ export class AccountComponent extends DestroySubscriptions implements OnInit {
   public onLoadImage(): void {
     this.dialogService.open(UploadImageModalComponent).afterClosed.pipe(
       takeUntil(this.componentDestroyed$),
-      switchMap((req: FormData | unknown) => {
-        if (req instanceof FormData) {
-          req.append('id', this.form.value.id);
-          return this.userService.fileUpload(req);
-        }
-        return of(null);
+      switchMap((event: ISaveCroppedImageEvent) => {
+        const req = new FormData();
+        req.append('file', event.imgBlob);
+        req.append('id', this.form.value.id);
+        return this.userService.fileUpload(req);
       })
-    ).subscribe((res: IResponseApi | null) => {
-      if (res && !res.valid) {
+    ).subscribe((res: IResponseApi) => {
+      if (!res.valid) {
         this.toastService.show({
           text: res.error_message || this.translationService.instant('core.http-errors.file-upload'),
           type: 'warn'
         });
-      } else if (res?.valid) {
+      } else if (res.valid) {
+        this.thumbnailImgUrl = res.data.url;
         this.form.get('image_url')?.patchValue(res.data.url);
         this.toastService.show({
           text: this.translationService.instant('user.messages.file-uploaded'),
