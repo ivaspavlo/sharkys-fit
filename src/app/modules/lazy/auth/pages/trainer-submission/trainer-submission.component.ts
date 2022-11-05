@@ -34,6 +34,7 @@ export class TrainerSubmissionComponent implements OnInit {
   }
 
   private initForm(): void {
+    debugger;
     this.form = this.fb.group({
       first_name: ['', [Validators.required, Validators.minLength(2)]],
       last_name: ['', [Validators.required, Validators.minLength(2)]],

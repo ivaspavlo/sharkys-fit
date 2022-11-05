@@ -31,11 +31,11 @@
     height: 15px;
     margin-right: 4px;
     display: flex;
-    &--upload {
-      @include bg-img('/assets/img/svg/upload.svg');
+    &--browse {
+      @include bg-img('/assets/img/svg/browse.svg');
     }
-    &--save {
-      @include bg-img('/assets/img/svg/save.svg');
+    &--load {
+      @include bg-img('/assets/img/svg/upload-cloud.svg');
     }
   }
   &__button {
@@ -58,8 +58,8 @@
       border: 2px solid gray;
       color: gray;
       cursor: not-allowed;
-      .app-cropper__icon--save {
-        @include bg-img('/assets/img/svg/save-gray.svg');
+      .app-cropper__icon--load {
+        @include bg-img('/assets/img/svg/upload-cloud-grey.svg');
       }
     }
     &:hover:not([disabled]) {

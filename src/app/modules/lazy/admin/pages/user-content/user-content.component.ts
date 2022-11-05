@@ -26,8 +26,8 @@ export class UserContentComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.adminService.getUserPageConent().subscribe((res: any) => {
-      this.initForm(res);
+    this.adminService.getUserPageConent().subscribe((res: IResponseApi) => {
+      this.initForm(res.data);
     });
   }
 

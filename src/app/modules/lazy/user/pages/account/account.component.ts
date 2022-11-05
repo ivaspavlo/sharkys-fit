@@ -1,6 +1,6 @@
-import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
+import { Component, OnInit, ChangeDetectionStrategy, ChangeDetectorRef } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Observable } from 'rxjs';
+import { Observable, of } from 'rxjs';
 import { map, switchMap, takeUntil } from 'rxjs/operators';
 import { TranslateService } from '@ngx-translate/core';
 import { IResponseApi, ISaveCroppedImageEvent } from '@app/interfaces';
@@ -35,6 +35,7 @@ export class AccountComponent extends DestroySubscriptions implements OnInit {
     private dialogService: DialogService,
     private toastService: ToastService,
     private translationService: TranslateService,
+    private cdr: ChangeDetectorRef,
     public spinnerService: SpinnerService
   ) {
     super();
@@ -84,13 +85,22 @@ export class AccountComponent extends DestroySubscriptions implements OnInit {
   public onLoadImage(): void {
     this.dialogService.open(UploadImageModalComponent).afterClosed.pipe(
       takeUntil(this.componentDestroyed$),
-      switchMap((event: ISaveCroppedImageEvent) => {
+      switchMap((event: ISaveCroppedImageEvent | undefined) => {
+        if (!event) {
+          return of(null);
+        }
         const req = new FormData();
         req.append('file', event.imgBlob);
         req.append('id', this.form.value.id);
         return this.userService.fileUpload(req);
       })
-    ).subscribe((res: IResponseApi) => {
+    ).subscribe((res: IResponseApi | null) => {
+      if (res === null) {
+        this.thumbnailImgUrl = '';
+        this.cdr.markForCheck();
+        return;
+      }
+
       if (!res.valid) {
         this.toastService.show({
           text: res.error_message || this.translationService.instant('core.http-errors.file-upload'),
@@ -115,6 +125,7 @@ export class AccountComponent extends DestroySubscriptions implements OnInit {
           type: 'warn'
         });
       } else {
+        this.thumbnailImgUrl = '';
         this.initFormValue = this.form.value;
         this.toastService.show({
           text: this.translationService.instant('user.messages.user-updated'),

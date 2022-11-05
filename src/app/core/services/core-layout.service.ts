@@ -13,7 +13,6 @@ export class CoreLayoutService {
     @Inject(DOCUMENT) private document: Document
   ) { }
 
-  // TODO: test functionality
   public onScrollToTop(): Observable<boolean> {
     const root = this.document.getElementsByTagName('body')[0];
     const finishedScroll = fromEvent(root, 'scroll').pipe(
