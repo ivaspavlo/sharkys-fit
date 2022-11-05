@@ -3,12 +3,12 @@
   <div class="mb-rem-1 d-flex justify-content-center">
 
     <label for="id-upload-image" class="app-cropper__button">
-      <i class="app-cropper__icon app-cropper__icon--upload"></i>
+      <i class="app-cropper__icon app-cropper__icon--browse"></i>
       <span>{{ 'core.button.open' | translate }}</span>
     </label>
     <button [disabled]="!croppedImage" (click)="onSave()" class="app-cropper__button">
-      <i class="app-cropper__icon app-cropper__icon--save"></i>
-      <span>{{ 'core.button.save' | translate }}</span>
+      <i class="app-cropper__icon app-cropper__icon--load"></i>
+      <span>{{ 'core.button.load' | translate }}</span>
     </button>
   
     <input (change)="onChange($event)" type="file" id="id-upload-image" accept="image/*" class="d-none">

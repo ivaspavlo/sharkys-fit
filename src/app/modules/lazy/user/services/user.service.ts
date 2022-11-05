@@ -111,16 +111,18 @@ export class UserService extends ApiService {
 
   public getPagesContent(): Observable<IResponseApi> {
     this.spinnerService.on();
-    // TODO: agree the request with Ben
+
+    const mockData = {
+      account: "Account page description.",
+      payments: "Payments page description",
+      starting: "Getting started page description",
+      earnings: "Earnings page description",
+      orders: "Orders page description",
+      promotions: "Promotions page description"
+    };
+    
     // return this.get<IUserContent>('user/content').pipe(
-    return of({
-      account: "A Sharky's Reward Account is required to join Sharky's Fit. We will create an account automatically for you and include the account username and password in the confirmation email. If you have a Sharky's Reward Account and have registered it, please make sure to use an different email address when creating your Sharky's Fit Account.",
-      payments: "A Sharky's Reward Account is required to join Sharky's Fit. We will create an account automatically for you and include the account username and password in the confirmation email. If you have a Sharky's Reward Account and have registered it, please make sure to use an different email address when creating your Sharky's Fit Account.",
-      starting: "A Sharky's Reward Account is required to join Sharky's Fit. We will create an account automatically for you and include the account username and password in the confirmation email. If you have a Sharky's Reward Account and have registered it, please make sure to use an different email address when creating your Sharky's Fit Account.",
-      earnings: "A Sharky's Reward Account is required to join Sharky's Fit. We will create an account automatically for you and include the account username and password in the confirmation email. If you have a Sharky's Reward Account and have registered it, please make sure to use an different email address when creating your Sharky's Fit Account.",
-      orders: "A Sharky's Reward Account is required to join Sharky's Fit. We will create an account automatically for you and include the account username and password in the confirmation email. If you have a Sharky's Reward Account and have registered it, please make sure to use an different email address when creating your Sharky's Fit Account.",
-      promotions: "A Sharky's Reward Account is required to join Sharky's Fit. We will create an account automatically for you and include the account username and password in the confirmation email. If you have a Sharky's Reward Account and have registered it, please make sure to use an different email address when creating your Sharky's Fit Account."
-    }).pipe(
+    return of(mockData).pipe(
       tap((res: IUserContent) => {
         this.cachePagesContent(res);
       }),
