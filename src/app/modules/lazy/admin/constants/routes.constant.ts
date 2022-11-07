@@ -1,4 +1,5 @@
 import { Routes } from '@angular/router';
+import { CanDeactivateContentPageGuard } from '../guards/can-deactivate-content-page.guard';
 import { AdminComponent } from '../pages/admin/admin.component';
 import { ApprovedTrainersComponent } from '../pages/approved-trainers/approved-trainers.component';
 import { PendingTrainersComponent } from '../pages/pending-trainers/pending-trainers.component';
@@ -55,6 +56,7 @@ export const ROUTES: Routes = [
       }, {
         path: ROUTE_NAMES.USER_CONTENT,
         data: { animation: 'UserContentComponent' },
+        canDeactivate: [CanDeactivateContentPageGuard],
         component: UserContentComponent
       }
     ]

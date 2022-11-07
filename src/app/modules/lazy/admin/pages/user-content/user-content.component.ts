@@ -16,6 +16,7 @@ import { AdminService } from '../../services/admin.service';
 export class UserContentComponent implements OnInit {
 
   public form: FormGroup;
+  public initFormValue: object; // public because it is used in canDeactivate guard
 
   constructor(
     private fb: FormBuilder,
@@ -40,6 +41,7 @@ export class UserContentComponent implements OnInit {
       orders: [res?.orders, [Validators.required]],
       promotions: [res?.promotions, [Validators.required]]
     });
+    this.initFormValue = this.form.value;
   }
 
   public onSubmitForm(): void {
@@ -50,6 +52,7 @@ export class UserContentComponent implements OnInit {
           type: 'warn'
         });
       } else {
+        this.initFormValue = this.form.value;
         this.toastService.show({
           text: this.translationService.instant('admin.messages.user-content-updated'),
           type: 'success'
