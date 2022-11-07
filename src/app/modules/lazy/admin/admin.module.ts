@@ -9,6 +9,7 @@ import { AdminRoutingModule } from './admin-routing.module';
 import { PAGES } from './pages';
 import { PARTIALS } from './partials';
 import { SERVICES } from './services';
+import { GUARDS } from './guards';
 
 
 @NgModule({
@@ -31,7 +32,8 @@ import { SERVICES } from './services';
     CoreTranslationModule.forChild()
   ],
   providers: [
-    ...SERVICES
+    ...SERVICES,
+    ...GUARDS
   ]
 })
 export class AdminModule { }
