@@ -1,4 +1,10 @@
 import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
+import { Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
+import { IUserContent } from '../../interfaces';
+import { ROUTE_NAMES } from '../../constants';
+import { UserService } from '../../services/user.service';
+
 
 @Component({
   selector: 'app-getting-started',
@@ -8,9 +14,21 @@ import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
 })
 export class GettingStartedComponent implements OnInit {
 
-  constructor() { }
+  public content$: Observable<string | null>;
+
+  constructor(
+    private userService: UserService
+  ) { }
 
   ngOnInit(): void {
+    // TODO: add fallback content.
+    this.initContent();
+  }
+
+  private initContent(): void {
+    this.content$ = this.userService.getCahcedPagesContent().pipe(
+      map((res: IUserContent | null) => res ? res[ROUTE_NAMES.GETTING_STARTED] : null)
+    );
   }
 
 }

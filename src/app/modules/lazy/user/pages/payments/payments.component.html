@@ -6,7 +6,7 @@
 
     <div *ngIf="!isPayoutsSetup" class="app-content">
       <ng-container *ngIf="!isRedirected">
-        <h4 class="app-desc">{{'payments.desc' | translate}}</h4>
+        <h4 class="app-desc">{{(content$ | async) || ('payments.desc' | translate)}}</h4>
         <div class="d-flex justify-content-center">
           <app-button-primary (buttonPrimaryClick)="onSetupPayouts()" title="payments.button.setup" [loading]="spinnerService.isOn$ | async" [filled]="true" class="app-submit-button"></app-button-primary>
         </div>

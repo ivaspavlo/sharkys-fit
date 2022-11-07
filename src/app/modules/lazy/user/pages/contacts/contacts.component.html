@@ -2,9 +2,7 @@
 
   <div class="app-content">
 
-    <h2 class="app-title mb-rem-3">{{ 'user.contact-us' | translate }}</h2>
-
-    <h4 class="app-desc">{{ 'payments.desc' | translate }}</h4>
+    <h2 class="app-title mb-rem-3">{{'user.contact-us.title' | translate}}</h2>
 
     <form *ngIf="form" [formGroup]="form" class="my-rem-3">
       <app-input controlName="name" label="core.form.name.label" placeholder="core.form.name.placeholder" class="mb-rem-2"></app-input>

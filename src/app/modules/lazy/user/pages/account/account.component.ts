@@ -42,6 +42,7 @@ export class AccountComponent extends DestroySubscriptions implements OnInit {
   }
 
   ngOnInit(): void {
+    // TODO: add fallback content.
     this.initContent();
 
     this.userService.getCachedUserData().pipe(

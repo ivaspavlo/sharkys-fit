@@ -2,9 +2,9 @@
 
   <div class="app-content">
 
-    <h2 class="app-title mb-rem-3">{{ 'user.getting-started' | translate }}</h2>
+    <h2 class="app-title mb-rem-3">{{'user.getting-started.title' | translate}}</h2>
 
-    <h4 class="app-desc">{{ 'payments.desc' | translate }}</h4>
+    <h4 class="app-desc">{{(content$ | async) || ('user.getting-started.desc' | translate)}}</h4>
 
   </div>
 
