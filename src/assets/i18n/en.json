@@ -180,15 +180,33 @@
   },
   "user": {
     "payout": "Payout",
-    "account": "My account",
-    "payment": "Payments",
-    "getting-started": "Getting started",
-    "what-you-earn": "What you earn",
-    "how-to-order": "How to order",
-    "promoting": "Promoting",
-    "contact-us": "Contact us",
-    "gallery": "Gallery",
-    "account-deactivate-title": "You have not saved the changes. Are you sure you want to leave the page?",
+    "account": {
+      "title": "My account",
+      "desc": "My account fallback description.",
+      "deactivate-title": "You have not saved the changes. Are you sure you want to leave the page?"
+    },
+    "getting-started": {
+      "title": "Getting started",
+      "desc": "Getting started fallback description."
+    },
+    "what-you-earn": {
+      "title": "What you earn",
+      "desc": "Earnings fallback description."
+    },
+    "how-to-order": {
+      "title": "How to order",
+      "desc": "Orders fallback description."
+    },
+    "promoting": {
+      "title": "Promoting",
+      "desc": "Promoting fallback description."
+    },
+    "contact-us": {
+      "title": "Contact us"
+    },
+    "gallery": {
+      "title": "Gallery"
+    },
     "messages": {
       "file-uploaded": "Click 'Confirm' button in order to save the uploaded photo.",
       "user-updated": "Account data was successfully updated",
