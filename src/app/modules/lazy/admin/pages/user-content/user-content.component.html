@@ -11,7 +11,7 @@
       <app-input controlName="earnings" type="textarea" label="core.form.earnings-page.label" placeholder="core.form.earnings-page.placeholder" class="mb-rem-2"></app-input>
       <app-input controlName="orders" type="textarea" label="core.form.orders-page.label" placeholder="core.form.orders-page.placeholder" class="mb-rem-2"></app-input>
       <app-input controlName="promotions" type="textarea" label="core.form.promoting-page.label" placeholder="core.form.promoting-page.placeholder" class="mb-rem-2"></app-input>
-      <div *ngIf="form" class="d-flex justify-content-center">
+      <div class="d-flex justify-content-center">
         <app-button-primary [disabled]="!form.valid" (buttonPrimaryClick)="onSubmitForm()" title="core.button.confirm" class="app-submit-button" [loading]="spinnerService.isOn$ | async" [filled]="true"></app-button-primary>
       </div>
     </form>

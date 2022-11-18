@@ -1,4 +1,4 @@
-import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
+import { Component, OnInit, ChangeDetectionStrategy, ChangeDetectorRef } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { TranslateService } from '@ngx-translate/core';
 import { SpinnerService } from '@app/core/services';
@@ -23,12 +23,14 @@ export class UserContentComponent implements OnInit {
     private toastService: ToastService,
     private translationService: TranslateService,
     private adminService: AdminService,
+    private cdr: ChangeDetectorRef,
     public spinnerService: SpinnerService
   ) { }
 
   ngOnInit(): void {
     this.adminService.getUserPageConent().subscribe((res: IResponseApi) => {
       this.initForm(res.data);
+      this.cdr.markForCheck();
     });
   }
 

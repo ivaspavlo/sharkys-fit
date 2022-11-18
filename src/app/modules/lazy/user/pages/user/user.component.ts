@@ -1,8 +1,8 @@
 import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { ChildrenOutletContexts, Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
-import { forkJoin, Observable } from 'rxjs';
-import { map, shareReplay } from 'rxjs/operators';
+import { Observable } from 'rxjs';
+import { tap } from 'rxjs/operators';
 import { IResponseApi } from '@app/interfaces';
 import { AuthService } from '@core/services';
 import { basicRoutingAnimation } from '@core/animations';
@@ -11,7 +11,7 @@ import { ToastService } from '@app/modules/ui';
 
 import { UserService } from '../../services/user.service';
 import { UserAsideButtons } from '../../constants';
-import { IUserAccount, IUserContent } from '../../interfaces';
+import { IUserAccount } from '../../interfaces';
 
 
 @Component({
@@ -24,7 +24,7 @@ import { IUserAccount, IUserContent } from '../../interfaces';
 export class UserComponent implements OnInit {
 
   public buttons: IAsideButton[] = UserAsideButtons;
-  public data$: Observable<IUserAccount | {}>;
+  public data$: Observable<IUserAccount | null>;
 
   constructor(
     private userService: UserService,
@@ -36,12 +36,9 @@ export class UserComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    const accountData$ = this.getUserData();
-    const pagesContent$ = this.getPagesContent();
-    this.data$ = forkJoin([accountData$, pagesContent$]).pipe(
-      map(([accountData,]) => accountData || {}),
-      shareReplay()
-    );
+    this.initUserData();
+    this.initPagesContent();
+    this.data$ = this.userService.getCachedUserData();
   }
 
   public prepareRoute(): string {
@@ -56,27 +53,30 @@ export class UserComponent implements OnInit {
     }
   }
 
-  public getUserData(): Observable<IUserAccount | null> {
-    return this.userService.getUserData().pipe(
-      map((res: IResponseApi) => {
-        if (res.valid) {
-          return res.data;
+  public initUserData(): void {
+    this.userService.getUserData().pipe(
+      tap((res: IResponseApi) => {
+        if (!res.valid) {
+          this.toastService.show({
+            text: res.error_message || this.translationService.instant('core.http-errors.general'),
+            type: 'warn'
+          });
         }
-        this.toastService.show({
-          text: res.error_message || this.translationService.instant('core.http-errors.general'),
-          type: 'warn'
-        });
-        return null;
       })
-    );
+    ).subscribe();
   }
 
-  public getPagesContent(): Observable<IUserContent | null> {
-    return this.userService.getPagesContent().pipe(
-      map((res: IResponseApi) => {
-        return res.data || null;
+  public initPagesContent(): void {
+    this.userService.getPagesContent().pipe(
+      tap((res: IResponseApi) => {
+        if (!res.valid) {
+          this.toastService.show({
+            text: res.error_message || this.translationService.instant('core.http-errors.general'),
+            type: 'warn'
+          });
+        }
       })
-    );
+    ).subscribe();
   }
 
 }

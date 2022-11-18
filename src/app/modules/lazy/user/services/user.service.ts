@@ -111,18 +111,7 @@ export class UserService extends ApiService {
 
   public getPagesContent(): Observable<IResponseApi> {
     this.spinnerService.on();
-
-    const mockData = {
-      account: "Account page description.",
-      payments: "Payments page description.",
-      starting: "Getting started page description.",
-      earnings: "Earnings page description.",
-      orders: "Orders page description.",
-      promotions: "Promotions page description."
-    };
-    
-    // return this.get<IUserContent>('user/content').pipe(
-    return of(mockData).pipe(
+    return this.get<IUserContent>('user/content').pipe(
       tap((res: IUserContent) => {
         this.cachePagesContent(res);
       }),
