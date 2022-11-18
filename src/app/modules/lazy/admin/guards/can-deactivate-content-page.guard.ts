@@ -18,7 +18,7 @@ export class CanDeactivateContentPageGuard extends DestroySubscriptions implemen
   }
 
   public canDeactivate(component: UserContentComponent): Observable<boolean> {
-    if (JSON.stringify(component.initFormValue) === JSON.stringify(component.form.value)) {
+    if (JSON.stringify(component.initFormValue) === JSON.stringify(component.form?.value)) {
       return of(true);
     }
     return this.dialogService.open(ConfirmModalComponent, {title: 'user.account.deactivate-title', icon: 'warn-orange'}).afterClosed.pipe(
