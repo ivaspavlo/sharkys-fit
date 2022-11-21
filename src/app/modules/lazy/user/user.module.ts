@@ -7,7 +7,6 @@ import { SpinnerModule, InputModule, CropperModule, DialogModule, ButtonPrimaryM
 
 import { UserRoutingModule } from './user-routing.module';
 import { PAGES } from './pages';
-import { PARTIALS } from './partials';
 import { SERVICES } from './services';
 import { MODALS } from './modals';
 import { GUARDS } from './guards';
@@ -16,7 +15,6 @@ import { GUARDS } from './guards';
 @NgModule({
   declarations: [
     ...PAGES,
-    ...PARTIALS,
     ...MODALS
   ],
   imports: [
