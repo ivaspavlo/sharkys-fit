@@ -6,7 +6,7 @@
   --color-disabled: lightgrey
 }
 
-.button-secondary {
+.button-primary {
   width: 100%;
   min-height: 48px;
   border: 2px solid var(--color-main);
@@ -17,6 +17,7 @@
   color: var(--color-main);
   background-color: transparent;
   position: relative;
+  letter-spacing: 0.2px;
   cursor: pointer;
 
   // Inner elements
@@ -34,8 +35,7 @@
     border: 0;
   }
   &.small {
-    min-height: 32px;
-    padding: 8px 20px;
+    padding: 4px 15px;
     font-size: 14px;
   }
   &.filled {
@@ -43,10 +43,10 @@
     background-color: var(--color-main);
   }
   &.loading {
-    .button-secondary__spinner {
+    .button-primary__spinner {
       opacity: 1;
     }
-    .button-secondary__title {
+    .button-primary__title {
       opacity: 0;
     }
   }

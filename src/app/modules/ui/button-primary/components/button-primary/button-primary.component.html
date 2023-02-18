@@ -3,18 +3,18 @@
   [routerLink]="routerLink"
   [routerLinkActive]="routerLink ? 'filled' : ''"
   [disabled]="disabled || loading"
-  class="button-secondary"
+  class="button-primary"
   [ngClass]="{
     'filled': filled && !routerLink,
     'noBorder': noBorder,
     'loading': loading,
     'small': size === 'sm'
   }">
-    <app-spinner *ngIf="loading" class="button-secondary__spinner"></app-spinner>
+    <app-spinner *ngIf="loading" class="button-primary__spinner"></app-spinner>
     <p *ngIf="!loading" class="d-flex justify-content-center">
       <span class="mr-1">
         <ng-content></ng-content>
       </span>
-      <span class="button-secondary__title">{{title | translate}}</span>
+      <span class="button-primary__title">{{title | translate}}</span>
     </p>
 </button>
