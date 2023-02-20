@@ -1,0 +1,24 @@
+@import 'mixins/bg-img';
+@import '_core-colors';
+
+.earnings-image {
+  @include bg-img('/assets/img/png/earnings.png');
+  width: 100%;
+  height: 300px;
+  border-radius: 4px;
+}
+
+.earnings-info {
+  font-size: 1rem;
+  line-height: 28px;
+  color: $white;
+  &__numbered-list {
+    li { list-style-type: decimal; }
+  }
+  &__text-blocks {
+    li { margin-bottom: 1rem; }
+  }
+  b { color: $main; font-weight: bold; }
+  u { text-decoration: underline; }
+  ol { margin: 0 1rem; }
+}

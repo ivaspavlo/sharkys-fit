@@ -39,7 +39,6 @@ export class UserContentComponent implements OnInit {
       account: [res?.account, [Validators.required]],
       payments: [res?.payments, [Validators.required]],
       starting: [res?.starting, [Validators.required]],
-      earnings: [res?.earnings, [Validators.required]],
       orders: [res?.orders, [Validators.required]],
       promotions: [res?.promotions, [Validators.required]]
     });

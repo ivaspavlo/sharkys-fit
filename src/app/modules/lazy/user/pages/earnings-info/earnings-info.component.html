@@ -1,10 +1,45 @@
-<section class="w-100 p-rem-2 d-flex justify-content-center">
+<section class="w-100 p-rem-2 d-flex flex-column justify-content-center">
 
-  <div class="app-content">
+  <h2 class="app-title mb-rem-3">{{'user.what-you-earn.title' | translate}}</h2>
 
-    <h2 class="app-title mb-rem-3">{{'user.what-you-earn.title' | translate}}</h2>
+  <figure class="earnings-image"></figure>
 
-    <h4 class="app-desc">{{(content$ | async) || ('payments.desc' | translate)}}</h4>
+  <div class="px-rem-1 py-rem-3 row">
+
+    <div class="col-6 color-white">
+      <ol class="earnings-info earnings-info__numbered-list">
+        <li>
+          <b>You are assigned a unique trainer code. </b>
+          <span>This code should be given out to your clients, shared on social media, and given to prospective clients.</span>
+        </li>
+        <li>
+          <b>Your clients benefit. </b>
+          <span>To encourage them to try the program, clients or client prospects will get a 20% discount off with Sharky’s Fit when they enter your code at checkout. (code structure is pending to change with version 2 of Sharkys Fit)</span>
+        </li>
+        <li>
+          <b>You benefit. </b>
+          <span>Each time someone uses your code at checkout, </span>
+          <b>you will earn 5% of the net sales transaction of meals purchased with your code, OR “Sharky’s Bucks” meal credits. </b>
+          <span>Each month, you will be given a statement showing your earnings to-date. Then, </span>
+          <u>at the end of each quarter</u>
+          <span> you can take your earnings in one of three ways:</span>
+          <ol>
+            <li>A check written to you in the amount of your earnings based on purchases that have used your individual code</li>
+            <li>Sharky’s Bucks for food credit in the amount of your earnings from your code</li>
+            <li>A combination of earnings/credits</li>
+          </ol>
+        </li>
+      </ol>
+    </div>
+
+    <div class="col-6 color-white">
+      <ul class="earnings-info earnings-info__text-blocks">
+        <li>To make this successful for your client’s training goals and for you financially, you’ll want to encourage them to stay on the Sharky’s Fit meal plan program and use your code. Consistent purchase of meals on the meal plan will enable your clients to properly mix nutritional needs with what your training objectives are. The more consistently your clients stay within the program, the more benefit you too will receive.</li>
+        <li>Over these past few months, we’ve worked diligently to provide one of the easiest-to-use, nutritionally balanced, and freshest meal plan programs available for performance fitness available.</li>
+        <li>The fact that it’s from a local location (that anyone can visit daily), where people can see how the food is prepared (and pick it up), is reassuring. Unlike boxed meal plans that come from “who knows where” and arrive as pre-selected menu items, Sharky’s Fit offers complete flexibility for you and your clients.</li>
+        <li>They can choose from multiple options to meet Macro nutrition goals. All that information is displayed simply on sharkysfit.com</li>
+      </ul>
+    </div>
 
   </div>
 
